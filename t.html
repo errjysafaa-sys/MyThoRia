@@ -1,0 +1,82 @@
+const catalogue = document.querySelector('#catalogue');
+const panier = document.querySelector('#liste-panier');
+const totalSpan = document.querySelector('#total-coins');
+const btnConfirmer = document.querySelector('#confirmer-achat');
+
+let total = 0;
+let achats = JSON.parse(localStorage.getItem('achats')) || [];
+
+function afficherTotal() {
+total = 0;
+
+panier.querySelectorAll('.produit-panier').forEach(produit => {
+total += Number(produit.dataset.prix);
+});
+
+totalSpan.textContent = total;
+}
+
+function ajouterCoins(titre, prix) {
+const li = document.createElement('section');
+li.className = 'produit-panier';
+li.dataset.prix = prix;
+li.textContent = `${titre} - ${prix} Coins `;
+
+const supprimer = document.createElement('a');
+supprimer.href = '#';
+supprimer.className = 'supprimer';
+supprimer.textContent = 'Remove';
+
+li.appendChild(supprimer);
+panier.appendChild(li);
+
+afficherTotal();
+}
+
+catalogue.addEventListener('click', (e) => {
+const lien = e.target.closest('.ajouter');
+if (!lien) return;
+
+e.preventDefault();
+
+const article = lien.closest('.produit');
+const titre = article.querySelector('.titre').textContent.trim();
+const prix = Number(article.dataset.prix);
+
+ajouterCoins(titre, prix);
+});
+
+panier.addEventListener('click', (e) => {
+const lien = e.target.closest('.supprimer');
+if (!lien) return;
+
+e.preventDefault();
+
+lien.closest('.produit-panier').remove();
+afficherTotal();
+});
+
+btnConfirmer.addEventListener('click', () => {
+if (panier.children.length === 0) {
+alert('Votre panier est vide !');
+return;
+}
+
+const nouveauxAchats = [];
+
+panier.querySelectorAll('.produit-panier').forEach(produit => {
+nouveauxAchats.push({
+titre: produit.textContent.replace('Remove', '').trim(),
+prix: Number(produit.dataset.prix)
+});
+});
+
+achats.push(...nouveauxAchats);
+
+localStorage.setItem('achats', JSON.stringify(achats));
+
+alert('Votre achat est confirmé !');
+
+panier.innerHTML = '';
+afficherTotal();
+});

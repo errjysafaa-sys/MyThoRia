@@ -36,7 +36,6 @@
             background-size: cover;
         }
 
-        /* FIX: the card is now the positioning parent of its absolute children */
         .magic-card {
             position: relative;
             transition: transform 0.3s ease, border-color 0.3s ease;
@@ -67,7 +66,7 @@
 
             <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
                 <a href="index.html" class="text-purple-300 transition-colors hover:text-white">Home</a>
-                <a href="booster.html" class="text-gray-300 transition-colors hover:text-purple-300">Boosters</a>
+                <a href="Booster.html" class="text-gray-300 transition-colors hover:text-purple-300">Boosters</a>
                 <a href="opening.html" class="text-gray-300 transition-colors hover:text-purple-300">Opening</a>
                 <a href="grimoire.html" class="text-gray-300 transition-colors hover:text-purple-300">Grimoire</a>
                 <a href="deck.html" class="text-gray-300 transition-colors hover:text-purple-300">My Deck</a>
@@ -78,18 +77,17 @@
 
     <main>
 
-        <!-- HERO -->
-        <section class="hero flex min-h-[600px] items-center py-24 md:min-h-[680px]">
+        <section class="hero flex min-h-[600px] items-center py-14 md:min-h-[680px]">
 
-            <div class="mx-auto flex w-full max-w-7xl flex-col items-center px-6 text-center">
+            <div class="mx-auto flex w-full  max-w-7xl flex-col items-center px-6 text-center">
 
-                <p class="mb-12 text-3xl font-bold text-gray-200 md:text-5xl">
+                <p class="mb-40 text-3xl font-bold text-gray-200 md:text-5xl">
                     Every Card Tells a Legend.
                 </p>
 
-                <div class="flex flex-wrap justify-center gap-4">
+                <div class="mt-60 flex flex-wrap justify-center gap-4">
 
-                    <a href="booster.html"
+                    <a href="Booster.html"
                         class="magic-button rounded-lg bg-purple-600 px-7 py-4 font-semibold text-white">
                         Découvrir les boosters
                     </a>
@@ -104,7 +102,6 @@
             </div>
         </section>
 
-        <!-- INTRO -->
         <section class="px-6 py-20 text-center">
 
             <p class="mb-3 text-sm uppercase tracking-[0.3em] text-purple-400">The world of Mythoria</p>
@@ -119,7 +116,6 @@
 
         </section>
 
-        <!-- CATEGORIES -->
         <section class="mx-auto max-w-7xl px-6 pb-24">
 
             <div class="mb-10 flex flex-wrap items-end justify-between gap-4">
@@ -180,7 +176,6 @@
             </div>
         </section>
 
-        <!-- BOOSTERS -->
         <section class="mx-auto max-w-7xl px-6 pb-24">
 
             <div class="mb-12 text-center">
@@ -192,7 +187,8 @@
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 
                 <article class="magic-card h-[28rem] overflow-hidden rounded-xl border border-purple-900/50">
-                    <img src="img/1.jpg" alt="Illustration Beginner Pack" class="h-full w-full object-cover">
+                    <img src="img/1792685568936.jpg" alt="Illustration Beginner Pack"
+                        class="h-full w-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
 
                     <div class="absolute bottom-0 left-0 w-full p-5">
@@ -200,13 +196,14 @@
                         <p class="mb-3 text-sm leading-6 text-gray-300">Le pack idéal pour commencer ta collection.
                         </p>
                         <p class="mb-4 text-sm text-purple-300">5 cartes · Plusieurs raretés</p>
-                        <a href="booster.html"
+                        <a href="Booster.html"
                             class="inline-block rounded-lg border border-purple-400 px-5 py-2 text-center font-semibold hover:bg-purple-600">Découvrir</a>
                     </div>
                 </article>
 
                 <article class="magic-card h-[28rem] overflow-hidden rounded-xl border border-purple-900/50">
-                    <img src="img/1.jpg" alt="Illustration Summoning of the Legends" class="h-full w-full object-cover">
+                    <img src="img/1792685571852.jpg" alt="Illustration Summoning of the Legends"
+                        class="h-full w-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
 
                     <div class="absolute bottom-0 left-0 w-full p-5">
@@ -214,13 +211,14 @@
                         <p class="mb-3 text-sm leading-6 text-gray-300">Un pack premium aux chances de rareté
                             supérieures.</p>
                         <p class="mb-4 text-sm text-yellow-300">5 cartes · Pack premium</p>
-                        <a href="booster.html"
+                        <a href="Booster.html"
                             class="inline-block rounded-lg border border-purple-400 px-5 py-2 text-center font-semibold hover:bg-purple-600">Découvrir</a>
                     </div>
                 </article>
 
                 <article class="magic-card h-[28rem] overflow-hidden rounded-xl border border-purple-900/50">
-                    <img src="img/1.jpg" alt="Illustration Dark Summoning" class="h-full w-full object-cover">
+                    <img src="img/1792685609525.jpg" alt="Illustration Dark Summoning"
+                        class="h-full w-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
 
                     <div class="absolute bottom-0 left-0 w-full p-5">
@@ -228,13 +226,14 @@
                         <p class="mb-3 text-sm leading-6 text-gray-300">Des monstres obscurs et des sorts interdits.
                         </p>
                         <p class="mb-4 text-sm text-red-300">5 cartes · Thème sombre</p>
-                        <a href="booster.html"
+                        <a href="Booster.html"
                             class="inline-block rounded-lg border border-purple-400 px-5 py-2 text-center font-semibold hover:bg-purple-600">Découvrir</a>
                     </div>
                 </article>
 
                 <article class="magic-card h-[28rem] overflow-hidden rounded-xl border border-purple-900/50">
-                    <img src="img/1.jpg" alt="Illustration Lucky Pack" class="h-full w-full object-cover">
+                    <img src="img/file_00000000d8fc81f4b8b2cf0740cc4c68.png" alt="Illustration Lucky Pack"
+                        class="h-full w-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
 
                     <div class="absolute bottom-0 left-0 w-full p-5">
@@ -242,7 +241,7 @@
                         <p class="mb-3 text-sm leading-6 text-gray-300">Un pack mystère qui réserve des surprises.
                         </p>
                         <p class="mb-4 text-sm text-green-300">5 cartes · Surprise</p>
-                        <a href="booster.html"
+                        <a href="Booster.html"
                             class="inline-block rounded-lg border border-purple-400 px-5 py-2 text-center font-semibold hover:bg-purple-600">Découvrir</a>
                     </div>
                 </article>
@@ -317,7 +316,7 @@
 
             <div class="flex flex-wrap justify-center gap-5 text-sm text-gray-400">
                 <a href="index.html" class="hover:text-purple-300">Home</a>
-                <a href="booster.html" class="hover:text-purple-300">Boosters</a>
+                <a href="Booster.html" class="hover:text-purple-300">Boosters</a>
                 <a href="opening.html" class="hover:text-purple-300">Opening</a>
                 <a href="grimoire.html" class="hover:text-purple-300">Grimoire</a>
                 <a href="deck.html" class="hover:text-purple-300">My Deck</a>
