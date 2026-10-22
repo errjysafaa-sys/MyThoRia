@@ -7,9 +7,12 @@
 
     <title>Mythoria | Every Card Tells a Legend</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
 
     <style>
         body {
@@ -33,7 +36,9 @@
             background-size: cover;
         }
 
+        /* FIX: the card is now the positioning parent of its absolute children */
         .magic-card {
+            position: relative;
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
@@ -55,8 +60,7 @@
 
 <body class="bg-[#090914] text-white">
 
-
-    <header class="sticky top-0 z-50 border-purple-900/40 bg-[#0B0915]/95">
+    <header class="sticky top-0 z-50 border-b border-purple-900/40 bg-[#0B0915]/95">
         <nav class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4">
 
             <a href="index.html" class="logo text-2xl font-bold tracking-widest text-purple-300">MYTHORIA</a>
@@ -71,243 +75,236 @@
 
         </nav>
     </header>
-    <br><br>
-    <section class="hero flex min-h-[600px] items-center py-24 md:min-h-[680px]">
 
-        <div class="mx-auto flex w-full max-w-7xl flex-col items-center px-6 text-center">
+    <main>
 
-            <p class="mb-100 text-3xl font-bold text-gray-200 md:text-5xl">
-                Every Card Tells a Legend.
+        <!-- HERO -->
+        <section class="hero flex min-h-[600px] items-center py-24 md:min-h-[680px]">
+
+            <div class="mx-auto flex w-full max-w-7xl flex-col items-center px-6 text-center">
+
+                <p class="mb-12 text-3xl font-bold text-gray-200 md:text-5xl">
+                    Every Card Tells a Legend.
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-4">
+
+                    <a href="booster.html"
+                        class="magic-button rounded-lg bg-purple-600 px-7 py-4 font-semibold text-white">
+                        Découvrir les boosters
+                    </a>
+
+                    <a href="grimoire.html"
+                        class="magic-button rounded-lg border border-purple-400 px-7 py-4 font-semibold text-white hover:bg-purple-950">
+                        Ouvrir mon grimoire
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- INTRO -->
+        <section class="px-6 py-20 text-center">
+
+            <p class="mb-3 text-sm uppercase tracking-[0.3em] text-purple-400">The world of Mythoria</p>
+
+            <h2 class="mb-6 text-3xl font-bold md:text-4xl">Un univers, quatre pouvoirs</h2>
+
+            <p class="mx-auto max-w-2xl leading-8 text-gray-400">
+                Chaque carte possède sa propre histoire. Construis ta collection,
+                découvre de nouveaux pouvoirs et prépare ton deck pour les
+                combats à venir.
             </p>
 
-            <div class="flex flex-wrap justify-center gap-4">
+        </section>
 
-                <a href="booster.html" class="magic-button rounded-lg bg-purple-600 px-7 py-4 font-semibold text-white">
-                    Découvrir les boosters
-                </a>
+        <!-- CATEGORIES -->
+        <section class="mx-auto max-w-7xl px-6 pb-24">
 
-                <a href="grimoire.html"
-                    class="magic-button rounded-lg border border-purple-400 px-7 py-4 font-semibold text-white hover:bg-purple-950">
-                    Ouvrir mon grimoire
-                </a>
+            <div class="mb-10 flex flex-wrap items-end justify-between gap-4">
+                <div>
+                    <p class="mb-2 text-sm uppercase tracking-widest text-purple-400">Discover your allies</p>
+                    <h2 class="text-3xl font-bold">Catégories de cartes</h2>
+                </div>
 
+                <a href="cards.html" class="text-sm text-purple-300 hover:text-white">Explorer les cartes →</a>
             </div>
 
-        </div>
-    </section>
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 
-    <section class="px-6 py-20 text-center">
+                <article class="magic-card overflow-hidden rounded-xl border border-purple-900/50">
+                    <img src="img/1.jpg" alt="Univers mystique des héros" class="h-80 w-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
 
-        <p class="mb-3 text-sm uppercase tracking-[0.3em] text-purple-400"> The world of Mythoria </p>
+                    <div class="absolute bottom-0 left-0 p-5">
+                        <h3 class="mb-2 text-lg font-bold text-purple-300">Héros</h3>
+                        <p class="text-sm leading-6 text-white">Des guerriers et des gardiens prêts à défendre leur
+                            royaume.</p>
+                    </div>
+                </article>
 
-        <h2 class="mb-6 text-3xl font-bold md:text-4xl">Un univers, quatre pouvoirs </h2>
+                <article class="magic-card overflow-hidden rounded-xl border border-purple-900/50">
+                    <img src="img/8.webp" alt="Paysage mystérieux des ténèbres" class="h-80 w-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
 
-        <p class="mx-auto max-w-2xl leading-8 text-gray-400">
-            Chaque carte possède sa propre histoire. Construis ta collection,
-            découvre de nouveaux pouvoirs et prépare ton deck pour les
-            combats à venir.
-        </p>
+                    <div class="absolute bottom-0 left-0 p-5">
+                        <h3 class="mb-2 text-lg font-bold text-red-300">Monstres</h3>
+                        <p class="text-sm leading-6 text-white">Des créatures redoutables issues des profondeurs
+                            obscures.</p>
+                    </div>
+                </article>
 
-    </section>
+                <article class="magic-card overflow-hidden rounded-xl border border-purple-900/50">
+                    <img src="img/5.png" alt="Forêt enchantée" class="h-80 w-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
 
-    <section class="mx-auto max-w-7xl px-6 pb-24">
+                    <div class="absolute bottom-0 left-0 p-5">
+                        <h3 class="mb-2 text-lg font-bold text-green-300">Minions</h3>
+                        <p class="text-sm leading-6 text-white">Des serviteurs mystérieux qui renforcent ta stratégie.
+                        </p>
+                    </div>
+                </article>
 
-        <div class="mb-10 flex flex-wrap items-end justify-between gap-4">
-            <div>
-                <p class="mb-2 text-sm uppercase tracking-widest text-purple-400">Discover your allies</p>
-                <h2 class="text-3xl font-bold">Catégories de cartes</h2>
+                <article class="magic-card overflow-hidden rounded-xl border border-purple-900/50">
+                    <img src="img/6.webp" alt="Ciel magique et mystérieux" class="h-80 w-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+
+                    <div class="absolute bottom-0 left-0 p-5">
+                        <h3 class="mb-2 text-lg font-bold text-blue-300">Spells</h3>
+                        <p class="text-sm leading-6 text-white">Des sorts puissants pour changer le cours d'un combat.
+                        </p>
+                    </div>
+                </article>
+
             </div>
+        </section>
 
-            <a href="cards.html" class="text-sm text-purple-300 hover:text-white">Explorer les cartes →</a>
-        </div>
-
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <article class="magic-card  overflow-hidden rounded-xl border border-purple-900/50">
-
-                <img src="img/1.jpg" alt="Univers mystique des héros" class="h-80 w-full object-cover">
-
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-
-                <div class="absolute bottom-0 left-0 p-5">
-                    <h3 class="mb-3 text-lg font-bold text-purple-300">Héros</h3>
-
-                    <p class="text-sm leading-6 text-white">Des guerriers et des gardiens prêts à défendre leur
-                        royaume.
-                    </p>
-                </div>
-
-            </article>
-
-            <article class="magic-card overflow-hidden rounded-xl border border-purple-900/50 ">
-                <img src="img/8.webp" alt="Paysage mystérieux des ténèbres" class="h-80 w-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-
-                <div class="absolute bottom-0 left-0 ">
-                    <h3 class="mb-3 text-lg font-bold text-red-300">Monstres</h3>
-                    <p class="text-sm leading-6 text-white">Des créatures redoutables issues des profondeurs
-                        obscures.
-                    </p>
-                </div>
-            </article>
-
-            <article class="magic-card overflow-hidden rounded-xl border border-purple-900/50 ">
-                <img src="img/5.png" alt="Forêt enchantée" class="h-80 w-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-
-                <div class="absolute bottom-0 left-0">
-                    <h3 class="mb-3 text-lg font-bold text-green-300">Minions</h3>
-                    <p class="text-sm leading-6 text-white">Des serviteurs mystérieux qui renforcent ta stratégie.
-                    </p>
-                </div>
-            </article>
-
-            <article class="magic-card overflow-hidden rounded-xl border border-purple-900/50">
-                <img src="img/6.webp" alt="Ciel magique et mystérieux" class="h-80 w-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-
-                <div class="absolute bottom-0 left-0">
-                    <h3 class="mb-3 text-lg font-bold text-blue-300">Spells</h3>
-                    <p class="text-sm leading-6 text-white">Des sorts puissants pour changer le cours d'un combat.
-                    </p>
-                </div>
-            </article>
-
-        </div>
-    </section>
-
-    <section class="mx-auto max-w-7xl px-6 pb-24">
-
-        <div class="mx-auto max-w-7xl">
+        <!-- BOOSTERS -->
+        <section class="mx-auto max-w-7xl px-6 pb-24">
 
             <div class="mb-12 text-center">
                 <p class="mb-3 text-sm uppercase tracking-[0.3em] text-purple-400">Choose your fate</p>
-                <h2 class="mb-4 text-3xl font-bold md:text-4xl"> Les boosters</h2>
+                <h2 class="mb-4 text-3xl font-bold md:text-4xl">Les boosters</h2>
                 <p class="text-gray-400">Ouvre un pack et découvre les cartes que le destin te réserve.</p>
             </div>
 
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 
-                <article class="magic-card overflow-hidden rounded-xl border border-purple-900/50 h-100 ">
-                    <img src="img/1.jpg" alt="Illustration Beginner Pack" class="h-110 w-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                <article class="magic-card h-[28rem] overflow-hidden rounded-xl border border-purple-900/50">
+                    <img src="img/1.jpg" alt="Illustration Beginner Pack" class="h-full w-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
 
-                    <div class="absolute bottom-0 left-0 ">
-
+                    <div class="absolute bottom-0 left-0 w-full p-5">
                         <h3 class="mb-2 text-lg font-bold">Beginner Pack</h3>
-                        <p class="mb-4 min-h-12 text-sm leading-6 text-gray-400">Le pack idéal pour commencer ta
-                            collection.
+                        <p class="mb-3 text-sm leading-6 text-gray-300">Le pack idéal pour commencer ta collection.
                         </p>
                         <p class="mb-4 text-sm text-purple-300">5 cartes · Plusieurs raretés</p>
                         <a href="booster.html"
-                            class="-mt-2 inline-block rounded-lg py-3 text-center font-semibold hover:bg-purple-600">Découvrir
-                        </a>
+                            class="inline-block rounded-lg border border-purple-400 px-5 py-2 text-center font-semibold hover:bg-purple-600">Découvrir</a>
                     </div>
                 </article>
 
-                <article class="magic-card overflow-hidden rounded-xl  border border-purple-900/50 h-100 ">
-                    <img src="img/1.jpg" alt="Illustration Summoning of the Legends" class="h-110 w-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                <article class="magic-card h-[28rem] overflow-hidden rounded-xl border border-purple-900/50">
+                    <img src="img/1.jpg" alt="Illustration Summoning of the Legends" class="h-full w-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
 
-                    <div class="absolute bottom-0 left-0 ">
-
+                    <div class="absolute bottom-0 left-0 w-full p-5">
                         <h3 class="mb-2 text-lg font-bold">Summoning of the Legends</h3>
-                        <p class="mb-4 min-h-12 text-sm leading-6 text-gray-400">Un pack premium aux chances de
-                            rareté
+                        <p class="mb-3 text-sm leading-6 text-gray-300">Un pack premium aux chances de rareté
                             supérieures.</p>
                         <p class="mb-4 text-sm text-yellow-300">5 cartes · Pack premium</p>
                         <a href="booster.html"
-                            class="-mt-2 inline-block rounded-lg py-3 text-center font-semibold hover:bg-purple-600">Découvrir</a>
+                            class="inline-block rounded-lg border border-purple-400 px-5 py-2 text-center font-semibold hover:bg-purple-600">Découvrir</a>
                     </div>
                 </article>
 
-                <article class="magic-card overflow-hidden rounded-xl border border-purple-900/50 h-100 ">
-                    <img src="img/1.jpg" alt="Illustration Dark Summoning" class="h-110 w-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                <article class="magic-card h-[28rem] overflow-hidden rounded-xl border border-purple-900/50">
+                    <img src="img/1.jpg" alt="Illustration Dark Summoning" class="h-full w-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
 
-                    <div class="absolute bottom-0 left-0 ">
-
+                    <div class="absolute bottom-0 left-0 w-full p-5">
                         <h3 class="mb-2 text-lg font-bold">Dark Summoning</h3>
-                        <p class="mb-4 min-h-12 text-sm leading-6 text-gray-400"> Des monstres obscurs et des sorts
-                            interdits.</p>
+                        <p class="mb-3 text-sm leading-6 text-gray-300">Des monstres obscurs et des sorts interdits.
+                        </p>
                         <p class="mb-4 text-sm text-red-300">5 cartes · Thème sombre</p>
                         <a href="booster.html"
-                            class="-mt-2 inline-block rounded-lg py-3 text-center font-semibold hover:bg-purple-600">Découvrir</a>
+                            class="inline-block rounded-lg border border-purple-400 px-5 py-2 text-center font-semibold hover:bg-purple-600">Découvrir</a>
                     </div>
                 </article>
 
-                <article class="magic-card overflow-hidden rounded-xl   border border-purple-900/50 h-100">
-                    <img src="img/1.jpg" alt="Illustration Lucky Pack" class="h-110 w-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                <article class="magic-card h-[28rem] overflow-hidden rounded-xl border border-purple-900/50">
+                    <img src="img/1.jpg" alt="Illustration Lucky Pack" class="h-full w-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
 
-                    <div class="absolute bottom-0 left-0 ">
-
+                    <div class="absolute bottom-0 left-0 w-full p-5">
                         <h3 class="mb-2 text-lg font-bold">Lucky Pack</h3>
-                        <p class="mb-4 min-h-12 text-sm leading-6 text-gray-400"> Un pack mystère qui réserve des
-                            surprises.
+                        <p class="mb-3 text-sm leading-6 text-gray-300">Un pack mystère qui réserve des surprises.
                         </p>
                         <p class="mb-4 text-sm text-green-300">5 cartes · Surprise</p>
                         <a href="booster.html"
-                            class="-mt-2 inline-block rounded-lg py-3 text-center font-semibold hover:bg-purple-600">Découvrir</a>
+                            class="inline-block rounded-lg border border-purple-400 px-5 py-2 text-center font-semibold hover:bg-purple-600">Découvrir</a>
                     </div>
                 </article>
 
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="mx-auto max-w-7xl px-6 py-24">
+        <!-- LEGENDARY CARDS -->
+        <section class="mx-auto max-w-7xl px-6 py-24">
 
-        <div class="mb-12 text-center">
-            <p class="mb-3 text-sm uppercase tracking-[0.3em] text-yellow-400"> Extremely rare</p>
-            <h2 class="mb-4 text-3xl font-bold md:text-4xl">Cartes légendaires</h2>
-            <p class="text-gray-400">Certaines légendes ne se révèlent qu'aux joueurs les plus chanceux.</p>
-        </div>
+            <div class="mb-12 text-center">
+                <p class="mb-3 text-sm uppercase tracking-[0.3em] text-yellow-400">Extremely rare</p>
+                <h2 class="mb-4 text-3xl font-bold md:text-4xl">Cartes légendaires</h2>
+                <p class="text-gray-400">Certaines légendes ne se révèlent qu'aux joueurs les plus chanceux.</p>
+            </div>
 
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 
-            <article class="magic-card rounded-xl border border-yellow-600/50 bg-[#151225] p-4">
-                <img src="img/13.jpg" alt="Carte légendaire Dragon ancien"
-                    class="mb-4 h-64 w-full rounded-lg object-cover">
-                <p class="mb-2 text-xs uppercase tracking-widest text-yellow-400">Legendary</p>
-                <h3 class="mb-2 text-lg font-bold">Ancient Guardian</h3>
-                <p class="text-sm text-gray-400">Un protecteur oublié aux pouvoirs anciens.</p>
-            </article>
+                <article class="magic-card rounded-xl border border-yellow-600/50 bg-[#151225] p-4">
+                    <img src="img/13.jpg" alt="Carte légendaire Dragon ancien"
+                        class="mb-4 h-64 w-full rounded-lg object-cover">
+                    <p class="mb-2 text-xs uppercase tracking-widest text-yellow-400">Legendary</p>
+                    <h3 class="mb-2 text-lg font-bold">Ancient Guardian</h3>
+                    <p class="text-sm text-gray-400">Un protecteur oublié aux pouvoirs anciens.</p>
+                </article>
 
-            <article class="magic-card rounded-xl border border-yellow-600/50 bg-[#151225] p-4">
-                <img src="img/12.jpg" alt="Carte légendaire Mage mystique"
-                    class="mb-4 h-64 w-full rounded-lg object-cover">
-                <p class="mb-2 text-xs uppercase tracking-widest text-yellow-400">Legendary</p>
-                <h3 class="mb-2 text-lg font-bold">Moon Sorceress</h3>
-                <p class="text-sm text-gray-400">Une magicienne maîtresse des forces lunaires.</p>
-            </article>
+                <article class="magic-card rounded-xl border border-yellow-600/50 bg-[#151225] p-4">
+                    <img src="img/12.jpg" alt="Carte légendaire Mage mystique"
+                        class="mb-4 h-64 w-full rounded-lg object-cover">
+                    <p class="mb-2 text-xs uppercase tracking-widest text-yellow-400">Legendary</p>
+                    <h3 class="mb-2 text-lg font-bold">Moon Sorceress</h3>
+                    <p class="text-sm text-gray-400">Une magicienne maîtresse des forces lunaires.</p>
+                </article>
 
-            <article class="magic-card rounded-xl border border-yellow-600/50 bg-[#151225] p-4">
-                <img src="img/11.jpg" alt="Carte légendaire Seigneur des ombres"
-                    class="mb-4 h-64 w-full rounded-lg object-cover">
-                <p class="mb-2 text-xs uppercase tracking-widest text-yellow-400">Legendary</p>
-                <h3 class="mb-2 text-lg font-bold">Shadow King</h3>
-                <p class="text-sm text-gray-400">Le souverain redouté du royaume des ombres.</p>
-            </article>
+                <article class="magic-card rounded-xl border border-yellow-600/50 bg-[#151225] p-4">
+                    <img src="img/11.jpg" alt="Carte légendaire Seigneur des ombres"
+                        class="mb-4 h-64 w-full rounded-lg object-cover">
+                    <p class="mb-2 text-xs uppercase tracking-widest text-yellow-400">Legendary</p>
+                    <h3 class="mb-2 text-lg font-bold">Shadow King</h3>
+                    <p class="text-sm text-gray-400">Le souverain redouté du royaume des ombres.</p>
+                </article>
 
-            <article class="magic-card rounded-xl border border-yellow-600/50 bg-[#151225] p-4">
-                <img src="img/10.jpg" alt="Carte légendaire Esprit céleste"
-                    class="mb-4 h-64 w-full rounded-lg object-cover">
-                <p class="mb-2 text-xs uppercase tracking-widest text-yellow-400">Legendary</p>
-                <h3 class="mb-2 text-lg font-bold">Celestial Spirit</h3>
-                <p class="text-sm text-gray-400">Un esprit céleste dont la puissance est inconnue.</p>
-            </article>
+                <article class="magic-card rounded-xl border border-yellow-600/50 bg-[#151225] p-4">
+                    <img src="img/10.jpg" alt="Carte légendaire Esprit céleste"
+                        class="mb-4 h-64 w-full rounded-lg object-cover">
+                    <p class="mb-2 text-xs uppercase tracking-widest text-yellow-400">Legendary</p>
+                    <h3 class="mb-2 text-lg font-bold">Celestial Spirit</h3>
+                    <p class="text-sm text-gray-400">Un esprit céleste dont la puissance est inconnue.</p>
+                </article>
 
-        </div>
+            </div>
 
-        <div class="mt-10 text-center">
-            <a href="cards.html"
-                class="magic-button inline-block rounded-lg border border-yellow-500 px-7 py-3 text-yellow-300 hover:bg-yellow-500/10">Explorer
-                les cartes</a>
-        </div>
+            <div class="mt-10 text-center">
+                <a href="cards.html"
+                    class="magic-button inline-block rounded-lg border border-yellow-500 px-7 py-3 text-yellow-300 hover:bg-yellow-500/10">Explorer
+                    les cartes</a>
+            </div>
 
-    </section>
+        </section>
 
     </main>
+
     <footer class="border-t border-purple-900/40 bg-[#0B0915] px-6 py-10">
 
         <div
@@ -315,12 +312,13 @@
 
             <div>
                 <p class="logo mb-2 text-xl font-bold tracking-widest text-purple-300">MYTHORIA</p>
-                <p class="text-sm text-gray-400"> Every Card Tells a Legend.</p>
+                <p class="text-sm text-gray-400">Every Card Tells a Legend.</p>
             </div>
 
             <div class="flex flex-wrap justify-center gap-5 text-sm text-gray-400">
                 <a href="index.html" class="hover:text-purple-300">Home</a>
                 <a href="booster.html" class="hover:text-purple-300">Boosters</a>
+                <a href="opening.html" class="hover:text-purple-300">Opening</a>
                 <a href="grimoire.html" class="hover:text-purple-300">Grimoire</a>
                 <a href="deck.html" class="hover:text-purple-300">My Deck</a>
             </div>
@@ -330,7 +328,6 @@
         </div>
 
     </footer>
-
 
 </body>
 
