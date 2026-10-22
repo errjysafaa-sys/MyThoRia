@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mythoria | Every Card Tells a Legend</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
@@ -58,6 +58,33 @@
         color: #facc15;
         font-weight: bold;
         font-size: 20px;
+    }
+
+    .message-success {
+        background-color: #dcfce7;
+        color: #166534;
+        border: 1px solid #86efac;
+        padding: 15px 20px;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        width: fit-content;
+        margin: 20px auto;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        animation: apparition 0.4s ease-in-out;
+    }
+
+    @keyframes apparition {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 </style>
 
@@ -237,9 +264,9 @@
         <div id="liste-panier"></div>
         <p>
             Total: <span id="total-coins">0</span>Coins</p>
-        <button class="confirm bg-green-500 border rounded-2xl border-green-400  font-bold w-16 text-shadow-2xs bg-violet-500 hover:bg-violet-600 focus:outline-2 focus:outline-offset-2 focus:outline-violet-500 active:bg-violet-700
-':focus-visible'" onclick="confirmationAchat()">Achat</button>
 
+        <button id="confirmer-achat" class="confirm border rounded-2xl border-purple-400  font-bold w-3xs text-shadow-2xs bg-none hover:bg-green-600 focus:outline-2 focus:outline-offset-2 focus:outline-green-500 active:bg-green-700 
+':focus-visible' w-3xl" onclick="confirmationAchat()">Confirmer l'achat</button>
     </section>
 
     <footer class="border-t border-purple-900/40 bg-[#0B0915] px-6 py-10">
@@ -270,25 +297,58 @@
     const catalogue = document.querySelector('#catalogue');
     const panier = document.querySelector('#liste-panier');
     const totalSpan = document.querySelector('#total-coins');
+    const btnConfirmer = document.querySelector('#confirmer-achat');
 
     let total = 0;
 
-    function ajouterCoins(titre, prix) {
-        const li = document.createElement('section');
-        li.className = 'produit-panier';
-        li.dataset.prix = prix;
-        li.textContent = `${titre} - ${prix} Coins `;
+    // Récupérer le panier sauvegardé
+    let achats = JSON.parse(localStorage.getItem('achats')) || [];
 
-        const supprimer = document.createElement('a');
-        supprimer.href = '#';
-        supprimer.className = 'supprimer';
-        supprimer.textContent = 'Remove';
+    function sauvegarderAchats() {
+        localStorage.setItem('achats', JSON.stringify(achats));
+    }
 
-        li.appendChild(supprimer);
-        panier.appendChild(li);
+    function afficherTotal() {
+        total = 0;
 
-        total += prix;
+        panier.querySelectorAll('.produit-panier').forEach(produit => {
+            total += Number(produit.dataset.prix);
+        });
+
         totalSpan.textContent = total;
+    }
+
+    function afficherPanier() {
+        panier.innerHTML = '';
+
+        achats.forEach(achat => {
+            const li = document.createElement('section');
+            li.className = 'produit-panier';
+            li.dataset.prix = achat.prix;
+            li.textContent = `${achat.titre} - ${achat.prix} Coins `;
+
+            const supprimer = document.createElement('a');
+            supprimer.href = '#';
+            supprimer.className = 'supprimer';
+            supprimer.textContent = 'Remove';
+            li.appendChild(supprimer);
+            panier.appendChild(li);
+        });
+
+        afficherTotal();
+    }
+
+    // Afficher les achats sauvegardés au chargement
+    afficherPanier();
+
+    function ajouterCoins(titre, prix) {
+        achats.push({
+            titre: titre,
+            prix: prix
+        });
+
+        sauvegarderAchats();
+        afficherPanier();
     }
 
     catalogue.addEventListener('click', (e) => {
@@ -307,7 +367,6 @@
         ajouterCoins(titre, prix * quantity);
     });
 
-
     panier.addEventListener('click', (e) => {
         const lien = e.target.closest('.supprimer');
         if (!lien) return;
@@ -315,27 +374,59 @@
         e.preventDefault();
 
         const produit = lien.closest('.produit-panier');
-        total -= Number(produit.dataset.prix);
-        totalSpan.textContent = total;
+        const produits = [...panier.querySelectorAll('.produit-panier')];
+        const index = produits.indexOf(produit);
+        if (index === -1) return;
 
-        produit.remove();
+        achats.splice(index, 1);
+
+        sauvegarderAchats();
+        afficherPanier();
     });
+
     function confirmationAchat() {
-        let confirmation = confirm("Voulez-vous confermez votre achat !")
+        if (achats.length === 0) {
+            alert("Votre panier est vide !");
+            return;
+        }
+
+        const confirmation = confirm(
+            "Voulez-vous confirmer votre achat ?"
+        );
 
         if (confirmation) {
-            let message = doument.createElement("p");
-            message.textContent = "Achat confirmer ."
-            message.className = "bg-green-100 text-white bg-red "
-            document.body.appendChild(message)
-            alert("Bon Achat")
+            const commandes =
+                JSON.parse(localStorage.getItem('commandes')) || [];
 
+            commandes.push({
+                produits: [...achats],
+                total: total,
+                date: new Date().toISOString()
+            });
+
+            localStorage.setItem(
+                'commandes',
+                JSON.stringify(commandes)
+            );
+
+            // Vider le panier après confirmation
+            achats = [];
+            sauvegarderAchats();
+            afficherPanier();
+
+            const message = document.createElement('p');
+            message.textContent = 'Achat confirmé.';
+            message.className = 'message-success';
+
+            document.body.appendChild(message);
+
+            alert("Bon achat !");
         } else {
-            alert("Achat annuller")
+            alert("Achat annulé.");
         }
     }
 
-    localStorage.getItem("panier")
+    btnConfirmer.addEventListener('click', confirmationAchat);
 </script>
 
 </html>
