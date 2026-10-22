@@ -6,18 +6,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
 
 </head>
+<style>
+    #liste-panier {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
 
-<body>
-    <section class="bos flex  bg-[#fff] rounded-3xl gap-10">
-        <article
-            class="w-full max-w-[260px] h-110 overflow-hidden rounded-xl border border-blue-500/60 bg-[#050D20] bg-cover bg-center p-3 text-white shadow-lg shadow-purple-950/30"
-            style="background-image: linear-gradient(rgba(5, 13, 32, 0.65), rgba(5, 13, 32, 0.95)), url('img/1.jpg');">
+    .produit-panier {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 14px;
+        border: 1px solid #696372;
+        border-radius: 0px;
+        background: #9a8adf;
+        color: white;
+    }
+
+    .ajouter {
+        display: inline-block;
+        background: #6d28d9;
+        border-radius: 8px;
+        padding: 8px 16px;
+        transition: 0.3s;
+    }
+
+    .ajouter:hover {
+        background: #9333ea;
+        transform: translateY(-2px);
+    }
+
+    .supprimer {
+        color: #f87171;
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .supprimer:hover {
+        color: #ef4444;
+        text-decoration: underline;
+    }
+
+    #total-coins {
+        color: #facc15;
+        font-weight: bold;
+        font-size: 20px;
+    }
+</style>
+
+<body class="bg-[#090914] text-white">
+
+    <header class="sticky top-0 z-50 border-purple-900/40 bg-[#0B0915]/95">
+        <nav class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4">
+
+            <a href="index.html" class="logo text-2xl font-bold tracking-widest text-purple-300">MYTHORIA</a>
+
+            <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
+                <a href="index.html" class="text-purple-300 transition-colors hover:text-white">Home</a>
+                <a href="booster.html" class="text-gray-300 transition-colors hover:text-purple-300">Boosters</a>
+                <a href="opening.html" class="text-gray-300 transition-colors hover:text-purple-300">Opening</a>
+                <a href="grimoire.html" class="text-gray-300 transition-colors hover:text-purple-300">Grimoire</a>
+                <a href="deck.html" class="text-gray-300 transition-colors hover:text-purple-300">My Deck</a>
+            </div>
+
+        </nav>
+    </header>
+    <section id="catalogue" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 p-5">
+
+        <article data-prix="500"
+            class="produit w-full max-w-[260px] h-110 overflow-hidden rounded-xl border border-blue-500/60 bg-[#050D20] bg-cover bg-center p-3 text-white shadow-lg shadow-purple-950/30"
+            style="background-image: linear-gradient(rgba(5, 13, 32, 0.65), rgba(5, 13, 32, 0.95)), url('img/1792685568936.jpg');">
 
             <div class="mb-4">
-                <h3 class="mb-2 font-serif text-lg font-bold text-white"> Beginner Pack</h3>
+                <h3 class="titre mb-2 font-serif text-lg font-bold text-white"> Beginner Pack</h3>
 
                 <p class="mb-2 text-sm text-purple-300">Pack du débutant</p>
 
@@ -34,27 +102,26 @@
             </div>
 
             <div class="mb-3 border-t border-blue-900 pt-3">
-                <p class="text-lg font-bold text-yellow-400">🪙 500 <span class="text-sm">Coins</span></p>
+                <p class="prix text-lg font-bold text-yellow-400">🪙 500 <span class="text-sm">Coins</span></p>
             </div>
 
             <label for="quantity" class="mb-2 font-serif text-lg font-bold text-griy">Coins</label>
             <div class="flex items-center gap-2 justify-center items-center">
 
 
-                <input type="number" id="quantity" value="1" min="1"
+                <input type="number" class="quantity" value="1" min="1"
                     class="w-16 rounded-lg border border-blue-900 bg-[#0B1530]/80 px-3 py-2 text-white outline-none focus:border-purple-500">
 
-                <button type="button"
-                    class="w-auto rounded-lg bg-purple-600 px-3 py-2 font-semibold text-white transition-colors hover:bg-purple-500">🛒Add</button>
-            </div>
+                <a href="" class="ajouter inline-block rounded-lg px-4 py-2 text-white hover:bg-purple-600"><i
+                        class='fas fa-cart-plus'></i>Add</a>
 
         </article>
-        <article
-            class="w-full max-w-[260px] h-110 overflow-hidden rounded-xl border border-blue-500/60 bg-[#050D20] bg-cover bg-center p-3 text-white shadow-lg shadow-purple-950/30"
-            style="background-image: linear-gradient(rgba(5, 13, 32, 0.65), rgba(5, 13, 32, 0.95)), url('img/1.jpg');">
+        <article data-prix="1000"
+            class="produit w-full max-w-[260px] h-110 overflow-hidden rounded-xl border border-blue-500/60 bg-[#050D20] bg-cover bg-center p-3 text-white shadow-lg shadow-purple-950/30"
+            style="background-image: linear-gradient(rgba(5, 10, 10, 0.65), rgba(5, 5, 10, 0.5)), url('img/1792685571852.jpg');">
 
             <div class="mb-4">
-                <h3 class="mb-2 font-serif text-lg font-bold text-white"> Summoning of the Legends</h3>
+                <h3 class="titre mb-2 font-serif text-lg font-bold text-white"> Summoning of the Legends</h3>
 
                 <p class="mb-2 text-sm text-purple-300">Invocation des légendes</p>
 
@@ -71,28 +138,27 @@
             </div>
 
             <div class="mb-3 border-t border-blue-900 pt-3">
-                <p class="text-lg font-bold text-yellow-400">🪙 1000 <span class="text-sm">Coins</span></p>
+                <p class="prix text-lg font-bold text-yellow-400">🪙 1000 <span class="text-sm">Coins</span></p>
             </div>
 
             <label for="quantity" class="mb-2 font-serif text-lg font-bold text-griy">coins</label>
             <div class="flex items-center gap-2 justify-center items-center">
 
 
-                <input type="number" id="quantity" value="1" min="1"
+                <input type="number" class="quantity" value="1" min="1"
                     class="w-16 rounded-lg border border-blue-900 bg-[#0B1530]/80 px-3 py-2 text-white outline-none focus:border-purple-500">
-
-                <button type="button"
-                    class="w-auto rounded-lg bg-purple-600 px-3 py-2 font-semibold text-white transition-colors hover:bg-purple-500">🛒Add</button>
+                <a href="" class="ajouter inline-block rounded-lg px-4 py-2 text-white hover:bg-purple-600">
+                    Add</a>
             </div>
 
         </article>
 
-        <article
-            class="w-full max-w-[260px] h-110 overflow-hidden rounded-xl border border-blue-500/60 bg-[#050D20] bg-cover bg-center p-3 text-white shadow-lg shadow-purple-950/30"
-            style="background-image: linear-gradient(rgba(5, 13, 32, 0.65), rgba(5, 13, 32, 0.95)), url('img/1.jpg');">
+        <article data-prix="1500"
+            class="produit max-w-[260px] h-110 overflow-hidden rounded-xl border border-blue-500/60 bg-[#050D20] bg-cover bg-center p-3 text-white shadow-lg shadow-purple-950/30"
+            style="background-image: linear-gradient(rgba(5, 13, 32, 0.65), rgba(5, 13, 32, 0.95)), url('img/1792685609525.jpg');">
 
             <div class="mb-4">
-                <h3 class="mb-2 font-serif text-lg font-bold text-white"> Dark Summoning </h3>
+                <h3 class="titre mb-2 font-serif text-lg font-bold text-white"> Dark Summoning </h3>
 
                 <p class="mb-2 text-sm text-purple-300">Invocation obscure</p>
 
@@ -109,28 +175,28 @@
             </div>
 
             <div class="mb-3 border-t border-blue-900 pt-3">
-                <p class="text-lg font-bold text-yellow-400">🪙 1500 <span class="text-sm">Coins</span></p>
+                <p class="prix text-lg font-bold text-yellow-400">🪙 1500 <span class="text-sm">Coins</span></p>
             </div>
 
             <label for="quantity" class="mb-2 font-serif text-lg font-bold text-griy">coins</label>
             <div class="flex items-center gap-2 justify-center items-center">
 
 
-                <input type="number" id="quantity" value="1" min="1"
+                <input type="number" class="quantity" value="1" min="1"
                     class="w-16 rounded-lg border border-blue-900 bg-[#0B1530]/80 px-3 py-2 text-white outline-none focus:border-purple-500">
 
-                <button type="button"
-                    class="w-auto rounded-lg bg-purple-600 px-3 py-2 font-semibold text-white transition-colors hover:bg-purple-500">🛒Add</button>
+                <a href="" class="ajouter inline-block rounded-lg px-4 py-2 text-white hover:bg-purple-600"><i
+                        class='fas fa-cart-plus'></i>Add</a>
             </div>
 
         </article>
 
-        <article
-            class="w-full max-w-[260px] h-110 overflow-hidden rounded-xl border border-blue-500/60 bg-[#050D20] bg-cover bg-center p-3 text-white shadow-lg shadow-purple-950/30"
-            style="background-image: linear-gradient(rgba(5, 13, 32, 0.65), rgba(5, 13, 32, 0.95)), url('img/1.jpg');">
+        <article data-prix="2500"
+            class="produit w-full max-w-[260px] h-110 overflow-hidden rounded-xl border border-blue-500/60 bg-[#050D20] bg-cover bg-center p-3 text-white shadow-lg shadow-purple-950/30"
+            style="background-image: linear-gradient(rgba(5, 10, 10, 0.65), rgba(5, 5, 10, 0.5)), url('img/file_00000000d8fc81f4b8b2cf0740cc4c68.png');">
 
             <div class="mb-4">
-                <h3 class="mb-2 font-serif text-lg font-bold text-white"> Lucky Pack</h3>
+                <h3 class="titre mb-2 font-serif text-lg font-bold text-white"> Lucky Pack</h3>
 
                 <p class="mb-2 text-sm text-purple-300">Invocation de la chance</p>
 
@@ -147,23 +213,129 @@
             </div>
 
             <div class="mb-3 border-t border-blue-900 pt-3">
-                <p class="text-lg font-bold text-yellow-400">🪙 2500 <span class="text-sm">Coins</span></p>
+                <p class="prix text-lg font-bold text-yellow-400">🪙 2500 <span class="text-sm">Coins</span></p>
             </div>
 
             <label for="quantity" class="mb-2 font-serif text-lg font-bold text-griy">coins</label>
             <div class="flex items-center gap-2 justify-center items-center">
 
-
-                <input type="number" id="quantity" value="1" min="1"
+                <input type="number" class="quantity" value="1" min="1"
                     class="w-16 rounded-lg border border-blue-900 bg-[#0B1530]/80 px-3 py-2 text-white outline-none focus:border-purple-500">
 
-                <button type="button"
-                    class="w-auto rounded-lg bg-purple-600 px-3 py-2 font-semibold text-white transition-colors hover:bg-purple-500">🛒Add</button>
+                <a href="" class="ajouter inline-block rounded-lg px-4 py-2 text-white hover:bg-purple-600"><i
+                        class='fas fa-cart-plus'></i>Add</a>
+
             </div>
 
         </article>
 
     </section>
+    <section class="mt-8 rounded-xl bg-slate-900 p-4 text-white">
+        <h2 class="mb-4 text-xl font-bold">
+            <i class='fas fa-cart-plus'></i> Panier
+        </h2>
+        <div id="liste-panier"></div>
+        <p>
+            Total: <span id="total-coins">0</span>Coins</p>
+        <button class="confirm bg-green-500 border rounded-2xl border-green-400  font-bold w-16 text-shadow-2xs bg-violet-500 hover:bg-violet-600 focus:outline-2 focus:outline-offset-2 focus:outline-violet-500 active:bg-violet-700
+':focus-visible'" onclick="confirmationAchat()">Achat</button>
+
+    </section>
+
+    <footer class="border-t border-purple-900/40 bg-[#0B0915] px-6 py-10">
+
+        <div
+            class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 text-center md:flex-row md:text-left">
+
+            <div>
+                <p class="logo mb-2 text-xl font-bold tracking-widest text-purple-300">MYTHORIA</p>
+                <p class="text-sm text-gray-400">Every Card Tells a Legend.</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-5 text-sm text-gray-400">
+                <a href="index.html" class="hover:text-purple-300">Home</a>
+                <a href="booster.html" class="hover:text-purple-300">Boosters</a>
+                <a href="opening.html" class="hover:text-purple-300">Opening</a>
+                <a href="grimoire.html" class="hover:text-purple-300">Grimoire</a>
+                <a href="deck.html" class="hover:text-purple-300">My Deck</a>
+            </div>
+
+            <p class="text-xs text-gray-500">&copy; 2026 Mythoria. Tous droits réservés.</p>
+
+        </div>
+
+    </footer>
 </body>
+<script>
+    const catalogue = document.querySelector('#catalogue');
+    const panier = document.querySelector('#liste-panier');
+    const totalSpan = document.querySelector('#total-coins');
+
+    let total = 0;
+
+    function ajouterCoins(titre, prix) {
+        const li = document.createElement('section');
+        li.className = 'produit-panier';
+        li.dataset.prix = prix;
+        li.textContent = `${titre} - ${prix} Coins `;
+
+        const supprimer = document.createElement('a');
+        supprimer.href = '#';
+        supprimer.className = 'supprimer';
+        supprimer.textContent = 'Remove';
+
+        li.appendChild(supprimer);
+        panier.appendChild(li);
+
+        total += prix;
+        totalSpan.textContent = total;
+    }
+
+    catalogue.addEventListener('click', (e) => {
+        const lien = e.target.closest('.ajouter');
+        if (!lien) return;
+
+        e.preventDefault();
+
+        const article = lien.closest('.produit');
+        const titre = article.querySelector('.titre').textContent.trim();
+        const quantity = Number(article.querySelector('.quantity').value);
+        const prix = Number(article.dataset.prix);
+
+        if (quantity < 1 || !Number.isInteger(quantity)) return;
+
+        ajouterCoins(titre, prix * quantity);
+    });
+
+
+    panier.addEventListener('click', (e) => {
+        const lien = e.target.closest('.supprimer');
+        if (!lien) return;
+
+        e.preventDefault();
+
+        const produit = lien.closest('.produit-panier');
+        total -= Number(produit.dataset.prix);
+        totalSpan.textContent = total;
+
+        produit.remove();
+    });
+    function confirmationAchat() {
+        let confirmation = confirm("Voulez-vous confermez votre achat !")
+
+        if (confirmation) {
+            let message = doument.createElement("p");
+            message.textContent = "Achat confirmer ."
+            message.className = "bg-green-100 text-white bg-red "
+            document.body.appendChild(message)
+            alert("Bon Achat")
+
+        } else {
+            alert("Achat annuller")
+        }
+    }
+
+    localStorage.getItem("panier")
+</script>
 
 </html>
