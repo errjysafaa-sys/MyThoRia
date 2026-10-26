@@ -113,7 +113,9 @@
                                 <span id="numeroPageGauche" class="font-serif text-sm italic">Page 1</span>
                             </div>
 
-                            <div id="pageGauche" class="relative grid grid-cols-2 gap-3 sm:gap-4"></div>
+                            <div id="pageGauche"
+                                class="relative grid h-[550px] grid-cols-2 content-start gap-3 overflow-y-auto overflow-x-hidden sm:gap-4">
+                            </div>
 
                             <p
                                 class="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 font-serif text-xs italic text-[#8e6a40]">
@@ -131,7 +133,9 @@
                                 <span id="numeroPageDroite" class="font-serif text-sm italic">Page 2</span>
                             </div>
 
-                            <div id="pageDroite" class="relative grid grid-cols-2 gap-3 sm:gap-4"></div>
+                            <div id="pageDroite"
+                                class="relative grid h-[550px] grid-cols-2 content-start gap-3 overflow-y-auto overflow-x-hidden sm:gap-4">
+                            </div>
 
                             <p
                                 class="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 font-serif text-xs italic text-[#8e6a40]">
@@ -316,6 +320,67 @@
         return button
 
     }
+
+    function afficherDetailGauche(carte) {
+        pageGauche.replaceChildren();
+
+        const contenu = document.createElement("div");
+        contenu.className = "col-span-2 w-full overflow-hidden rounded-xl" + "border-2 border-amber-700 bg-[#21140e] p-4 text-white";
+
+        const image = document.createElement("img")
+        image.src = carte.illustration || "";
+        image.alt = carte.nom || "Carte Mythoria";
+        image.className = "mx-auto mb-4 max-h-72 wfull rounded-lg object-contain";
+
+        const nom = document.createElement("h2");
+        nom.className = "mb-3 text-center text-2xl font-bold text-amber-300";
+        nom.textContent = carte.nom || "Carte sans nom";
+
+
+        const type = document.createElement("p");
+        type.className = "mb-2 ";
+        type.textContent = "Type : " + (carte.type || "Inconnu");
+
+
+        const rarete = document.createElement("p");
+        rarete.className = "mb-3 fond-bold text-amber-400 ";
+        rarete.textContent = "Rarete : " + (carte.rarete || "Inconnu");
+
+
+        const description = document.createElement("p");
+        description.className = "mb-4 text-gray-300";
+        description.textContent = carte.description || "Aucune description disposition ";
+
+
+
+        const statistiques = document.createElement("div");
+        statistiques.className = "mb-4 flex justify-around gap-4 rounded-lg bg-black/30 p-3 ";
+
+
+        const attaque = document.createElement("p");
+        attaque.className = "font-bold text-red-400 ";
+        attaque.textContent = "Attaque : " + (carte.attaque || "-");
+
+
+        const defense = document.createElement("p");
+        defense.className = "font-bold text-blue-300  ";
+        defense.textContent = "Défense : " + (carte.defense || "-");
+
+        statistiques.append(attaque, defense);
+
+        const boutonEffacer = document.createElement(button);
+        boutonEffacer.type = "button";
+        boutonEffacer.className = "w-full rounded-lg bg-amber-700 px-4 py-2 font-bold" + "text-white hover:bg-amber-600";
+        boutonEffacer.textContent = "Effacer les détails";
+        boutonEffacer.addEventListener("click", () => {
+            pageGauche.replaceChildren();
+        });
+        contenu.append(
+            image, nom, type, rarete, description, statistiques, boutonEffacer
+        );
+        pageGauche.appendChild(contenu);
+    }
+
 </script>
 
 </html>
