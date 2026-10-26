@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<header class="sticky top-0 z-50 border-b border-purple-900/40 bg-[#0B0915]/95 p-5">
+    <nav class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4">
+        <a href="index.html" class="text-2xl font-bold tracking-widest text-purple-300">
+            MYTHORIA
+        </a>
+
+        <div class="flex flex-wrap gap-5 text-sm">
+            <a href="index.html" class="text-gray-300 hover:text-purple-300">Home</a>
+            <a href="Booster.html" class="text-gray-300 hover:text-purple-300">Boosters</a>
+            <a href="opening.html" class="text-purple-300">Opening</a>
+            <a href="grimoire.html" class="text-gray-300 hover:text-purple-300">Grimoire</a>
+            <a href="deck.html" class="text-gray-300 hover:text-purple-300">My Deck</a>
+        </div>
+    </nav>
+</header>
+<main>
+    <main class="mx-auto max-w-7xl px-4 py-10 sm:px-6">
+        <div class="mb-10 text-center">
+            <p class="mb-3 text-xs uppercase tracking-[0.4em] text-amber-600">
+                Archives des légendes
+            </p>
+
+            <h1 class="font-serif text-4xl font-black sm:text-5xl">
+                Mon Grimoire
+            </h1>
+
+            <p class="mx-auto mt-4 max-w-xl text-sm leading-6 text-amber-100/60">
+                Chaque carte raconte une légende. Découvre ici toutes les cartes
+                que tu as obtenues pendant tes aventures.
+            </p>
+
+            <p id="compteurCollection" class="mt-4 font-semibold text-amber-400">
+                0 cartes découvertes
+            </p>
+        </div>
+
+        <div class="flex flex-col items-center gap-7 lg:flex-row lg:items-start">
+
+            <aside class="flex w-full flex-wrap justify-center gap-2 lg:w-44 lg:flex-col lg:pt-10">
+                <p class="mb-2 hidden text-xs font-bold uppercase tracking-widest text-amber-600 lg:block">
+                    Index magique
+                </p>
+
+                <button data-type="Tous"
+                    class="type-btn border border-amber-400 bg-amber-800 px-4 py-3 text-left text-sm font-bold">
+                    ➤ Toutes les cartes
+                </button>
+
+                <button data-type="Monstre"
+                    class="type-btn border border-amber-900 bg-[#382319] px-4 py-3 text-left text-sm hover:border-amber-500">
+                    ➤ Monstres
+                </button>
+
+                <button data-type="Héros"
+                    class="type-btn border border-amber-900 bg-[#382319] px-4 py-3 text-left text-sm hover:border-amber-500">
+                    ➤ Héros
+                </button>
+
+                <button data-type="Serviteur"
+                    class="type-btn border border-amber-900 bg-[#382319] px-4 py-3 text-left text-sm hover:border-amber-500">
+                    ➤ Serviteurs
+                </button>
+
+                <button data-type="Sort"
+                    class="type-btn border border-amber-900 bg-[#382319] px-4 py-3 text-left text-sm hover:border-amber-500">
+                    ➤ Sorts
+                </button>
+
+                <div class="mt-2 w-full rounded-lg border border-amber-900 bg-[#21160f] p-3">
+                    <label for="filtreRarete" class="mb-2 block text-xs font-bold uppercase text-amber-600">
+                        Rareté
+                    </label>
+
+                    <select id="filtreRarete"
+                        class="w-full rounded border border-amber-800 bg-[#120d09] p-2 text-sm text-amber-100">
+                        <option value="Toutes">Toutes</option>
+                        <option value="Commune">Commune</option>
+                        <option value="Rare">Rare</option>
+                        <option value="Épique">Épique</option>
+                        <option value="Légendaire">Légendaire</option>
+                    </select>
+                </div>
+            </aside>
+
+            <!-- LIVRE -->
+            <section class="w-full min-w-0 flex-1">
+
+                <div
+                    class="rounded-[2rem] border-[8px] border-[#542e19] bg-gradient-to-br from-[#80502d] via-[#482818] to-[#25140c] p-2 shadow-2xl sm:p-4">
+
+                    <div
+                        class="relative grid grid-cols-1 overflow-hidden rounded-xl border-2 border-[#a9824d] bg-[#d8bd88] md:grid-cols-2">
+
+                        <div
+                            class="pointer-events-none absolute bottom-0 left-1/2 top-0 z-20 hidden w-5 -translate-x-1/2 border-x border-[#8a5a32] bg-gradient-to-r from-[#482818] via-[#9b6c3b] to-[#382013] shadow-xl md:block">
+                        </div>
+
+                        <div
+                            class="relative min-h-[520px] border-b-4 border-[#704627] bg-[#dfc99a] p-4 text-[#382315] sm:p-6 md:border-b-0 md:border-r-2 md:border-[#a17a4c]">
+
+                            <div class="pointer-events-none absolute inset-2 border border-[#9b7448]/50"></div>
+
+                            <div class="relative mb-5 flex justify-between border-b border-[#9b7448]/60 pb-3">
+                                <span class="text-xs font-bold uppercase tracking-widest">Liber I</span>
+                                <span id="numeroPageGauche" class="font-serif text-sm italic">Page 1</span>
+                            </div>
+
+                            <div id="pageGauche" class="relative grid grid-cols-2 gap-3 sm:gap-4"></div>
+
+                            <p
+                                class="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 font-serif text-xs italic text-[#8e6a40]">
+                                ✦ Mythoria ✦
+                            </p>
+                        </div>
+
+                        <!-- PAGE DROITE -->
+                        <div class="relative min-h-[520px] bg-[#d4b984] p-4 text-[#382315] sm:p-6">
+
+                            <div class="pointer-events-none absolute inset-2 border border-[#9b7448]/50"></div>
+
+                            <div class="relative mb-5 flex justify-between border-b border-[#9b7448]/60 pb-3">
+                                <span class="text-xs font-bold uppercase tracking-widest">Liber II</span>
+                                <span id="numeroPageDroite" class="font-serif text-sm italic">Page 2</span>
+                            </div>
+
+                            <div id="pageDroite" class="relative grid grid-cols-2 gap-3 sm:gap-4"></div>
+
+                            <p
+                                class="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 font-serif text-xs italic text-[#8e6a40]">
+                                ✦ Finis paginae ✦
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
+                    <button id="precedent"
+                        class="rounded-full border border-amber-800 bg-[#28170f] px-5 py-3 text-sm font-bold hover:bg-[#432719] disabled:opacity-30">
+                        ← Précédent
+                    </button>
+
+                    <span id="numeroPage" class="text-sm font-semibold text-amber-400">
+                        Pages 1 – 2
+                    </span>
+
+                    <button id="suivant"
+                        class="rounded-full border border-amber-800 bg-[#28170f] px-5 py-3 text-sm font-bold hover:bg-[#432719] disabled:opacity-30">
+                        Suivant →
+                    </button>
+                </div>
+
+                <!-- COLLECTION VIDE -->
+                <div id="messageVide"
+                    class="mt-6 hidden rounded-xl border border-amber-900 bg-[#21160f] px-5 py-8 text-center">
+                    <h2 class="text-xl font-bold text-amber-300">
+                        Ton grimoire est encore vide…
+                    </h2>
+
+                    <p class="mt-3 text-sm text-amber-100/60">
+                        Ouvre un booster pour découvrir tes premières cartes.
+                    </p>
+
+                    <a href="opening.html"
+                        class="mt-5 inline-block rounded-full bg-amber-700 px-5 py-3 font-bold text-white hover:bg-amber-600">
+                        Ouvrir un booster
+                    </a>
+                </div>
+
+                <p id="aucunResultat" class="mt-6 hidden text-center text-sm text-amber-200/70">
+                    Aucune carte ne correspond à ce filtre.
+                </p>
+
+            </section>
+        </div>
+    </main>
+
+    <!-- MODAL DETAILS CARTE -->
+    <div id="modalCarte" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4">
+        <div class="relative w-full max-w-md rounded-2xl border-2 border-amber-700 bg-[#21140e] p-6 shadow-2xl">
+
+            <button id="fermerModal" class="absolute right-4 top-2 text-3xl text-amber-300 hover:text-white">
+                ×
+            </button>
+
+            <div id="modalIllustration"
+                class="mb-4 flex h-56 items-center justify-center overflow-hidden rounded-xl border border-amber-900 bg-[#120d09]">
+            </div>
+
+            <p id="modalType" class="text-xs uppercase tracking-widest text-amber-600"></p>
+
+            <h2 id="modalNom" class="mt-2 text-2xl font-black text-amber-100"></h2>
+
+            <p id="modalRarete"
+                class="mt-3 inline-block rounded-full border border-amber-700 px-3 py-1 text-xs font-bold text-amber-300">
+            </p>
+
+            <p id="modalDescription" class="mt-4 text-sm leading-6 text-amber-100/70"></p>
+
+            <div class="mt-5 grid grid-cols-2 gap-3">
+                <div class="rounded-lg border border-red-900 bg-red-950/30 p-3 text-center">
+                    <p class="text-xs uppercase text-red-300/70">Attaque</p>
+                    <p id="modalAttaque" class="mt-1 text-2xl font-black text-red-200">—</p>
+                </div>
+
+                <div class="rounded-lg border border-sky-900 bg-sky-950/30 p-3 text-center">
+                    <p class="text-xs uppercase text-sky-300/70">Défense</p>
+                    <p id="modalDefense" class="mt-1 text-2xl font-black text-sky-200">—</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="mt-12 border-t border-purple-900/40 bg-[#0B0915] px-6 py-8 text-center text-sm text-gray-400">
+        MYTHORIA — Every Card Tells a Legend. © 2026
+    </footer>
+
+
+</main>
+
+
+</body>
+
+</html>
