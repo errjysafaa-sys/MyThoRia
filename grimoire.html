@@ -229,5 +229,42 @@
 
 
 </body>
+<script>
+    const CLE_COLLECTION = "mythoria_collection";
+    const pageDroite = document.querySelector("#pageDroite");
+    const pageGauche = document.querySelector("#pageGauche");
+    const filtreRarete = document.querySelector("#filtreRarete");
+    const boutonPrecedent = document.querySelector("#precedent");
+    const boutonSuivant = document.querySelector("#suivant");
+    const modalCarte = document.querySelector("#modalCarte");
+
+    let collection = [];
+    let typeSelectionne = "Tous";
+
+    function chargerCollection() {
+
+        try {
+            const donnees = JSON.parse(localStorage.getItem(CLE_COLLECTION)) || [];
+            collection = Array.isArray(donnees) ? donnees : [];
+
+        } catch (erreur) {
+            console.error("Erreur de lecture de la collection :", erreur);
+            collection = []
+
+        }
+    }
+
+    function obtenirCartesFiltrees() {
+        return collection.filter(carte => {
+
+            const bonType = typeSelectionne === "Tous" || carte.type === typeSelectionne;
+
+
+            const bonneRarete = filtreRarete.value === "Toutes" || carte.rarete === filtreRarete.value;
+            return bonType && bonneRarete;
+        })
+    }
+
+</script>
 
 </html>
