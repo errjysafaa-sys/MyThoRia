@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mythoria | Opening Chamber</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #090914;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .booster {
+            background: linear-gradient(145deg, #211536, #100c20);
+            border: 1px solid #7547a8;
+            border-radius: 12px;
+            padding: 20px;
+            transition: .3s;
+        }
+
+        .booster:hover {
+            border-color: #c084fc;
+            box-shadow: 0 0 18px #9333ea35;
+            transform: translateY(-3px);
+        }
+
+        .btn {
+            background: #6d28d9;
+            padding: 10px 16px;
+            border-radius: 8px;
+            margin-top: 12px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .btn:hover {
+            background: #9333ea;
+            box-shadow: 0 0 15px #a855f766;
+        }
+
+        .btn:disabled {
+            opacity: .45;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* CHAMBRE MAGIQUE */
+        .scene {
+            position: relative;
+            min-height: 480px;
+            margin-top: 28px;
+            overflow: hidden;
+            isolation: isolate;
+            border: 1px solid #553080;
+            border-radius: 18px;
+
+            background:
+                radial-gradient(ellipse at 50% 65%,
+                    #42216c 0%, #1c1031 35%,
+                    #0b0817 75%, #090914 100%);
+
+            box-shadow: inset 0 0 50px #9333ea15;
+        }
+
+        .scene::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            opacity: .25;
+            pointer-events: none;
+            background-image:
+                radial-gradient(circle, #ffffff 1px, transparent 1.5px);
+            background-size: 45px 45px;
+        }
+
+        .scene.active {
+            box-shadow:
+                inset 0 0 80px #9333ea35,
+                0 0 20px #9333ea20;
+        }
+
+        .titre-magique {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            padding: 0 10px;
+            text-align: center;
+            font-family: Georgia, serif;
+            font-size: 21px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            color: #e9d5ff;
+            text-shadow: 0 0 15px #a855f7;
+            z-index: 5;
+        }
+
+        .lumiere {
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            left: 50%;
+            top: 57%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+
+            background: radial-gradient(circle,
+                    #ffffff 0%,
+                    #cbbcff99 18%,
+                    #8b5cf688 42%,
+                    transparent 72%);
+
+            opacity: 0;
+            filter: blur(12px);
+            pointer-events: none;
+        }
+
+        .scene.active .lumiere {
+            animation: magie 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes magie {
+            from {
+                opacity: .2;
+                scale: .7;
+            }
+
+            to {
+                opacity: .9;
+                scale: 1.4;
+            }
+        }
+
+        .rayons {
+            position: absolute;
+            width: 5px;
+            height: 290px;
+            left: 50%;
+            top: 5%;
+            transform: translateX(-50%);
+
+            background: linear-gradient(to bottom,
+                    transparent,
+                    #ffffffdd,
+                    #c084fc,
+                    transparent);
+
+            opacity: 0;
+            filter: blur(4px);
+            pointer-events: none;
+        }
+
+        .scene.active .rayons {
+            animation: rayonnement 1.3s ease-in-out infinite alternate;
+        }
+
+        @keyframes rayonnement {
+            from {
+                opacity: .2;
+                transform: translateX(-50%) scaleY(.6);
+            }
+
+            to {
+                opacity: .9;
+                transform: translateX(-50%) scaleY(1.2);
+            }
+        }
+
+
+        #cartes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin: 35px auto;
+            padding: 20px;
+        }
+
+        .carte {
+            position: relative;
+            width: 190px;
+            min-height: 310px;
+            padding: 9px;
+            overflow: hidden;
+
+            background:
+                linear-gradient(145deg, #192136, #0b0e19 65%, #171025);
+
+            border: 1px solid #515b70;
+            border-radius: 7px;
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.45),
+                inset 0 0 0 3px rgba(190, 198, 215, 0.035);
+
+            text-align: center;
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .carte::before {
+            content: "";
+            position: absolute;
+            inset: 5px;
+            border: 1px solid rgba(160, 170, 195, 0.15);
+            border-radius: 4px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .carte:hover {
+            transform: translateY(-7px);
+            border-color: #8c7bb4;
+            box-shadow: 0 15px 32px rgba(0, 0, 0, 0.55);
+        }
+
+        .illustration {
+            position: relative;
+            height: 155px;
+            margin-bottom: 13px;
+            overflow: hidden;
+
+            display: grid;
+            place-items: center;
+
+            background: linear-gradient(145deg, #25253b, #101523);
+            border: 1px solid #394359;
+            border-radius: 3px;
+        }
+
+        .illustration img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .carte:hover .illustration img {
+            transform: scale(1.06);
+        }
+
+        .carte h3 {
+            position: relative;
+            margin: 12px 0 8px;
+            color: #e2e6f0;
+            font-family: Georgia, serif;
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .carte p {
+            margin: 6px 0;
+            color: #aeb8cb;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .carte.Commune {
+            border-color: #515b70;
+        }
+
+        .carte.Rare {
+            border-color: #547b9c;
+        }
+
+        .carte.Épique {
+            border-color: #8065a8;
+        }
+
+        .carte.Légendaire {
+            border-color: #b49a62;
+            background:
+                linear-gradient(145deg, #28251f, #11131d 65%, #211b2b);
+        }
+
+        .carte.Légendaire h3 {
+            color: #e2c98d;
+        }
+
+        @keyframes reveal {
+            from {
+                opacity: 0;
+                transform: perspective(700px) rotateY(35deg) translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: perspective(700px) rotateY(0) translateY(0);
+            }
+        }
+
+        .carte {
+            animation: reveal 0.7s ease both;
+        }
+
+        @media (max-width: 480px) {
+            #cartes {
+                gap: 14px;
+                padding: 10px;
+            }
+
+            .carte {
+                width: min(160px, 44%);
+                min-height: 285px;
+                padding: 7px;
+            }
+
+            .illustration {
+                height: 125px;
+            }
+
+            .carte h3 {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="sticky top-0 z-50 border-b border-purple-900/40 bg-[#0B0915]/95 p-5">
+        <nav class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4">
+            <a href="index.html" class="text-2xl font-bold tracking-widest text-purple-300">
+                MYTHORIA
+            </a>
+
+            <div class="flex flex-wrap gap-5 text-sm">
+                <a href="index.html" class="text-gray-300 hover:text-purple-300">Home</a>
+                <a href="Booster.html" class="text-gray-300 hover:text-purple-300">Boosters</a>
+                <a href="opening.html" class="text-purple-300">Opening</a>
+                <a href="grimoire.html" class="text-gray-300 hover:text-purple-300">Grimoire</a>
+                <a href="deck.html" class="text-gray-300 hover:text-purple-300">My Deck</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="mx-auto max-w-6xl p-5">
+
+        <h1 class="mb-3 text-center text-3xl font-bold text-purple-300">
+            Opening Chamber
+        </h1>
+
+        <p class="mb-8 text-center text-gray-300">
+            Choisis un booster acheté pour découvrir tes cartes.
+        </p>
+
+        <section id="liste-boosters" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        </section>
+
+        <p id="erreur" class="mt-6 text-center text-red-400" aria-live="polite"></p>
+
+        <section id="scene" class="scene">
+
+            <h2 class="titre-magique">MAGIC REVEAL </h2>
+
+            <div class="lumiere"></div>
+            <div class="rayons"></div>
+
+            <section id="cartes"></section>
+
+            <p id="message" aria-live="polite">
+                Choisis un booster pour commencer l'aventure.
+            </p>
+
+        </section>
+
+    </main>
+
+    <footer class="mt-12 border-t border-purple-900/40 bg-[#0B0915] px-6 py-8 text-center text-sm text-gray-400">
+        MYTHORIA — Every Card Tells a Legend. © 2026
+    </footer>
+
+    <script>
+        const catalogue = [
+            { id: 1, nom: "Gardien des Ombres", type: "Monstre", rarete: "Commune", attaque: 120, defense: 100, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
+            { id: 2, nom: "Apprenti Mage", type: "Héros", rarete: "Commune", attaque: 90, defense: 130, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
+            { id: 3, nom: "Serviteur des Brumes", type: "Serviteur", rarete: "Commune", attaque: 100, defense: 110, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
+            { id: 4, nom: "Éclair Mystique", type: "Sort", rarete: "Commune", attaque: 110, defense: 80, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
+            { id: 5, nom: "Lame Mystique", type: "Sort", rarete: "Rare", attaque: 180, defense: 120, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
+            { id: 6, nom: "Prêtresse Lunaire", type: "Héros", rarete: "Rare", attaque: 160, defense: 200, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
+            { id: 7, nom: "Chevalier du Crépuscule", type: "Héros", rarete: "Rare", attaque: 190, defense: 180, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
+            { id: 8, nom: "Dragon du Néant", type: "Monstre", rarete: "Épique", attaque: 350, defense: 280, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
+            { id: 9, nom: "Sorcière Éternelle", type: "Héros", rarete: "Épique", attaque: 290, defense: 320, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
+            { id: 10, nom: "Roi des Abysses", type: "Monstre", rarete: "Légendaire", attaque: 500, defense: 450, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
+            { id: 11, nom: "Phénix Céleste", type: "Serviteur", rarete: "Légendaire", attaque: 480, defense: 400, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" }
+        ];
+
+        const boosters = {
+            "Beginner Pack": {
+                cartes: 5,
+                probabilites: {
+                    "Commune": 70,
+                    "Rare": 25,
+                    "Épique": 5,
+                    "Légendaire": 0
+                }
+            },
+
+            "Summoning of the Legends": {
+                cartes: 5,
+                probabilites: {
+                    "Commune": 45,
+                    "Rare": 35,
+                    "Épique": 15,
+                    "Légendaire": 5
+                }
+            },
+
+            "Dark Summoning": {
+                cartes: 5,
+                probabilites: {
+                    "Commune": 45,
+                    "Rare": 35,
+                    "Épique": 15,
+                    "Légendaire": 5
+                }
+            },
+
+            "Lucky Pack": {
+                cartes: 5,
+                probabilites: {
+                    "Commune": 60,
+                    "Rare": 25,
+                    "Épique": 10,
+                    "Légendaire": 5
+                }
+            }
+        };
+
+        const listeBoosters = document.querySelector("#liste-boosters");
+        const zoneCartes = document.querySelector("#cartes");
+        const scene = document.querySelector("#scene");
+        const message = document.querySelector("#message");
+        const erreur = document.querySelector("#erreur");
+
+        let commandes = JSON.parse(localStorage.getItem("commandes")) || [];
+        let collection = JSON.parse(localStorage.getItem("mythoria_collection")) || [];
+        let boostersOuverts = JSON.parse(
+            localStorage.getItem("mythoria_boosters_ouverts")
+        ) || {};
+
+        let boosterSelectionne = null;
+        let ouvertureEnCours = false;
+
+        function compterBoostersAchetes() {
+            const stock = {};
+
+            commandes.forEach(commande => {
+                (commande.produits || []).forEach(produit => {
+                    if (!boosters[produit.titre]) return;
+
+                    const quantite = Math.max(
+                        1,
+                        Number(produit.quantite) || 1
+                    );
+
+                    stock[produit.titre] =
+                        (stock[produit.titre] || 0) + quantite;
+                });
+            });
+
+            return stock;
+        }
+
+        function nombreDisponible(nom, stock) {
+            return Math.max(
+                0,
+                (stock[nom] || 0) - (boostersOuverts[nom] || 0)
+            );
+        }
+
+
+        function afficherBoosters() {
+            listeBoosters.innerHTML = "";
+
+            const stock = compterBoostersAchetes();
+            let totalDisponible = 0;
+
+            const imagesBoosters = {
+                "Beginner Pack": "img/1792685568936.jpg",
+                "Summoning of the Legends": "img/legends.jpg",
+                "Dark Summoning": "img/dark.jpg",
+                "Lucky Pack": "img/lucky.jpg"
+            };
+
+            Object.keys(boosters).forEach(nom => {
+                const disponibles = nombreDisponible(nom, stock);
+                totalDisponible += disponibles;
+
+                const article = document.createElement("article");
+
+                article.className =
+                    "produit w-full max-w-[260px] min-h-[400px] overflow-hidden " +
+                    "rounded-xl border border-blue-500/60 bg-[#050D20] " +
+                    "bg-cover bg-center p-4 text-white " +
+                    "shadow-lg shadow-purple-950/30 transition duration-300 " +
+                    "hover:-translate-y-1 hover:border-purple-500";
+
+                article.style.backgroundImage =
+                    `linear-gradient(rgba(5,13,32,0.65), rgba(5,13,32,0.96)), url('${imagesBoosters[nom] || ""}')`;
+
+                const contenu = document.createElement("div");
+                contenu.className = "flex min-h-[360px] flex-col";
+
+                const titre = document.createElement("h3");
+                titre.className =
+                    "mb-3 font-serif text-lg font-bold text-white";
+                titre.textContent = nom;
+
+                const description = document.createElement("p");
+                description.className =
+                    "mb-4 text-sm text-purple-300";
+                description.textContent =
+                    `Boosters disponibles : ${disponibles}`;
+
+                const probabilites = boosters[nom].probabilites;
+
+                const infos = document.createElement("div");
+                infos.className =
+                    "mb-4 space-y-2 text-xs text-gray-200";
+
+                const nombreCartes = document.createElement("p");
+                nombreCartes.innerHTML =
+                    '<span class="text-blue-400">✦</span> ' +
+                    `${boosters[nom].cartes} cartes`;
+                infos.appendChild(nombreCartes);
+
+                const couleursRaretes = {
+                    "Commune": "text-red-400",
+                    "Rare": "text-blue-400",
+                    "Épique": "text-purple-400",
+                    "Légendaire": "text-yellow-400"
+                };
+
+                Object.keys(probabilites).forEach(rarete => {
+                    const ligne = document.createElement("p");
+
+                    const pourcentage = document.createElement("span");
+                    pourcentage.className =
+                        couleursRaretes[rarete] || "text-gray-300";
+                    pourcentage.textContent =
+                        `(${probabilites[rarete]}%)`;
+
+                    ligne.append(
+                        document.createTextNode(rarete + " "),
+                        pourcentage
+                    );
+
+                    infos.appendChild(ligne);
+                });
+
+                const separation = document.createElement("div");
+                separation.className =
+                    "mt-auto border-t border-blue-900 pt-4";
+
+                const prix = document.createElement("p");
+                prix.className =
+                    "mb-4 text-lg font-bold text-yellow-400";
+                prix.textContent = "✦ Votre Booster";
+
+                const bouton = document.createElement("button");
+                bouton.className =
+                    "w-full rounded-lg border border-blue-800 " +
+                    "bg-[#111b38]/90 px-3 py-3 text-sm text-white " +
+                    "transition hover:border-purple-500 " +
+                    "hover:bg-purple-900/70 " +
+                    "disabled:cursor-not-allowed disabled:opacity-40";
+
+                bouton.textContent = "Ouvrir ce booster";
+                bouton.disabled =
+                    disponibles === 0 || ouvertureEnCours;
+
+                bouton.addEventListener("click", () => {
+                    if (disponibles === 0 || ouvertureEnCours) return;
+
+                    boosterSelectionne = nom;
+                    message.textContent = "";
+                    erreur.textContent = "";
+
+                    ouvrirBooster();
+                });
+
+                separation.append(prix, bouton);
+                contenu.append(titre, description, infos, separation);
+                article.appendChild(contenu);
+                listeBoosters.appendChild(article);
+            });
+
+            if (totalDisponible === 0) {
+                erreur.textContent =
+                    "Tu n'as aucun booster disponible. Achète-en dans la boutique.";
+            } else if (!erreur.textContent.startsWith("Une erreur")) {
+                erreur.textContent = "";
+            }
+        }
+
+
+        function choisirRarete(probabilites) {
+            const tirage = Math.random() * 100;
+            let cumul = 0;
+
+            for (const rarete of Object.keys(probabilites)) {
+                cumul += probabilites[rarete];
+
+                if (tirage < cumul) {
+                    return rarete;
+                }
+            }
+
+            return "Commune";
+        }
+
+
+        function tirerUneCarte(nomBooster) {
+            const rarete = choisirRarete(
+                boosters[nomBooster].probabilites
+            );
+
+            const cartesPossibles = catalogue.filter(
+                carte => carte.rarete === rarete
+            );
+
+            if (cartesPossibles.length === 0) {
+                return null;
+            }
+
+            const index = Math.floor(
+                Math.random() * cartesPossibles.length
+            );
+
+            return cartesPossibles[index];
+        }
+
+
+        function afficherCarte(carte, index) {
+            const element = document.createElement("article");
+
+            element.className =
+                `carte carte${index + 1} ${carte.rarete} ` +
+                "relative isolate h-[310px] w-[190px] overflow-hidden " +
+                "rounded-xl border border-blue-400/60 bg-[#050D20] " +
+                "text-white shadow-xl shadow-purple-950/40 " +
+                "transition duration-500 hover:-translate-y-2";
+
+            element.style.animationDelay = `${index * 0.18}s`;
+
+            const img = document.createElement("img");
+            img.src = carte.illustration;
+            img.alt = carte.nom;
+            img.loading = "eager";
+
+            img.className =
+                "absolute inset-0 z-[-2] h-full w-full object-cover";
+
+            img.onerror = () => {
+                img.remove();
+                element.classList.add(
+                    "bg-gradient-to-br",
+                    "from-[#182747]",
+                    "via-[#111329]",
+                    "to-[#050713]"
+                );
+            };
+
+            const overlay = document.createElement("div");
+            overlay.className =
+                "pointer-events-none absolute inset-0 z-[-1] " +
+                "bg-gradient-to-t from-[#030713] via-[#030713]/50 " +
+                "to-[#030713]/10";
+
+            const contenu = document.createElement("div");
+            contenu.className =
+                "relative z-10 flex h-full flex-col justify-end p-3";
+
+            const nom = document.createElement("h3");
+            nom.className =
+                "nom mb-2 font-serif text-lg font-bold text-white drop-shadow-lg";
+            nom.textContent = carte.nom;
+
+            const type = document.createElement("p");
+            type.className = "text-sm text-blue-200 drop-shadow";
+            type.textContent = carte.type;
+
+            const rarete = document.createElement("p");
+            rarete.className =
+                "mt-1 text-sm font-semibold text-purple-300 drop-shadow";
+            rarete.textContent = `✧ ${carte.rarete} ✧`;
+
+            const stats = document.createElement("p");
+            stats.className =
+                "statistiques mt-3 border-t border-white/20 pt-2 " +
+                "text-sm text-gray-100 drop-shadow";
+            stats.textContent =
+                `⚔ ${carte.attaque} | 🛡 ${carte.defense}`;
+
+            contenu.append(nom, type, rarete, stats);
+            element.append(img, overlay, contenu);
+
+            zoneCartes.appendChild(element);
+        }
+
+
+        function ouvrirBooster() {
+            if (ouvertureEnCours || !boosterSelectionne) {
+                return;
+            }
+
+            commandes =
+                JSON.parse(localStorage.getItem("commandes")) || [];
+
+            const stock = compterBoostersAchetes();
+            const nom = boosterSelectionne;
+
+            if (
+                !boosters[nom] ||
+                nombreDisponible(nom, stock) <= 0
+            ) {
+                erreur.textContent =
+                    "Ce booster n'est plus disponible.";
+
+                boosterSelectionne = null;
+                afficherBoosters();
+                return;
+            }
+
+            ouvertureEnCours = true;
+            erreur.textContent = "";
+            message.textContent = "Le booster s'ouvre...";
+            zoneCartes.innerHTML = "";
+
+            scene.classList.remove("active");
+            void scene.offsetWidth;
+            scene.classList.add("active");
+
+            afficherBoosters();
+
+            const cartesObtenues = [];
+
+            for (let i = 0; i < boosters[nom].cartes; i++) {
+                const carte = tirerUneCarte(nom);
+
+                if (carte) {
+                    cartesObtenues.push({ ...carte });
+                }
+            }
+
+            setTimeout(() => {
+                zoneCartes.innerHTML = "";
+
+                cartesObtenues.forEach((carte, index) => {
+                    afficherCarte(carte, index);
+                });
+
+                collection.push(...cartesObtenues);
+
+                localStorage.setItem(
+                    "mythoria_collection",
+                    JSON.stringify(collection)
+                );
+
+                boostersOuverts[nom] =
+                    (boostersOuverts[nom] || 0) + 1;
+
+                localStorage.setItem(
+                    "mythoria_boosters_ouverts",
+                    JSON.stringify(boostersOuverts)
+                );
+
+                if (
+                    cartesObtenues.some(
+                        carte => carte.rarete === "Légendaire"
+                    )
+                ) {
+                    message.textContent =
+                        "INCROYABLE ! Tu as obtenu une carte légendaire !";
+                } else if (
+                    cartesObtenues.some(
+                        carte => carte.rarete === "Épique"
+                    )
+                ) {
+                    message.textContent =
+                        "Magnifique ! Tu as obtenu une carte épique !";
+                } else if (
+                    cartesObtenues.some(
+                        carte => carte.rarete === "Rare"
+                    )
+                ) {
+                    message.textContent =
+                        "Bravo ! Tu as obtenu une carte rare !";
+                } else {
+                    message.textContent =
+                        "Tes nouvelles cartes ont rejoint ta collection !";
+                }
+
+                ouvertureEnCours = false;
+                boosterSelectionne = null;
+
+                afficherBoosters();
+
+            }, 1000);
+        }
+
+
+        afficherBoosters();
+
+    </script>
+
+</body>
+
+</html>
