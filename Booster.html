@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mythoria | Every Card Tells a Legend</title>
+    <title>Mythoria |Boosters</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
@@ -52,12 +52,14 @@
     .supprimer:hover {
         color: #ef4444;
         text-decoration: underline;
+
     }
 
     #total-coins {
         color: #facc15;
         font-weight: bold;
         font-size: 20px;
+
     }
 
     .message-success {
@@ -73,6 +75,7 @@
         margin: 20px auto;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         animation: apparition 0.4s ease-in-out;
+        font-weight: bold;
     }
 
     @keyframes apparition {
@@ -120,7 +123,7 @@
                 <p class="text-xs leading-relaxed text-gray-200">Contient 5 cartes : surtout des communes avec quelques
                     cartes rares.</p>
             </div>
-
+            <p></p>
             <div class="mb-3 space-y-1 text-xs text-gray-200">
                 <p><span class="text-blue-400"> 5 </span>cartes</p>
                 <p>Commune <span class="text-red-400">(70%)</span></p>
@@ -133,12 +136,13 @@
                 <p class="prix text-lg font-bold text-yellow-400">🪙 500 <span class="text-sm">Coins</span></p>
             </div>
 
-            <label for="quantity" class="mb-2 font-serif text-lg font-bold text-griy">Coins</label>
+            <label class="mb-2 font-serif text-lg font-bold text-gray-200">Quantité</label>
             <div class="flex items-center gap-2 justify-center items-center">
 
 
-                <input type="number" class="quantity" value="1" min="1"
-                    class="w-16 rounded-lg border border-blue-900 bg-[#0B1530]/80 px-3 py-2 text-white outline-none focus:border-purple-500">
+                <input type="number"
+                    class="quantity w-16 rounded-lg border border-blue-900 bg-[#0B1530]/80 px-3 py-2 text-white outline-none focus:border-purple-500"
+                    value="1" min="1">
 
                 <a href="" class="ajouter inline-block rounded-lg px-4 py-2 text-white hover:bg-purple-600"><i
                         class='fas fa-cart-plus'></i>Add</a>
@@ -169,12 +173,13 @@
                 <p class="prix text-lg font-bold text-yellow-400">🪙 1000 <span class="text-sm">Coins</span></p>
             </div>
 
-            <label for="quantity" class="mb-2 font-serif text-lg font-bold text-griy">coins</label>
+            <label class="mb-2 font-serif text-lg font-bold text-gray-200">Quantité</label>
             <div class="flex items-center gap-2 justify-center items-center">
 
 
-                <input type="number" class="quantity" value="1" min="1"
-                    class="w-16 rounded-lg border border-blue-900 bg-[#0B1530]/80 px-3 py-2 text-white outline-none focus:border-purple-500">
+                <input type="number"
+                    class="quantity w-16 rounded-lg border border-blue-900 bg-[#0B1530]/80 px-3 py-2 text-white outline-none focus:border-purple-500"
+                    value="1" min="1">
                 <a href="" class="ajouter inline-block rounded-lg px-4 py-2 text-white hover:bg-purple-600">
                     Add</a>
             </div>
@@ -196,7 +201,7 @@
 
             <div class="mb-3 space-y-1 text-xs text-gray-200">
                 <p><span class="text-blue-400"> 5 </span>cartes</p>
-                <p>Commune <span class="text-red-400">(50%)</span></p>
+                <p>Commune <span class="text-red-400">(45%)</span></p>
                 <p>Rare <span class="text-blue-400">(35%)</span></p>
                 <p>Épique <span class="text-purple-400">(15%)</span></p>
                 <p>Légendaire <span class="text-yellow-400">(5%)</span></p>
@@ -206,12 +211,13 @@
                 <p class="prix text-lg font-bold text-yellow-400">🪙 1500 <span class="text-sm">Coins</span></p>
             </div>
 
-            <label for="quantity" class="mb-2 font-serif text-lg font-bold text-griy">coins</label>
+            <label class="mb-2 font-serif text-lg font-bold text-gray-200">Quantité</label>
             <div class="flex items-center gap-2 justify-center items-center">
 
 
-                <input type="number" class="quantity" value="1" min="1"
-                    class="w-16 rounded-lg border border-blue-900 bg-[#0B1530]/80 px-3 py-2 text-white outline-none focus:border-purple-500">
+                <input type="number"
+                    class="quantity w-16 rounded-lg border border-blue-900 bg-[#0B1530]/80 px-3 py-2 text-white outline-none focus:border-purple-500"
+                    value="1" min="1">
 
                 <a href="" class="ajouter inline-block rounded-lg px-4 py-2 text-white hover:bg-purple-600"><i
                         class='fas fa-cart-plus'></i>Add</a>
@@ -244,11 +250,12 @@
                 <p class="prix text-lg font-bold text-yellow-400">🪙 2500 <span class="text-sm">Coins</span></p>
             </div>
 
-            <label for="quantity" class="mb-2 font-serif text-lg font-bold text-griy">coins</label>
+            <label class="mb-2 font-serif text-lg font-bold text-gray-200">Quantité</label>
             <div class="flex items-center gap-2 justify-center items-center">
 
-                <input type="number" class="quantity" value="1" min="1"
-                    class="w-16 rounded-lg border border-blue-900 bg-[#0B1530]/80 px-3 py-2 text-white outline-none focus:border-purple-500">
+                <input type="number"
+                    class="quantity w-16 rounded-lg border border-blue-900 bg-[#0B1530]/80 px-3 py-2 text-white outline-none focus:border-purple-500"
+                    value="1" min="1">
 
                 <a href="" class="ajouter inline-block rounded-lg px-4 py-2 text-white hover:bg-purple-600"><i
                         class='fas fa-cart-plus'></i>Add</a>
@@ -266,8 +273,9 @@
         <p>
             Total: <span id="total-coins">0</span>Coins</p>
 
-        <button id="confirmer-achat" class="confirm border rounded-2xl border-purple-400  font-bold w-3xs text-shadow-2xs bg-none hover:bg-green-600 focus:outline-2 focus:outline-offset-2 focus:outline-green-500 active:bg-green-700 
-':focus-visible' w-3xl" onclick="confirmationAchat()">Confirmer l'achat</button>
+        <button id="confirmer-achat"
+            class="confirm rounded-2xl border border-purple-400 px-5 py-3 font-bold hover:bg-green-600 focus:outline-2 focus:outline-offset-2 focus:outline-green-500 active:bg-green-700">Confirmer
+            l'achat</button>
     </section>
 
     <footer class="border-t border-purple-900/40 bg-[#0B0915] px-6 py-10">
@@ -295,6 +303,7 @@
     </footer>
 </body>
 <script>
+
     const catalogue = document.querySelector('#catalogue');
     const panier = document.querySelector('#liste-panier');
     const totalSpan = document.querySelector('#total-coins');
@@ -302,7 +311,6 @@
 
     let total = 0;
 
-    // Récupérer le panier sauvegardé
     let achats = JSON.parse(localStorage.getItem('achats')) || [];
 
     function sauvegarderAchats() {
@@ -326,7 +334,7 @@
             const li = document.createElement('section');
             li.className = 'produit-panier';
             li.dataset.prix = achat.prix;
-            li.textContent = `${achat.titre} - ${achat.prix} Coins `;
+            li.textContent = `${achat.titre} x ${achat.quantite || 1} - ${achat.prix} Coins `;
 
             const supprimer = document.createElement('a');
             supprimer.href = '#';
@@ -339,14 +347,21 @@
         afficherTotal();
     }
 
-    // Afficher les achats sauvegardés au chargement
     afficherPanier();
 
-    function ajouterCoins(titre, prix) {
-        achats.push({
-            titre: titre,
-            prix: prix
-        });
+    function ajouterCoins(titre, prix, quantity) {
+        const existe = achats.find(achat => achat.titre === titre);
+
+        if (existe) {
+            existe.prix = existe.prix + (prix * quantity);
+            existe.quantite = (existe.quantite || 1) + quantity;
+        } else {
+            achats.push({
+                titre: titre,
+                prix: prix * quantity,
+                quantite: quantity
+            });
+        }
 
         sauvegarderAchats();
         afficherPanier();
@@ -365,7 +380,7 @@
 
         if (quantity < 1 || !Number.isInteger(quantity)) return;
 
-        ajouterCoins(titre, prix * quantity);
+        ajouterCoins(titre, prix, quantity);
     });
 
     panier.addEventListener('click', (e) => {
@@ -410,7 +425,6 @@
                 JSON.stringify(commandes)
             );
 
-            // Vider le panier après confirmation
             achats = [];
             sauvegarderAchats();
             afficherPanier();
