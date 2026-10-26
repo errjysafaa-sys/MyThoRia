@@ -91,7 +91,6 @@
                 </div>
             </aside>
 
-            <!-- LIVRE -->
             <section class="w-full min-w-0 flex-1">
 
                 <div
@@ -236,7 +235,6 @@
     const filtreRarete = document.querySelector("#filtreRarete");
     const boutonPrecedent = document.querySelector("#precedent");
     const boutonSuivant = document.querySelector("#suivant");
-    const modalCarte = document.querySelector("#modalCarte");
 
     let collection = [];
     let typeSelectionne = "Tous";
@@ -265,6 +263,59 @@
         })
     }
 
+    function couleurRarete(rarete) {
+        switch (rarete) {
+            case "Commune":
+                return "bg-gray-600";
+            case "Rare":
+                return "bg-blue-600";
+            case "Epique":
+                return "bg-purple-700";
+            case "Légendaire":
+                return "bg-ambre-500 text-black";
+
+            default:
+                return "bg-gray-600"
+        }
+    }
+    function creerCarte(carte) {
+        const button = document.createElement("button");
+        button.type = "button"
+        button.className = "w-full overflow-hidden rounded-xl border-2 border-amber-700" + "bg-[#21140e] text-center text-white shadow-lg transition" +
+            "hover:scale-105 hover :border-yellow-400"
+
+        const image = document.createElement("img");
+        image.src = carte.illustration || "";
+        image.alt = carte.nom || "Carte Mythoria";
+        image.className = "h-36 w-full object-cover"
+
+        const contenu = document.createElement("div");
+        contenu.className = "p-3"
+
+        const nom = document.createElement("h3");
+        nom.className = "mb-2 font-bold text-amber-300";
+        nom.textContent = carte.nom || "Cartes sans nom"
+
+        const type = document.createElement("p");
+        type.className = "mb-2 text-sm text-gray-300";
+        type.textContent = carte.type || "Type inconnu";
+
+        const rarete = document.createElement("span");
+        rarete.className = "inline-block rounded-full px-3 py-1 text-xs font-bold" + couleurRarete(carte.rarete);
+
+        rarete.textContent = carte.rarete || "Rareté inconnue";
+
+        contenu.append(nom, type, rarete);
+        button.append(image, contenu);
+
+        button.addEventListener("click", () => {
+
+            afficherDetailGauche(carte);
+
+        })
+        return button
+
+    }
 </script>
 
 </html>
