@@ -1,85 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mythoria | Mon Grimoire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
 </head>
 
-<header class="sticky top-0 z-50 border-b border-purple-900/40 bg-[#0B0915]/95 p-5">
-    <nav class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4">
-        <a href="index.html" class="text-2xl font-bold tracking-widest text-purple-300">
-            MYTHORIA
-        </a>
+<body class="min-h-screen bg-[#0B0915] text-amber-100">
+    <header class="sticky top-0 z-50 border-b border-purple-900/40 bg-[#0B0915]/95 p-5 backdrop-blur">
+        <nav class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4">
+            <a href="index.html" class="text-2xl font-bold tracking-widest text-purple-300">MYTHORIA</a>
+            <div class="flex flex-wrap gap-5 text-sm">
+                <a href="index.html" class="text-gray-300 hover:text-purple-300">Home</a>
+                <a href="Booster.html" class="text-gray-300 hover:text-purple-300">Boosters</a>
+                <a href="opening.html" class="text-gray-300 hover:text-purple-300">Opening</a>
+                <a href="grimoire.html" class="text-purple-300">Grimoire</a>
+                <a href="deck.html" class="text-gray-300 hover:text-purple-300">My Deck</a>
+            </div>
+        </nav>
+    </header>
 
-        <div class="flex flex-wrap gap-5 text-sm">
-            <a href="index.html" class="text-gray-300 hover:text-purple-300">Home</a>
-            <a href="Booster.html" class="text-gray-300 hover:text-purple-300">Boosters</a>
-            <a href="opening.html" class="text-purple-300">Opening</a>
-            <a href="grimoire.html" class="text-gray-300 hover:text-purple-300">Grimoire</a>
-            <a href="deck.html" class="text-gray-300 hover:text-purple-300">My Deck</a>
-        </div>
-    </nav>
-</header>
-<main>
     <main class="mx-auto max-w-7xl px-4 py-10 sm:px-6">
         <div class="mb-10 text-center">
-            <p class="mb-3 text-xs uppercase tracking-[0.4em] text-amber-600">
-                Archives des légendes
-            </p>
-
-            <h1 class="font-serif text-4xl font-black sm:text-5xl">
-                Mon Grimoire
-            </h1>
-
+            <p class="mb-3 text-xs uppercase tracking-[0.4em] text-amber-600">Archives des légendes</p>
+            <h1 class="font-serif text-4xl font-black sm:text-5xl">Mon Grimoire</h1>
             <p class="mx-auto mt-4 max-w-xl text-sm leading-6 text-amber-100/60">
-                Chaque carte raconte une légende. Découvre ici toutes les cartes
-                que tu as obtenues pendant tes aventures.
+                Chaque carte raconte une légende. Découvre ici toutes les cartes que tu as obtenues pendant tes
+                aventures.
             </p>
-
-            <p id="compteurCollection" class="mt-4 font-semibold text-amber-400">
-                0 cartes découvertes
-            </p>
+            <p id="compteurCollection" class="mt-4 font-semibold text-amber-400">0 carte découverte</p>
         </div>
 
         <div class="flex flex-col items-center gap-7 lg:flex-row lg:items-start">
-
             <aside class="flex w-full flex-wrap justify-center gap-2 lg:w-44 lg:flex-col lg:pt-10">
-                <p class="mb-2 hidden text-xs font-bold uppercase tracking-widest text-amber-600 lg:block">
-                    Index magique
+                <p class="mb-2 hidden text-xs font-bold uppercase tracking-widest text-amber-600 lg:block">Index magique
                 </p>
 
                 <button data-type="Tous"
-                    class="type-btn border border-amber-400 bg-amber-800 px-4 py-3 text-left text-sm font-bold">
+                    class="type-btn border border-amber-400 bg-amber-800 px-4 py-3 text-left text-sm font-bold text-white">
                     ➤ Toutes les cartes
                 </button>
-
                 <button data-type="Monstre"
                     class="type-btn border border-amber-900 bg-[#382319] px-4 py-3 text-left text-sm hover:border-amber-500">
                     ➤ Monstres
                 </button>
-
                 <button data-type="Héros"
                     class="type-btn border border-amber-900 bg-[#382319] px-4 py-3 text-left text-sm hover:border-amber-500">
                     ➤ Héros
                 </button>
-
                 <button data-type="Serviteur"
                     class="type-btn border border-amber-900 bg-[#382319] px-4 py-3 text-left text-sm hover:border-amber-500">
                     ➤ Serviteurs
                 </button>
-
                 <button data-type="Sort"
                     class="type-btn border border-amber-900 bg-[#382319] px-4 py-3 text-left text-sm hover:border-amber-500">
                     ➤ Sorts
                 </button>
 
                 <div class="mt-2 w-full rounded-lg border border-amber-900 bg-[#21160f] p-3">
-                    <label for="filtreRarete" class="mb-2 block text-xs font-bold uppercase text-amber-600">
-                        Rareté
-                    </label>
-
+                    <label for="filtreRarete"
+                        class="mb-2 block text-xs font-bold uppercase text-amber-600">Rareté</label>
                     <select id="filtreRarete"
                         class="w-full rounded border border-amber-800 bg-[#120d09] p-2 text-sm text-amber-100">
                         <option value="Toutes">Toutes</option>
@@ -92,295 +76,272 @@
             </aside>
 
             <section class="w-full min-w-0 flex-1">
-
                 <div
                     class="rounded-[2rem] border-[8px] border-[#542e19] bg-gradient-to-br from-[#80502d] via-[#482818] to-[#25140c] p-2 shadow-2xl sm:p-4">
-
+                    <!-- Le livre garde une hauteur fixe. Le scroll se fait dans les pages. -->
                     <div
-                        class="relative grid grid-cols-1 overflow-hidden rounded-xl border-2 border-[#a9824d] bg-[#d8bd88] md:grid-cols-2">
-
+                        class="relative grid h-[680px] grid-cols-1 overflow-hidden rounded-xl border-2 border-[#a9824d] bg-[#d8bd88] md:grid-cols-2">
                         <div
-                            class="pointer-events-none absolute bottom-0 left-1/2 top-0 z-20 hidden w-5 -translate-x-1/2 border-x border-[#8a5a32] bg-gradient-to-r from-[#482818] via-[#9b6c3b] to-[#382013] shadow-xl md:block">
+                            class="pointer-events-none absolute bottom-0 left-1/2 top-0 z-30 hidden w-5 -translate-x-1/2 border-x border-[#8a5a32] bg-gradient-to-r from-[#482818] via-[#9b6c3b] to-[#382013] shadow-xl md:block">
                         </div>
 
+                        <!-- PAGE GAUCHE : carte sélectionnée en image de fond + infos par-dessus -->
                         <div
-                            class="relative min-h-[520px] border-b-4 border-[#704627] bg-[#dfc99a] p-4 text-[#382315] sm:p-6 md:border-b-0 md:border-r-2 md:border-[#a17a4c]">
-
-                            <div class="pointer-events-none absolute inset-2 border border-[#9b7448]/50"></div>
-
-                            <div class="relative mb-5 flex justify-between border-b border-[#9b7448]/60 pb-3">
+                            class="relative min-h-0 overflow-hidden border-b-4 border-[#704627] bg-[#dfc99a] text-[#382315] md:border-b-0 md:border-r-2 md:border-[#a17a4c]">
+                            <div class="pointer-events-none absolute inset-2 z-20 border border-[#9b7448]/60"></div>
+                            <div class="relative z-30 flex justify-between border-b border-[#9b7448]/60 px-5 py-4">
                                 <span class="text-xs font-bold uppercase tracking-widest">Liber I</span>
-                                <span id="numeroPageGauche" class="font-serif text-sm italic">Page 1</span>
+                                <span id="numeroPageGauche" class="font-serif text-sm italic">Carte choisie</span>
                             </div>
 
                             <div id="pageGauche"
-                                class="relative grid h-[550px] grid-cols-2 content-start gap-3 overflow-y-auto overflow-x-hidden sm:gap-4">
+                                class="relative h-[590px] overflow-y-auto overflow-x-hidden p-5 sm:p-6">
+                                <div
+                                    class="flex min-h-full items-center justify-center text-center font-serif italic text-[#6f4c2d]">
+                                    Choisis une carte sur la page de droite pour découvrir sa légende.
+                                </div>
                             </div>
-
                             <p
-                                class="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 font-serif text-xs italic text-[#8e6a40]">
-                                ✦ Mythoria ✦
-                            </p>
+                                class="pointer-events-none absolute bottom-2 left-1/2 z-30 -translate-x-1/2 font-serif text-xs italic text-[#8e6a40]">
+                                ✦ Mythoria ✦</p>
                         </div>
 
-                        <!-- PAGE DROITE -->
-                        <div class="relative min-h-[520px] bg-[#d4b984] p-4 text-[#382315] sm:p-6">
-
-                            <div class="pointer-events-none absolute inset-2 border border-[#9b7448]/50"></div>
-
-                            <div class="relative mb-5 flex justify-between border-b border-[#9b7448]/60 pb-3">
+                        <!-- PAGE DROITE : 4 cartes visibles (2x2), scroll interne pour les autres -->
+                        <div class="relative min-h-0 overflow-hidden bg-[#d4b984] text-[#382315]">
+                            <div class="pointer-events-none absolute inset-2 z-20 border border-[#9b7448]/60"></div>
+                            <div class="relative z-30 flex justify-between border-b border-[#9b7448]/60 px-5 py-4">
                                 <span class="text-xs font-bold uppercase tracking-widest">Liber II</span>
-                                <span id="numeroPageDroite" class="font-serif text-sm italic">Page 2</span>
+                                <span id="numeroPageDroite" class="font-serif text-sm italic">Collection</span>
                             </div>
 
                             <div id="pageDroite"
-                                class="relative grid h-[550px] grid-cols-2 content-start gap-3 overflow-y-auto overflow-x-hidden sm:gap-4">
+                                class="relative z-10 grid h-[590px] grid-cols-2 content-start gap-3 overflow-y-auto overflow-x-hidden p-4 sm:gap-4 sm:p-5">
                             </div>
-
                             <p
-                                class="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 font-serif text-xs italic text-[#8e6a40]">
-                                ✦ Finis paginae ✦
-                            </p>
+                                class="pointer-events-none absolute bottom-2 left-1/2 z-30 -translate-x-1/2 font-serif text-xs italic text-[#8e6a40]">
+                                ✦ Fais défiler les cartes ✦</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
-                    <button id="precedent"
-                        class="rounded-full border border-amber-800 bg-[#28170f] px-5 py-3 text-sm font-bold hover:bg-[#432719] disabled:opacity-30">
-                        ← Précédent
-                    </button>
-
-                    <span id="numeroPage" class="text-sm font-semibold text-amber-400">
-                        Pages 1 – 2
-                    </span>
-
-                    <button id="suivant"
-                        class="rounded-full border border-amber-800 bg-[#28170f] px-5 py-3 text-sm font-bold hover:bg-[#432719] disabled:opacity-30">
-                        Suivant →
-                    </button>
-                </div>
-
-                <!-- COLLECTION VIDE -->
                 <div id="messageVide"
                     class="mt-6 hidden rounded-xl border border-amber-900 bg-[#21160f] px-5 py-8 text-center">
-                    <h2 class="text-xl font-bold text-amber-300">
-                        Ton grimoire est encore vide…
-                    </h2>
-
-                    <p class="mt-3 text-sm text-amber-100/60">
-                        Ouvre un booster pour découvrir tes premières cartes.
-                    </p>
-
+                    <h2 class="text-xl font-bold text-amber-300">Ton grimoire est encore vide…</h2>
+                    <p class="mt-3 text-sm text-amber-100/60">Ouvre un booster pour découvrir tes premières cartes.</p>
                     <a href="opening.html"
-                        class="mt-5 inline-block rounded-full bg-amber-700 px-5 py-3 font-bold text-white hover:bg-amber-600">
-                        Ouvrir un booster
-                    </a>
+                        class="mt-5 inline-block rounded-full bg-amber-700 px-5 py-3 font-bold text-white hover:bg-amber-600">Ouvrir
+                        un booster</a>
                 </div>
-
-                <p id="aucunResultat" class="mt-6 hidden text-center text-sm text-amber-200/70">
-                    Aucune carte ne correspond à ce filtre.
-                </p>
-
+                <p id="aucunResultat" class="mt-6 hidden text-center text-sm text-amber-200/70">Aucune carte ne
+                    correspond à ce filtre.</p>
             </section>
         </div>
     </main>
-
-    <!-- MODAL DETAILS CARTE -->
-    <div id="modalCarte" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4">
-        <div class="relative w-full max-w-md rounded-2xl border-2 border-amber-700 bg-[#21140e] p-6 shadow-2xl">
-
-            <button id="fermerModal" class="absolute right-4 top-2 text-3xl text-amber-300 hover:text-white">
-                ×
-            </button>
-
-            <div id="modalIllustration"
-                class="mb-4 flex h-56 items-center justify-center overflow-hidden rounded-xl border border-amber-900 bg-[#120d09]">
-            </div>
-
-            <p id="modalType" class="text-xs uppercase tracking-widest text-amber-600"></p>
-
-            <h2 id="modalNom" class="mt-2 text-2xl font-black text-amber-100"></h2>
-
-            <p id="modalRarete"
-                class="mt-3 inline-block rounded-full border border-amber-700 px-3 py-1 text-xs font-bold text-amber-300">
-            </p>
-
-            <p id="modalDescription" class="mt-4 text-sm leading-6 text-amber-100/70"></p>
-
-            <div class="mt-5 grid grid-cols-2 gap-3">
-                <div class="rounded-lg border border-red-900 bg-red-950/30 p-3 text-center">
-                    <p class="text-xs uppercase text-red-300/70">Attaque</p>
-                    <p id="modalAttaque" class="mt-1 text-2xl font-black text-red-200">—</p>
-                </div>
-
-                <div class="rounded-lg border border-sky-900 bg-sky-950/30 p-3 text-center">
-                    <p class="text-xs uppercase text-sky-300/70">Défense</p>
-                    <p id="modalDefense" class="mt-1 text-2xl font-black text-sky-200">—</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <footer class="mt-12 border-t border-purple-900/40 bg-[#0B0915] px-6 py-8 text-center text-sm text-gray-400">
         MYTHORIA — Every Card Tells a Legend. © 2026
     </footer>
 
+    <script>
+        const CLE_COLLECTION = "mythoria_collection";
 
-</main>
+        const pageGauche = document.querySelector("#pageGauche");
+        const pageDroite = document.querySelector("#pageDroite");
+        const filtreRarete = document.querySelector("#filtreRarete");
+        const compteurCollection = document.querySelector("#compteurCollection");
+        const numeroPageGauche = document.querySelector("#numeroPageGauche");
+        const numeroPageDroite = document.querySelector("#numeroPageDroite");
+        const messageVide = document.querySelector("#messageVide");
+        const aucunResultat = document.querySelector("#aucunResultat");
 
+        let collection = [];
+        let typeSelectionne = "Tous";
 
-</body>
-<script>
-    const CLE_COLLECTION = "mythoria_collection";
-    const pageDroite = document.querySelector("#pageDroite");
-    const pageGauche = document.querySelector("#pageGauche");
-    const filtreRarete = document.querySelector("#filtreRarete");
-    const boutonPrecedent = document.querySelector("#precedent");
-    const boutonSuivant = document.querySelector("#suivant");
+        function chargerCollection() {
+            try {
+                const donnees = JSON.parse(localStorage.getItem(CLE_COLLECTION)) || [];
+                collection = Array.isArray(donnees) ? donnees : [];
+            } catch (erreur) {
+                console.error("Erreur de lecture de la collection :", erreur);
+                collection = [];
+            }
 
-    let collection = [];
-    let typeSelectionne = "Tous";
-
-    function chargerCollection() {
-
-        try {
-            const donnees = JSON.parse(localStorage.getItem(CLE_COLLECTION)) || [];
-            collection = Array.isArray(donnees) ? donnees : [];
-
-        } catch (erreur) {
-            console.error("Erreur de lecture de la collection :", erreur);
-            collection = []
-
+            afficherCollection();
         }
-    }
 
-    function obtenirCartesFiltrees() {
-        return collection.filter(carte => {
-
-            const bonType = typeSelectionne === "Tous" || carte.type === typeSelectionne;
-
-
-            const bonneRarete = filtreRarete.value === "Toutes" || carte.rarete === filtreRarete.value;
-            return bonType && bonneRarete;
-        })
-    }
-
-    function couleurRarete(rarete) {
-        switch (rarete) {
-            case "Commune":
-                return "bg-gray-600";
-            case "Rare":
-                return "bg-blue-600";
-            case "Epique":
-                return "bg-purple-700";
-            case "Légendaire":
-                return "bg-ambre-500 text-black";
-
-            default:
-                return "bg-gray-600"
+        function obtenirCartesFiltrees() {
+            return collection.filter(carte => {
+                const bonType = typeSelectionne === "Tous" || carte.type === typeSelectionne;
+                const bonneRarete = filtreRarete.value === "Toutes" || carte.rarete === filtreRarete.value;
+                return bonType && bonneRarete;
+            });
         }
-    }
-    function creerCarte(carte) {
-        const button = document.createElement("button");
-        button.type = "button"
-        button.className = "w-full overflow-hidden rounded-xl border-2 border-amber-700" + "bg-[#21140e] text-center text-white shadow-lg transition" +
-            "hover:scale-105 hover :border-yellow-400"
 
-        const image = document.createElement("img");
-        image.src = carte.illustration || "";
-        image.alt = carte.nom || "Carte Mythoria";
-        image.className = "h-36 w-full object-cover"
+        function couleurRarete(rarete) {
+            switch (rarete) {
+                case "Commune": return "bg-gray-700 text-white";
+                case "Rare": return "bg-blue-700 text-white";
+                case "Épique":
+                case "Epique": return "bg-purple-700 text-white";
+                case "Légendaire": return "bg-amber-400 text-[#21140e]";
+                default: return "bg-gray-700 text-white";
+            }
+        }
 
-        const contenu = document.createElement("div");
-        contenu.className = "p-3"
+        function creerCarte(carte) {
+            const bouton = document.createElement("button");
+            bouton.type = "button";
+            bouton.className =
+                "group relative fl ex min-h-[205px] w-full flex-col justify-end overflow-hidden rounded-xl " +
+                "border-2 border-amber-800 bg-[#21140e] text-left shadow-md transition " +
+                "hover:scale-[1.02] hover:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400";
 
-        const nom = document.createElement("h3");
-        nom.className = "mb-2 font-bold text-amber-300";
-        nom.textContent = carte.nom || "Cartes sans nom"
+            if (carte.illustration) {
+                bouton.style.backgroundImage =
+                    `linear-gradient(to top, rgba(15,8,4,.96), rgba(15,8,4,.08) 75%), url("${carte.illustration}")`;
+                bouton.style.backgroundSize = "cover";
+                bouton.style.backgroundPosition = "center";
+            } else {
+                bouton.classList.add("bg-gradient-to-br", "from-[#5b3924]", "via-[#24150e]", "to-[#100b08]");
+            }
 
-        const type = document.createElement("p");
-        type.className = "mb-2 text-sm text-gray-300";
-        type.textContent = carte.type || "Type inconnu";
+            const contenu = document.createElement("div");
+            contenu.className = "relative z-10 mt-auto w-full p-3 text-white";
 
-        const rarete = document.createElement("span");
-        rarete.className = "inline-block rounded-full px-3 py-1 text-xs font-bold" + couleurRarete(carte.rarete);
+            const rarete = document.createElement("span");
+            rarete.className = `mb-2 inline-block rounded-full px-2 py-1 text-[10px] font-bold ${couleurRarete(carte.rarete)}`;
+            rarete.textContent = carte.rarete || "Rareté inconnue";
 
-        rarete.textContent = carte.rarete || "Rareté inconnue";
+            const nom = document.createElement("h3");
+            nom.className = "break-words text-sm font-black leading-tight text-amber-200 drop-shadow sm:text-base";
+            nom.textContent = carte.nom || "Carte sans nom";
 
-        contenu.append(nom, type, rarete);
-        button.append(image, contenu);
+            const type = document.createElement("p");
+            type.className = "mt-1 text-xs text-white/80";
+            type.textContent = carte.type || "Type inconnu";
 
-        button.addEventListener("click", () => {
+            contenu.append(rarete, nom, type);
+            bouton.appendChild(contenu);
 
-            afficherDetailGauche(carte);
+            bouton.addEventListener("click", () => afficherDetailsGauche(carte));
+            return bouton;
+        }
 
-        })
-        return button
-
-    }
-
-    function afficherDetailGauche(carte) {
-        pageGauche.replaceChildren();
-
-        const contenu = document.createElement("div");
-        contenu.className = "col-span-2 w-full overflow-hidden rounded-xl" + "border-2 border-amber-700 bg-[#21140e] p-4 text-white";
-
-        const image = document.createElement("img")
-        image.src = carte.illustration || "";
-        image.alt = carte.nom || "Carte Mythoria";
-        image.className = "mx-auto mb-4 max-h-72 wfull rounded-lg object-contain";
-
-        const nom = document.createElement("h2");
-        nom.className = "mb-3 text-center text-2xl font-bold text-amber-300";
-        nom.textContent = carte.nom || "Carte sans nom";
-
-
-        const type = document.createElement("p");
-        type.className = "mb-2 ";
-        type.textContent = "Type : " + (carte.type || "Inconnu");
-
-
-        const rarete = document.createElement("p");
-        rarete.className = "mb-3 fond-bold text-amber-400 ";
-        rarete.textContent = "Rarete : " + (carte.rarete || "Inconnu");
-
-
-        const description = document.createElement("p");
-        description.className = "mb-4 text-gray-300";
-        description.textContent = carte.description || "Aucune description disposition ";
-
-
-
-        const statistiques = document.createElement("div");
-        statistiques.className = "mb-4 flex justify-around gap-4 rounded-lg bg-black/30 p-3 ";
-
-
-        const attaque = document.createElement("p");
-        attaque.className = "font-bold text-red-400 ";
-        attaque.textContent = "Attaque : " + (carte.attaque || "-");
-
-
-        const defense = document.createElement("p");
-        defense.className = "font-bold text-blue-300  ";
-        defense.textContent = "Défense : " + (carte.defense || "-");
-
-        statistiques.append(attaque, defense);
-
-        const boutonEffacer = document.createElement(button);
-        boutonEffacer.type = "button";
-        boutonEffacer.className = "w-full rounded-lg bg-amber-700 px-4 py-2 font-bold" + "text-white hover:bg-amber-600";
-        boutonEffacer.textContent = "Effacer les détails";
-        boutonEffacer.addEventListener("click", () => {
+        function afficherDetailsGauche(carte) {
             pageGauche.replaceChildren();
-        });
-        contenu.append(
-            image, nom, type, rarete, description, statistiques, boutonEffacer
-        );
-        pageGauche.appendChild(contenu);
-    }
 
-</script>
+            // L'illustration devient le fond de la page gauche.
+            const fond = document.createElement("div");
+            fond.className = "relative flex min-h-[540px] items-end overflow-hidden rounded-xl border border-[#9b7448] bg-[#21140e]";
+
+            if (carte.illustration) {
+                fond.style.backgroundImage =
+                    `linear-gradient(to top, rgba(16,8,4,.97) 0%, rgba(16,8,4,.78) 48%, rgba(16,8,4,.12) 100%), url("${carte.illustration}")`;
+                fond.style.backgroundSize = "cover";
+                fond.style.backgroundPosition = "center";
+            } else {
+                fond.classList.add("bg-gradient-to-br", "from-[#704627]", "via-[#382315]", "to-[#120d09]");
+            }
+
+            const infos = document.createElement("div");
+            infos.className = "relative z-10 w-full p-4 text-white sm:p-5";
+
+            const rarete = document.createElement("span");
+            rarete.className = `mb-3 inline-block rounded-full px-3 py-1 text-xs font-bold ${couleurRarete(carte.rarete)}`;
+            rarete.textContent = carte.rarete || "Rareté inconnue";
+
+            const nom = document.createElement("h2");
+            nom.className = "mb-2 break-words font-serif text-2xl font-black leading-tight text-amber-200 drop-shadow sm:text-3xl";
+            nom.textContent = carte.nom || "Carte sans nom";
+
+            const type = document.createElement("p");
+            type.className = "mb-3 text-sm font-semibold uppercase tracking-widest text-amber-100";
+            type.textContent = carte.type || "Type inconnu";
+
+            const description = document.createElement("p");
+            description.className = "mb-4 text-sm leading-6 text-white/90";
+            description.textContent = carte.description || "---.";
+
+            const statistiques = document.createElement("div");
+            statistiques.className = "mb-4 grid grid-cols-2 gap-3";
+
+            const attaque = document.createElement("div");
+            attaque.className = "rounded-lg border border-red-300/40 bg-black/50 p-3 text-center";
+            attaque.innerHTML = `<p class="text-xs uppercase text-red-200">Attaque</p><p class="mt-1 text-xl font-black text-red-100"></p>`;
+            attaque.querySelector("p:last-child").textContent = carte.attaque ?? "—";
+
+            const defense = document.createElement("div");
+            defense.className = "rounded-lg border border-sky-300/40 bg-black/50 p-3 text-center";
+            defense.innerHTML = `<p class="text-xs uppercase text-sky-200">Défense</p><p class="mt-1 text-xl font-black text-sky-100"></p>`;
+            defense.querySelector("p:last-child").textContent = carte.defense ?? "—";
+
+            statistiques.append(attaque, defense);
+
+            const boutonEffacer = document.createElement("button");
+            boutonEffacer.type = "button";
+            boutonEffacer.className = "w-full rounded-lg border border-amber-300/50 bg-black/60 px-4 py-2 text-sm font-bold text-amber-100 hover:bg-amber-800/80";
+            boutonEffacer.textContent = "Effacer les détails";
+            boutonEffacer.addEventListener("click", () => {
+                pageGauche.innerHTML = `
+                <div class="flex min-h-[540px] items-center justify-center text-center font-serif italic text-[#6f4c2d]">
+                    Choisis une carte sur la page de droite pour découvrir sa légende.
+                </div>`;
+                numeroPageGauche.textContent = "Carte choisie";
+            });
+
+            infos.append(rarete, nom, type, description, statistiques, boutonEffacer);
+            fond.appendChild(infos);
+            pageGauche.appendChild(fond);
+            numeroPageGauche.textContent = "Carte sélectionnée";
+        }
+
+        function afficherCollection() {
+            const cartesFiltrees = obtenirCartesFiltrees();
+            pageDroite.replaceChildren();
+
+            cartesFiltrees.forEach(carte => {
+                pageDroite.appendChild(creerCarte(carte));
+            });
+
+            compteurCollection.textContent =
+                `${cartesFiltrees.length} carte${cartesFiltrees.length !== 1 ? "s" : ""} découverte${cartesFiltrees.length !== 1 ? "s" : ""}`;
+
+            numeroPageDroite.textContent = `${cartesFiltrees.length} carte(s)`;
+
+            messageVide.classList.toggle("hidden", collection.length > 0);
+            aucunResultat.classList.toggle(
+                "hidden",
+                collection.length === 0 || cartesFiltrees.length > 0
+            );
+
+            // Si la sélection ne correspond plus au filtre, remettre le texte d'accueil à gauche.
+            pageGauche.innerHTML = `
+            <div class="flex min-h-[540px] items-center justify-center text-center font-serif italic text-[#6f4c2d]">
+                Choisis une carte sur la page de droite pour découvrir sa légende.
+            </div>`;
+            numeroPageGauche.textContent = "Carte choisie";
+        }
+
+        document.querySelectorAll(".type-btn").forEach(bouton => {
+            bouton.addEventListener("click", () => {
+                typeSelectionne = bouton.dataset.type || "Tous";
+
+                document.querySelectorAll(".type-btn").forEach(btn => {
+                    btn.classList.remove("border-amber-400", "bg-amber-800", "text-white");
+                    btn.classList.add("border-amber-900", "bg-[#382319]");
+                });
+
+                bouton.classList.add("border-amber-400", "bg-amber-800", "text-white");
+                bouton.classList.remove("border-amber-900", "bg-[#382319]");
+
+                afficherCollection();
+            });
+        });
+
+        filtreRarete.addEventListener("change", afficherCollection);
+
+        chargerCollection();
+    </script>
+</body>
 
 </html>
