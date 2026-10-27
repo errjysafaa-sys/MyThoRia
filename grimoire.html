@@ -42,31 +42,31 @@
                 </p>
 
                 <button data-type="Tous"
-                    class="type-btn border border-amber-400 bg-amber-800 px-4 py-3 text-left text-sm font-bold text-white">
+                    class="type-btn border border-purple-400 bg-purple-600 px-4 py-3 text-left text-sm font-bold text-white">
                     ➤ Toutes les cartes
                 </button>
                 <button data-type="Monstre"
-                    class="type-btn border border-amber-900 bg-[#382319] px-4 py-3 text-left text-sm hover:border-amber-500">
+                    class="type-btn border border-purple-900 bg-[#9a8adf] px-4 py-3 text-left text-sm hover:border-amber-500">
                     ➤ Monstres
                 </button>
                 <button data-type="Héros"
-                    class="type-btn border border-amber-900 bg-[#382319] px-4 py-3 text-left text-sm hover:border-amber-500">
+                    class="type-btn border border-purple-900 bg-[#9a8adf]  px-4 py-3 text-left text-sm hover:border-amber-500">
                     ➤ Héros
                 </button>
                 <button data-type="Serviteur"
-                    class="type-btn border border-amber-900 bg-[#382319] px-4 py-3 text-left text-sm hover:border-amber-500">
+                    class="type-btn border border-purple-900 bg-[#9a8adf]  px-4 py-3 text-left text-sm hover:border-amber-500">
                     ➤ Serviteurs
                 </button>
                 <button data-type="Sort"
-                    class="type-btn border border-amber-900 bg-[#382319] px-4 py-3 text-left text-sm hover:border-amber-500">
+                    class="type-btn border border-purple-900 bg-[#9a8adf]  px-4 py-3 text-left text-sm hover:border-amber-500">
                     ➤ Sorts
                 </button>
 
-                <div class="mt-2 w-full rounded-lg border border-amber-900 bg-[#21160f] p-3">
+                <div class="mt-2 w-full rounded-lg border border-fushion-900 bg-purple-600  p-3">
                     <label for="filtreRarete"
                         class="mb-2 block text-xs font-bold uppercase text-amber-600">Rareté</label>
                     <select id="filtreRarete"
-                        class="w-full rounded border border-amber-800 bg-[#120d09] p-2 text-sm text-amber-100">
+                        class="w-full rounded border border-fushion-800 bg-[#9a8adf]  p-2 text-sm text-amber-100">
                         <option value="Toutes">Toutes</option>
                         <option value="Commune">Commune</option>
                         <option value="Rare">Rare</option>
@@ -79,14 +79,12 @@
             <section class="w-full min-w-0 flex-1">
                 <div
                     class="rounded-[2rem] border-[8px] border-[#542e19] bg-gradient-to-br from-[#80502d] via-[#482818] to-[#25140c] p-2 shadow-2xl sm:p-4">
-                    <!-- Le livre garde une hauteur fixe. Le scroll se fait dans les pages. -->
                     <div
                         class="relative grid h-[680px] grid-cols-1 overflow-hidden rounded-xl border-2 border-[#a9824d] bg-[#d8bd88] md:grid-cols-2">
                         <div
                             class="pointer-events-none absolute bottom-0 left-1/2 top-0 z-30 hidden w-5 -translate-x-1/2 border-x border-[#8a5a32] bg-gradient-to-r from-[#482818] via-[#9b6c3b] to-[#382013] shadow-xl md:block">
                         </div>
 
-                        <!-- PAGE GAUCHE : carte sélectionnée en image de fond + infos par-dessus -->
                         <div
                             class="relative min-h-0 overflow-hidden border-b-4 border-[#704627] bg-[#dfc99a] text-[#382315] md:border-b-0 md:border-r-2 md:border-[#a17a4c]">
                             <div class="pointer-events-none absolute inset-2 z-20 border border-[#9b7448]/60"></div>
@@ -348,11 +346,11 @@
 
                 document.querySelectorAll(".type-btn").forEach(btn => {
                     btn.classList.remove("border-amber-400", "bg-amber-800", "text-white");
-                    btn.classList.add("border-amber-900", "bg-[#382319]");
+                    btn.classList.add("border-amber-900", "bg-[#9a8adf] ");
                 });
 
                 bouton.classList.add("border-amber-400", "bg-amber-800", "text-white");
-                bouton.classList.remove("border-amber-900", "bg-[#382319]");
+                bouton.classList.remove("border-amber-900", "bg-[#9a8adf] ");
 
                 afficherCollection();
             });

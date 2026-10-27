@@ -142,7 +142,7 @@
 
                 <input type="number"
                     class="quantity w-16 rounded-lg border border-blue-900 bg-[#0B1530]/80 px-3 py-2 text-white outline-none focus:border-purple-500"
-                    value="1" min="1">
+                    value="1" min="1" max="3">
 
                 <a href="" class="ajouter inline-block rounded-lg px-4 py-2 text-white hover:bg-purple-600"><i
                         class='fas fa-cart-plus'></i>Add</a>
@@ -179,7 +179,7 @@
 
                 <input type="number"
                     class="quantity w-16 rounded-lg border border-blue-900 bg-[#0B1530]/80 px-3 py-2 text-white outline-none focus:border-purple-500"
-                    value="1" min="1">
+                    value="1" min="1" max="3">
                 <a href="" class="ajouter inline-block rounded-lg px-4 py-2 text-white hover:bg-purple-600">
                     Add</a>
             </div>
@@ -217,7 +217,7 @@
 
                 <input type="number"
                     class="quantity w-16 rounded-lg border border-blue-900 bg-[#0B1530]/80 px-3 py-2 text-white outline-none focus:border-purple-500"
-                    value="1" min="1">
+                    value="1" min="1" max="3">
 
                 <a href="" class="ajouter inline-block rounded-lg px-4 py-2 text-white hover:bg-purple-600"><i
                         class='fas fa-cart-plus'></i>Add</a>
@@ -255,7 +255,7 @@
 
                 <input type="number"
                     class="quantity w-16 rounded-lg border border-blue-900 bg-[#0B1530]/80 px-3 py-2 text-white outline-none focus:border-purple-500"
-                    value="1" min="1">
+                    value="1" min="1" max="3">
 
                 <a href="" class="ajouter inline-block rounded-lg px-4 py-2 text-white hover:bg-purple-600"><i
                         class='fas fa-cart-plus'></i>Add</a>
@@ -276,7 +276,14 @@
         <button id="confirmer-achat"
             class="confirm rounded-2xl border border-purple-400 px-5 py-3 font-bold hover:bg-green-600 focus:outline-2 focus:outline-offset-2 focus:outline-green-500 active:bg-green-700">Confirmer
             l'achat</button>
+
+        <a href="grimoire.html"
+            class="magic-button  rounded-2xl border border-purple-400 px-7 py-4 font-semibold text-white hover:bg-purple-950 ml-auto">
+            Ma Collection
+        </a>
     </section>
+
+
 
     <footer class="border-t border-purple-900/40 bg-[#0B0915] px-6 py-10">
 
@@ -442,6 +449,8 @@
     }
 
     btnConfirmer.addEventListener('click', confirmationAchat);
+    // localStorage.clear();
+
 </script>
 
 </html>

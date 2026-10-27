@@ -1,82 +1,467 @@
-const catalogue = document.querySelector('#catalogue');
-const panier = document.querySelector('#liste-panier');
-const totalSpan = document.querySelector('#total-coins');
-const btnConfirmer = document.querySelector('#confirmer-achat');
+<!DOCTYPE html>
+<html lang="fr">
 
-let total = 0;
-let achats = JSON.parse(localStorage.getItem('achats')) || [];
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mythoria | Mon Deck</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-function afficherTotal() {
-total = 0;
+<body class="min-h-screen bg-[#100d18] text-amber-50">
 
-panier.querySelectorAll('.produit-panier').forEach(produit => {
-total += Number(produit.dataset.prix);
-});
+    <!-- Navigation -->
+    <header class="border-b border-amber-700/40 bg-[#191323]">
+        <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-5">
+            <a href="index.html" class="text-2xl font-black tracking-widest text-amber-400">
+                MYTHORIA
+            </a>
 
-totalSpan.textContent = total;
-}
+            <nav class="flex gap-5 text-sm">
+                <a href="index.html" class="transition hover:text-amber-400">Accueil</a>
+                <a href="grimoire.html" class="transition hover:text-amber-400">Grimoire</a>
+                <a href="#deck" class="text-amber-400">Mon Deck</a>
+            </nav>
+        </div>
+    </header>
 
-function ajouterCoins(titre, prix) {
-const li = document.createElement('section');
-li.className = 'produit-panier';
-li.dataset.prix = prix;
-li.textContent = `${titre} - ${prix} Coins `;
+    <main class="mx-auto max-w-7xl space-y-12 px-5 py-10">
 
-const supprimer = document.createElement('a');
-supprimer.href = '#';
-supprimer.className = 'supprimer';
-supprimer.textContent = 'Remove';
+        <!-- Introduction -->
+        <section
+            class="rounded-2xl border border-amber-700/40 bg-gradient-to-r from-[#30203c] to-[#17111f] p-7 md:p-10">
+            <p class="mb-3 text-sm uppercase tracking-[0.3em] text-amber-400">
+                Préparation au combat
+            </p>
 
-li.appendChild(supprimer);
-panier.appendChild(li);
+            <h1 class="mb-4 text-3xl font-black md:text-5xl">
+                Mon Deck de Combat
+            </h1>
 
-afficherTotal();
-}
+            <p class="max-w-2xl leading-7 text-amber-100/70">
+                Sélectionne tes cartes préférées depuis ton grimoire et prépare
+                ta stratégie. Ton deck peut contenir au maximum 20 cartes uniques.
+            </p>
+        </section>
 
-catalogue.addEventListener('click', (e) => {
-const lien = e.target.closest('.ajouter');
-if (!lien) return;
+        <!-- Deck sélectionné -->
+        <section id="deck" class="scroll-mt-6 space-y-6">
 
-e.preventDefault();
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                    <p class="mb-1 text-sm uppercase tracking-widest text-amber-400">
+                        Ta sélection
+                    </p>
+                    <h2 class="text-2xl font-bold md:text-3xl">
+                        Mon Deck
+                    </h2>
+                </div>
 
-const article = lien.closest('.produit');
-const titre = article.querySelector('.titre').textContent.trim();
-const prix = Number(article.dataset.prix);
+                <p id="compteur"
+                    class="rounded-full border border-amber-500/40 bg-amber-400/10 px-5 py-3 font-bold text-amber-300">
+                    0 / 20 cartes
+                </p>
+            </div>
 
-ajouterCoins(titre, prix);
-});
+            <!-- Barre de progression -->
+            <div class="h-2 overflow-hidden rounded-full bg-white/10">
+                <div id="progression" class="h-full rounded-full bg-amber-400 transition-all duration-300"
+                    style="width: 0%">
+                </div>
+            </div>
 
-panier.addEventListener('click', (e) => {
-const lien = e.target.closest('.supprimer');
-if (!lien) return;
+            <!-- Statistiques -->
+            <div id="statistiques" class="grid grid-cols-2 gap-3 md:grid-cols-5">
+            </div>
 
-e.preventDefault();
+            <!-- Cartes du deck -->
+            <div id="cartesDeck" class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            </div>
 
-lien.closest('.produit-panier').remove();
-afficherTotal();
-});
+            <div id="deckVide" class="rounded-2xl border border-dashed border-amber-700/50 p-10 text-center">
+                <p class="mb-3 text-4xl">📖</p>
+                <h3 class="mb-2 text-lg font-bold">Ton deck est vide</h3>
+                <p class="text-sm text-amber-100/60">
+                    Ajoute des cartes depuis ton grimoire pour commencer.
+                </p>
+            </div>
 
-btnConfirmer.addEventListener('click', () => {
-if (panier.children.length === 0) {
-alert('Votre panier est vide !');
-return;
-}
+            <p id="message" role="status" aria-live="polite" class="hidden rounded-xl p-4 text-sm">
+            </p>
 
-const nouveauxAchats = [];
+            <div class="flex flex-wrap gap-3">
+                <button id="viderDeck" type="button"
+                    class="rounded-lg border border-red-400/40 px-5 py-3 text-sm font-semibold text-red-200 transition hover:bg-red-400/10">
+                    Vider le deck
+                </button>
 
-panier.querySelectorAll('.produit-panier').forEach(produit => {
-nouveauxAchats.push({
-titre: produit.textContent.replace('Remove', '').trim(),
-prix: Number(produit.dataset.prix)
-});
-});
+                <button id="sauvegarderDeck" type="button"
+                    class="rounded-lg bg-amber-400 px-5 py-3 text-sm font-bold text-[#211329] transition hover:bg-amber-300">
+                    Sauvegarder le deck
+                </button>
+            </div>
+        </section>
 
-achats.push(...nouveauxAchats);
+        <!-- Grimoire -->
+        <section id="grimoire" class="scroll-mt-6 space-y-6 border-t border-amber-700/30 pt-10">
 
-localStorage.setItem('achats', JSON.stringify(achats));
+            <div>
+                <p class="mb-1 text-sm uppercase tracking-widest text-amber-400">
+                    Ta collection
+                </p>
 
-alert('Votre achat est confirmé !');
+                <h2 class="text-2xl font-bold md:text-3xl">
+                    Le Grimoire
+                </h2>
 
-panier.innerHTML = '';
-afficherTotal();
-});
+                <p class="mt-3 max-w-3xl leading-7 text-amber-100/60">
+                    Choisis les cartes que tu souhaites ajouter à ton deck.
+                    Une seule copie de chaque carte unique est autorisée dans le deck,
+                    même si tu possèdes plusieurs exemplaires dans ta collection.
+                </p>
+            </div>
+
+            <!-- Filtres -->
+            <div id="filtres" class="flex flex-wrap gap-2">
+                <button type="button" data-filtre="Toutes"
+                    class="filtre rounded-full bg-amber-400 px-4 py-2 text-sm font-bold text-[#211329]">
+                    Toutes
+                </button>
+
+                <button type="button" data-filtre="Créature"
+                    class="filtre rounded-full border border-amber-700/50 px-4 py-2 text-sm transition hover:bg-white/5">
+                    Créatures
+                </button>
+
+                <button type="button" data-filtre="Héros"
+                    class="filtre rounded-full border border-amber-700/50 px-4 py-2 text-sm transition hover:bg-white/5">
+                    Héros
+                </button>
+
+                <button type="button" data-filtre="Serviteur"
+                    class="filtre rounded-full border border-amber-700/50 px-4 py-2 text-sm transition hover:bg-white/5">
+                    Serviteurs
+                </button>
+
+                <button type="button" data-filtre="Sort"
+                    class="filtre rounded-full border border-amber-700/50 px-4 py-2 text-sm transition hover:bg-white/5">
+                    Sorts
+                </button>
+            </div>
+
+            <!-- Catalogue des cartes -->
+            <div id="cartesGrimoire" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-12 border-t border-amber-700/30 px-5 py-7 text-center text-sm text-amber-100/50">
+        Mythoria — Every Card Tells a Legend.
+    </footer>
+    <script>
+        const CLE_COLLECTION = "mythoria_collection";
+        const CLE_DECK = "mythoria_deck";
+        const MAX_CARTES = 20;
+
+        // Récupération des éléments HTML
+        const cartesDeck = document.querySelector("#cartesDeck");
+        const cartesGrimoire = document.querySelector("#cartesGrimoire");
+        const compteur = document.querySelector("#compteur");
+        const progression = document.querySelector("#progression");
+        const statistiques = document.querySelector("#statistiques");
+        const deckVide = document.querySelector("#deckVide");
+        const message = document.querySelector("#message");
+        const viderDeck = document.querySelector("#viderDeck");
+        const sauvegarderDeck = document.querySelector("#sauvegarderDeck");
+
+        const boutonsFiltres = document.querySelectorAll(".filtre");
+
+        // Données
+        let collection = [];
+        let deck = [];
+        let filtreActuel = "Toutes";
+
+        // Lecture sécurisée du localStorage
+        function lireDonnees(cle) {
+            try {
+                const donnees = JSON.parse(localStorage.getItem(cle)) || [];
+                return Array.isArray(donnees) ? donnees : [];
+            } catch (erreur) {
+                console.error("Erreur de lecture :", erreur);
+                return [];
+            }
+        }
+
+        // Identification d'une carte unique
+        function obtenirId(carte) {
+            if (carte.id !== undefined && carte.id !== null) {
+                return String(carte.id);
+            }
+
+            return `${carte.nom || "Sans nom"}-${carte.type || "Sans type"}`;
+        }
+
+        // Affichage d'un message
+        function afficherMessage(texte, succes = true) {
+            message.textContent = texte;
+            message.classList.remove(
+                "hidden",
+                "bg-green-900/50",
+                "text-green-200",
+                "bg-red-900/50",
+                "text-red-200"
+            );
+
+            message.classList.add(
+                succes ? "bg-green-900/50" : "bg-red-900/50",
+                succes ? "text-green-200" : "text-red-200"
+            );
+        }
+
+        // Création visuelle d'une carte
+        function creerCarte(carte, boutonTexte, action, estDansDeck = false) {
+            const article = document.createElement("article");
+
+            article.className =
+                "group relative flex min-h-[240px] flex-col justify-end " +
+                "overflow-hidden rounded-xl border-2 border-amber-800 " +
+                "bg-[#21140e] p-4 text-white shadow-md";
+
+            if (carte.illustration) {
+                article.style.backgroundImage =
+                    `linear-gradient(to top, rgba(15,8,4,.97), rgba(15,8,4,.15)), url("${carte.illustration}")`;
+                article.style.backgroundSize = "cover";
+                article.style.backgroundPosition = "center";
+            }
+
+            const infos = document.createElement("div");
+            infos.className = "relative z-10 mt-auto";
+
+            const rarete = document.createElement("p");
+            rarete.className =
+                "mb-2 inline-block rounded-full bg-purple-800 px-3 py-1 text-xs font-bold";
+            rarete.textContent = carte.rarete || "Rareté inconnue";
+
+            const nom = document.createElement("h3");
+            nom.className = "break-words text-lg font-black text-amber-200";
+            nom.textContent = carte.nom || "Carte sans nom";
+
+            const type = document.createElement("p");
+            type.className = "mt-1 text-sm text-white/80";
+            type.textContent = carte.type || "Type inconnu";
+
+            const stats = document.createElement("p");
+            stats.className = "mt-2 text-sm text-amber-100";
+            stats.textContent =
+                `Attaque : ${carte.attaque ?? "—"} | Défense : ${carte.defense ?? "—"}`;
+
+            const bouton = document.createElement("button");
+            bouton.type = "button";
+            bouton.className =
+                "mt-4 w-full rounded-lg px-4 py-2 text-sm font-bold transition " +
+                (estDansDeck
+                    ? "bg-red-800 hover:bg-red-700"
+                    : "bg-amber-400 text-[#21140e] hover:bg-amber-300");
+
+            bouton.textContent = boutonTexte;
+            bouton.addEventListener("click", () => action(carte));
+
+            infos.append(rarete, nom, type, stats);
+
+            if (carte.description) {
+                const description = document.createElement("p");
+                description.className = "mt-2 text-sm text-white/80";
+                description.textContent = carte.description;
+                infos.appendChild(description);
+            }
+
+            infos.appendChild(bouton);
+            article.appendChild(infos);
+
+            return article;
+        }
+
+        // Ajouter une carte au deck
+        function ajouterCarte(carte) {
+            const id = obtenirId(carte);
+
+            if (deck.some(c => obtenirId(c) === id)) {
+                afficherMessage("Cette carte est déjà dans ton deck.", false);
+                return;
+            }
+
+            if (deck.length >= MAX_CARTES) {
+                afficherMessage("Ton deck est complet : maximum 20 cartes.", false);
+                return;
+            }
+
+            deck.push(carte);
+            afficherMessage(`${carte.nom} a été ajoutée à ton deck.`);
+            afficherDeck();
+            afficherGrimoire();
+        }
+
+        // Retirer une carte du deck
+        function retirerCarte(carte) {
+            const id = obtenirId(carte);
+
+            deck = deck.filter(c => obtenirId(c) !== id);
+
+            afficherMessage(`${carte.nom} a été retirée du deck.`);
+            afficherDeck();
+            afficherGrimoire();
+        }
+
+        // Afficher les cartes sélectionnées
+        function afficherDeck() {
+            cartesDeck.replaceChildren();
+
+            deck.forEach(carte => {
+                cartesDeck.appendChild(
+                    creerCarte(carte, "Retirer du deck", retirerCarte, true)
+                );
+            });
+
+            compteur.textContent = `${deck.length}/20 cartes`;
+            progression.style.width = `${(deck.length / MAX_CARTES) * 100}%`;
+
+            deckVide.classList.toggle("hidden", deck.length > 0);
+
+            // Calcul du nombre de cartes par type
+            statistiques.replaceChildren();
+
+            const types = ["Créature", "Héros", "Serviteur", "Sort"];
+
+            types.forEach(type => {
+                const quantite = deck.filter(carte => carte.type === type).length;
+
+                const bloc = document.createElement("div");
+                bloc.className =
+                    "rounded-lg border border-amber-800 bg-[#21140e] p-3 text-center";
+
+                const nomType = document.createElement("p");
+                nomType.className = "text-sm text-amber-100";
+                nomType.textContent = type;
+
+                const nombre = document.createElement("p");
+                nombre.className = "mt-1 text-xl font-black text-amber-300";
+                nombre.textContent = quantite;
+
+                bloc.append(nomType, nombre);
+                statistiques.appendChild(bloc);
+            });
+        }
+
+        // Afficher les cartes de la collection
+        function afficherGrimoire() {
+            cartesGrimoire.replaceChildren();
+
+            const cartesFiltrees = collection.filter(carte =>
+                filtreActuel === "Toutes" || carte.type === filtreActuel
+            );
+
+            if (cartesFiltrees.length === 0) {
+                const texte = document.createElement("p");
+                texte.className = "col-span-full py-8 text-center text-amber-100/70";
+                texte.textContent = collection.length === 0
+                    ? "Ta collection est vide. Ouvre des boosters pour obtenir des cartes."
+                    : "Aucune carte ne correspond à ce filtre.";
+
+                cartesGrimoire.appendChild(texte);
+                return;
+            }
+
+            cartesFiltrees.forEach(carte => {
+                const dejaSelectionnee = deck.some(
+                    c => obtenirId(c) === obtenirId(carte)
+                );
+
+                const boutonTexte = dejaSelectionnee
+                    ? "Déjà dans le deck"
+                    : "Ajouter au deck";
+
+                const element = creerCarte(
+                    carte,
+                    boutonTexte,
+                    ajouterCarte
+                );
+
+                if (dejaSelectionnee) {
+                    const bouton = element.querySelector("button");
+                    bouton.disabled = true;
+                    bouton.classList.add("cursor-not-allowed", "opacity-60");
+                }
+
+                cartesGrimoire.appendChild(element);
+            });
+        }
+
+        // Filtres par type
+        boutonsFiltres.forEach(bouton => {
+            bouton.addEventListener("click", () => {
+                filtreActuel = bouton.dataset.filtre || "Toutes";
+
+                boutonsFiltres.forEach(btn => {
+                    btn.classList.remove("ring-2", "ring-white");
+                });
+
+                bouton.classList.add("ring-2", "ring-white");
+
+                afficherGrimoire();
+            });
+        });
+
+        // Vider le deck
+        viderDeck.addEventListener("click", () => {
+            if (deck.length === 0) {
+                afficherMessage("Ton deck est déjà vide.", false);
+                return;
+            }
+
+            deck = [];
+            afficherDeck();
+            afficherGrimoire();
+            afficherMessage("Ton deck a été vidé.");
+        });
+
+        // Sauvegarder le deck
+        sauvegarderDeck.addEventListener("click", () => {
+            try {
+                localStorage.setItem(CLE_DECK, JSON.stringify(deck));
+                afficherMessage("Ton deck a été sauvegardé avec succès !");
+            } catch (erreur) {
+                console.error("Erreur de sauvegarde :", erreur);
+                afficherMessage("Impossible de sauvegarder ton deck.", false);
+            }
+        });
+
+        // Chargement initial
+        function initialiserDeck() {
+            collection = lireDonnees(CLE_COLLECTION);
+            deck = lireDonnees(CLE_DECK);
+
+            // Éviter les doublons et limiter le deck à 20 cartes
+            const ids = new Set();
+
+            deck = deck.filter(carte => {
+                const id = obtenirId(carte);
+
+                if (ids.has(id) || ids.size >= MAX_CARTES) {
+                    return false;
+                }
+
+                ids.add(id);
+                return true;
+            });
+
+            // Ne garder que les cartes toujours présentes dans la collection
+            const idsCollection = new Set(collection.map(obtenirId));
+
+            deck = deck.filter(carte => idsCollection.has(obtenirId(carte)));
+
+            afficherDeck();
+            afficherGrimoire();
+        }
+    </script>
+
+</html>
