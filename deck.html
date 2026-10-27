@@ -154,9 +154,24 @@
 
         }
         return `${carte.nom || "Sans nom"}-${carte.type || "Sans type"}`;
+
     }
 
+    function ajouterCarte(carte) {
+        const id = obtenirId(carte);
 
+        if (deck.some(c => obtenirId(c)) === id) {
+            afficherMessage("Cette carte estdéjà dans tondeck.", false);
+            return;
+        }
+        if (deck.length >= MAX_CARTES) {
+            afficherMessage("Ton deck est complet : max 20 cartes ");
+            return;
+        }
+        deck.push(carte);
+        afficherDeck();
+        afficherGrimoire();
+    }
 </script>
 
 </html>
