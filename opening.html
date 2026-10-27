@@ -381,23 +381,49 @@
 
     </main>
 
-    <footer class="mt-12 border-t border-purple-900/40 bg-[#0B0915] px-6 py-8 text-center text-sm text-gray-400">
-        MYTHORIA — Every Card Tells a Legend. © 2026
+
+    <a href="grimoire.html"
+        class="magic-button rounded-lg border border-purple-400 px-7 py-4 font-semibold text-white hover:bg-purple-950">
+        Ma Collection
+    </a>
+
+    <footer class="border-t border-purple-900/40 bg-[#0B0915] px-6 py-10">
+
+        <div
+            class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 text-center md:flex-row md:text-left">
+
+            <div>
+                <p class="logo mb-2 text-xl font-bold tracking-widest text-purple-300">MYTHORIA</p>
+                <p class="text-sm text-gray-400">Every Card Tells a Legend.</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-5 text-sm text-gray-400">
+                <a href="index.html" class="hover:text-purple-300">Home</a>
+                <a href="Booster.html" class="hover:text-purple-300">Boosters</a>
+                <a href="opening.html" class="hover:text-purple-300">Opening</a>
+                <a href="grimoire.html" class="hover:text-purple-300">Grimoire</a>
+                <a href="deck.html" class="hover:text-purple-300">My Deck</a>
+            </div>
+
+            <p class="text-xs text-gray-500">&copy; 2026 Mythoria. Tous droits réservés.</p>
+
+        </div>
+
     </footer>
 
     <script>
         const catalogue = [
-            { id: 1, nom: "Gardien des Ombres", type: "Monstre", rarete: "Commune", attaque: 120, defense: 100, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
-            { id: 2, nom: "Apprenti Mage", type: "Héros", rarete: "Commune", attaque: 90, defense: 130, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
-            { id: 3, nom: "Serviteur des Brumes", type: "Serviteur", rarete: "Commune", attaque: 100, defense: 110, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
-            { id: 4, nom: "Éclair Mystique", type: "Sort", rarete: "Commune", attaque: 110, defense: 80, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
-            { id: 5, nom: "Lame Mystique", type: "Sort", rarete: "Rare", attaque: 180, defense: 120, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
-            { id: 6, nom: "Prêtresse Lunaire", type: "Héros", rarete: "Rare", attaque: 160, defense: 200, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
-            { id: 7, nom: "Chevalier du Crépuscule", type: "Héros", rarete: "Rare", attaque: 190, defense: 180, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
-            { id: 8, nom: "Dragon du Néant", type: "Monstre", rarete: "Épique", attaque: 350, defense: 280, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
-            { id: 9, nom: "Sorcière Éternelle", type: "Héros", rarete: "Épique", attaque: 290, defense: 320, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
-            { id: 10, nom: "Roi des Abysses", type: "Monstre", rarete: "Légendaire", attaque: 500, defense: 450, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" },
-            { id: 11, nom: "Phénix Céleste", type: "Serviteur", rarete: "Légendaire", attaque: 480, defense: 400, illustration: "4d07cc8fb9e29c072752641dfa291d8d.jpg" }
+            { id: 1, nom: "Gardien des Ombres", type: "Monstre", rarete: "Commune", attaque: 120, defense: 100, illustration: "img/n1.jpg" },
+            { id: 2, nom: "Apprenti Mage", type: "Héros", rarete: "Commune", attaque: 90, defense: 130, illustration: "img/b1.jpg" },
+            { id: 3, nom: "Serviteur des Brumes", type: "Serviteur", rarete: "Commune", attaque: 100, defense: 110, illustration: "img/c3.jpg" },
+            { id: 4, nom: "Éclair Mystique", type: "Sort", rarete: "Commune", attaque: 110, defense: 80, illustration: "img/a1.jpg" },
+            { id: 5, nom: "Lame Mystique", type: "Sort", rarete: "Rare", attaque: 180, defense: 120, illustration: "img/a1.jpg" },
+            { id: 6, nom: "Prêtresse Lunaire", type: "Héros", rarete: "Rare", attaque: 160, defense: 200, illustration: "img/d3.jpg" },
+            { id: 7, nom: "Chevalier du Crépuscule", type: "Héros", rarete: "Rare", attaque: 190, defense: 180, illustration: "img/d5.jpg" },
+            { id: 8, nom: "Dragon du Néant", type: "Monstre", rarete: "Épique", attaque: 350, defense: 280, illustration: "img/d6.jpg" },
+            { id: 9, nom: "Sorcière Éternelle", type: "Héros", rarete: "Épique", attaque: 290, defense: 320, illustration: "img/d2.jpg" },
+            { id: 10, nom: "Roi des Abysses", type: "Monstre", rarete: "Légendaire", attaque: 500, defense: 450, illustration: "img/d3.jpg" },
+            { id: 11, nom: "Phénix Céleste", type: "Serviteur", rarete: "Légendaire", attaque: 480, defense: 400, illustration: "img/d4.jpg" }
         ];
 
         const boosters = {
@@ -493,9 +519,9 @@
 
             const imagesBoosters = {
                 "Beginner Pack": "img/1792685568936.jpg",
-                "Summoning of the Legends": "img/legends.jpg",
-                "Dark Summoning": "img/dark.jpg",
-                "Lucky Pack": "img/lucky.jpg"
+                "Summoning of the Legends": "img/1792685571852.jpg",
+                "Dark Summoning": "img/1792685609525.jpg",
+                "Lucky Pack": "img/file_00000000d8fc81f4b8b2cf0740cc4c68.png"
             };
 
             Object.keys(boosters).forEach(nom => {
@@ -817,6 +843,7 @@
 
 
         afficherBoosters();
+        // localStorage.clear();
 
     </script>
 
