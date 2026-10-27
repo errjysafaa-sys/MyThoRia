@@ -128,5 +128,35 @@
         </section>
     </main>
 </body>
+<script>
+
+    const message = document.querySelector("#message");
+    function lireDonnees(cle) {
+        try {
+            const donnees = JSON.parse(localStorage.getItem(cle)) || [];
+            return Array.isArray(donnees) ? donnees : [];
+        } catch (erreur) {
+            console.error("Erreur de lecture :", erreur);
+            return [];
+        }
+
+    }
+
+    function afficherMessage(texte, succes = true) {
+        message.textContent = texte;
+        message.classList.remove("hidden", "bg-green-900/50", "text-green-200");
+        message.classList.add(succes ? "bg-green-900/50" : "bg-red-900/50", succes ? "text-green-200" : "text-red-200")
+    }
+
+    function obtenirId(carte) {
+        if (carte.id !== undifined && carte.id !== null) {
+            return String(carte.id);
+
+        }
+        return `${carte.nom || "Sans nom"}-${carte.type || "Sans type"}`;
+    }
+
+
+</script>
 
 </html>
