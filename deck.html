@@ -129,7 +129,9 @@
     </main>
 </body>
 <script>
-
+    const CLE_COLLECTION = "mythoria_collection";
+    const CLE_DECK = "mythoria_deck";
+    const MAX_CARTES = 20;
     const message = document.querySelector("#message");
     const cartesDeck = document.querySelector("#cartesDeck");
     const compteur = document.querySelector("#compteur");
@@ -141,6 +143,9 @@
 
 
     const deckVide = document.querySelector("#deckVide")
+    let collection = lireDonnees(CLE_COLLECTION);
+    let deck = lireDonnees(CLE_DECK);
+    let filtreActuel = "Toutes";
 
     function lireDonnees(cle) {
         try {
@@ -160,7 +165,7 @@
     }
 
     function obtenirId(carte) {
-        if (carte.id !== undifined && carte.id !== null) {
+        if (carte.id !== undefined && carte.id !== null) {
             return String(carte.id);
 
         }
@@ -180,6 +185,7 @@
             return;
         }
         deck.push(carte);
+        localStorage.setItem(CLE_COLLECTION, JSON.stringify(deck));
         afficherDeck();
         afficherGrimoire();
     }
@@ -202,14 +208,17 @@
         });
         compteur.textContent = `${deck.length}/20 cartes`;
         progression.style.width = `${(deck.length / MAX_CARTES) * 100}%`;
+
         deckVide.classList.toggle("hidden", deck.length > 0);
         statiques.replaceChildren();
 
-        const types = ["Creature", "heros", "serviteur", "sort"];
+        const types = ["Monstre", "heros", "serviteur", "sort"];
+
         types.forEach(types => {
 
 
             const quantite = deck.filter(carte => carte.type === type).length;
+
             const bloc = document.createElement("div");
             bloc.className = "rounded-lg border-ambre-800 bg-[#21140e]";
 
@@ -223,10 +232,79 @@
             bloc.append(nomType, nombre);
             statiques.appendChild(bloc);
         })
-
-
-
     }
+    function afficherGrimoire() {
+        cartesGrimoire.replaceChildren();
+
+        const cartesFiltrees = collection.filter(carte =>
+            filtreActuel === "Toutes" || carte.type === filtreActuel
+        );
+
+        if (cartesFiltrees.length === 0) {
+            const texte = document.createElement("p");
+
+            texte.className =
+                "col-span-full py-8 text-center text-amber-100/70";
+
+            texte.textContent = collection.length === 0
+                ? "Ta collection est vide. Ouvre des boosters pour obtenir des cartes."
+                : "Aucune carte ne correspond à ce filtre.";
+
+            cartesGrimoire.appendChild(texte);
+            return;
+        }
+
+        cartesFiltrees.forEach(carte => {
+            const dejaSelectionnee = deck.some(
+                c => obtenirId(c) === obtenirId(carte)
+            );
+
+            const element = creerCarte(
+                carte,
+                "Ajouter au deck",
+                ajouterCarte,
+                dejaSelectionnee || deck.length >= MAX_CARTES
+            );
+
+            cartesGrimoire.appendChild(element);
+        });
+    }
+
+
+
+    function retirerCarte(carte) {
+        const id = obtenirId(carte);
+        deck = deck.filter(c => obtenirId(c) !== id);
+        localStorage.setItem(CLE_DECK, JSON.stringify(deck));
+        afficherDeck();
+        afficherGrimoire();
+        afficherMessage(`${carte.nom} a été retirée du deck. `);
+    }
+    document.querySelectorAll(".filter").forEach(bouton => {
+
+        bouton.addEventListener("click", () => {
+            filtreActuel = bouton.dataset.filtre || "Toutes";
+            afficherGrimoire();
+        });
+    });
+
+    document.querySelector("#viderDeck").addEventListener("click", () => {
+        deck = [];
+        localStorage.setItem(CLE_DECK, JSON.stringify(deck));
+        afficherMessage("Deck sauvegardé !");
+        afficherDeck();
+        afficherGrimoire();
+    });
+
+    document.querySelector("#sauvegarderDeck").addEventListener("click", () => {
+        localStorage.setItem(CLE_DECK, JSON.stringify(deck));
+        afficherMessage("Deck sauvegarder !");
+    });
+
+    afficherDeck();
+    afficherGrimoire();
+
+
 </script>
 
 </html>
