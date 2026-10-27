@@ -31,82 +31,102 @@
 
         </nav>
     </header>
+    <main class="mx-auto max-w-7xl space-y-12 px-5 py-10">
 
-    <section>
-        <p> Préparation au combat
-        </p>
-        <h1>Mon Deck de combat </h1>
-        <p>Selectionne tes cartes préférés depuis ton grimoire et prepare ta stratégie.Ton deck peut contenir au maximun
-            20cartes uniques. </p>
-    </section>
 
-    <section>
-        <div>
+        <section class="rounded-2xl border border-puple-700 bg-gradient-to-r from-[#30203c0] to-[#17111f] p-7 md:p-10">
+            <p class="mb-3 text-sm uppercase tracking-[0.3em] text-amber-400"> Préparation au combat
+            </p>
+            <h1 class="mb-4 text-3xl font-black mb:text-5xl">Mon Deck de combat </h1>
+            <p class="max-w-2xl leading-7 text-amber-100">Selectionne tes cartes préférés depuis ton grimoire et prepare
+                ta stratégie.Ton deck peut contenir au
+                maximun
+                20 cartes uniques. </p>
+        </section>
+
+        <section id="deck" class="scroll-mt-6 space-y-6">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+
+                <div>
+                    <p class="mb-1 text-sm uppercase tracking-widest text-amber-400">Ta Sélection </p>
+                    <h2 class="text-2xl font-bold md:text-3xl">Mon Deck</h2>
+                </div>
+
+                <p id="compteur" class="rounded border border-fuchsia-400 bg-none px-5 py-3 font-bold text-amber-300">
+                    0/20
+                    cartes</p>
+
+
+            </div>
+
+            <div class="h-2 overflow-hidden rounded-full bg-white/10">
+                <div id="progression" class="h-full rounded-full bg-amber-400 transition-all duraction-300"
+                    style="width: 0%;">
+
+                </div>
+            </div>
+            <div id="statistiques" class="grid gap-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"></div>
+
+            <div id="cartesDeck" class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            </div>
+            <div id="deckVide" class="rounded-2xl border border-amber-700 p-10 text-center">
+
+                <h3 class="mb-2 text-lg font-bold">Ton deck est vide</h3>
+                <p class="text-sm text-amber-100">Ajoute des cartes depuis ton grimoire pour commancer.</p>
+
+
+            </div>
+
+            <p id="message" role="status" aria-live="polite" class="hidden rounded-xl p-4 text-sm"></p>
+
+            <div class="flex flex-wrap gap-3">
+                <button id="viderDeck" type="button"
+                    class="rounded-lg border border-fuchsia-400 px-5 py-3 text-sm font-bold text-[#ffffff] transition hover:bg-purple-300">vider
+                    le deck</button>
+
+                <button id="sauvegarderDeck" type="button"
+                    class="rounded-lg bg-purple-400 px-5 py-3 text-sm font-bold text-[#ffffff] transition hover:bg-purple-800">Sauvegarder
+                    le deck </button>
+            </div>
+
+
+        </section>
+
+        <section id="grimoire" class="scroll-mt-6 space-y-6 border-t border-fuchsia-300 pt-10">
 
             <div>
-                <p>Ta Sélection </p>
-                <h2>Mon Deck</h2>
-            </div>
 
-            <p>0/20 cartes</p>
+                <p class="mb-1 text-sm uppercase tracking-widest text-[#ffffff]">Ta collection</p>
+                <h2 class="text-2xl font-bold md:text-3xl">Le grimoire</h2>
 
 
-        </div>
 
-        <div class="h-2 overflow-hidden rounded-full bg-white/10">
-            <div id="progression" class="h-full rounded-full bg-amber-400 transition-all duraction-300"
-                style="width: 0%;">
+                <p class="mt-3 max-w-3xl leading-7 text-amber-100/60"> Choisis les cartes que tu souhaites ajouter à ton
+                    deck.
+                    Une seule copie de chaque carte unique est autorisée dans le deck,
+                    même si tu possèdes plusieurs exemplaires dans ta collection.</p>
 
             </div>
-        </div>
-        <div id="statistiques" class="grid gap-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"></div>
-
-        <div id="deckVide" class="rounded-2xl border border-amber-700 p-10 text-center">
-
-            <h3>Ton deck est vide</h3>
-            <p>Ajoute des cartes depuis ton grimoire pour commancer.</p>
 
 
-        </div>
+            <div id="filtres" class="flex flex-wrap gap-2">
 
-        <p id="message" role="status" aria-live="polite" class="hidden rounded-xl p-4 text-sm"></p>
+                <button type="button" data-filtre="Toutes"
+                    class="filtre rounded-full bg-amber-400 px-4 py-2 text-sm font-bold text-[#211329]">Tous</button>
+                <button type="button" data-filtre="Créature"
+                    class="filtre rounded-full bg-amber-400 px-4 py-2 text-sm font-bold text-[#211329]">Créatures</button>
 
-        <div>
-            <button>vider le deck</button>
-            <button>Sauvegarder le deck </button>
-        </div>
+                <button type="button" data-filtre="Héros"
+                    class="filtre rounded-full bg-amber-400 px-4 py-2 text-sm transition hover:bg-white/5">Héros</button>
+                <button type="button" data-filtre="Serviteur"
+                    class="filtre rounded-full bg-amber-400 px-4 py-2 text-sm transition hover:bg-white/5">Serviteurs</button>
+                <button type="button" data-filtre="Sort"
+                    class="filtre rounded-full bg-amber-400 px-4 py-2 text-sm transition hover:bg-white/5">Sorts</button>
+            </div>
 
-
-    </section>
-
-    <section>
-
-        <div>
-
-            <p>Ta collection</p>
-            <h2>Le grimoire</h2>
-
-
-
-            <p> Choisis les cartes que tu souhaites ajouter à ton deck.
-                Une seule copie de chaque carte unique est autorisée dans le deck,
-                même si tu possèdes plusieurs exemplaires dans ta collection.</p>
-
-        </div>
-
-
-        <div>
-
-            <button>Tous</button>
-            <button>Créatures</button>
-
-            <button>Héros</button>
-            <button>Serviteurs</button>
-            <button>Sorts</button>
-        </div>
-
-        <div id="cartesGrimoire" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
-    </section>
+            <div id="cartesGrimoire" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+        </section>
+    </main>
 </body>
 
 </html>
