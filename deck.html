@@ -131,6 +131,17 @@
 <script>
 
     const message = document.querySelector("#message");
+    const cartesDeck = document.querySelector("#cartesDeck");
+    const compteur = document.querySelector("#compteur");
+    const progression = document.querySelector("#progression");
+    const statiques = document.querySelector("#statiques");
+    const nombre = document.querySelector("#nombre");
+    const bloc = document.querySelector("#bloc");
+
+
+
+    const deckVide = document.querySelector("#deckVide")
+
     function lireDonnees(cle) {
         try {
             const donnees = JSON.parse(localStorage.getItem(cle)) || [];
@@ -171,6 +182,50 @@
         deck.push(carte);
         afficherDeck();
         afficherGrimoire();
+    }
+
+    function retirerCarte(carte) {
+        const id = obtenirId(carte);
+        deck = deck.filter(c => obtenirId(c) !== id);
+        afficherMessage(`${carte.nom} a été retirée du deck.`);
+        afficherDeck();
+        afficherGrimoire();
+    }
+
+    function afficherDeck() {
+        cartesDeck.replaceChildren();
+
+        deck.forEach(carte => {
+            cartesDeck.appendChild(
+                creerCarte(carte, "Retirer du deck", retirerCarte, true)
+            );
+        });
+        compteur.textContent = `${deck.length}/20 cartes`;
+        progression.style.width = `${(deck.length / MAX_CARTES) * 100}%`;
+        deckVide.classList.toggle("hidden", deck.length > 0);
+        statiques.replaceChildren();
+
+        const types = ["Creature", "heros", "serviteur", "sort"];
+        types.forEach(types => {
+
+
+            const quantite = deck.filter(carte => carte.type === type).length;
+            const bloc = document.createElement("div");
+            bloc.className = "rounded-lg border-ambre-800 bg-[#21140e]";
+
+            const nomType = document.createElement("p");
+            nomType.className = "text-sm text-amber-100";
+            nomType.textContent = types;
+
+            const nomber = document.createElement("p");
+            nombre.className = "text-sm text-amber-100"
+            nombre.textContent = quantite;
+            bloc.append(nomType, nombre);
+            statiques.appendChild(bloc);
+        })
+
+
+
     }
 </script>
 
