@@ -227,7 +227,7 @@ Le site est hébergé sur **Vercel** : chaque `git push` sur la branche principa
 
 ## 👤 Auteur
 
-Projet réalisé par **<Ton nom>** dans le cadre d'un projet de développement web.
+Projet réalisé par **<ER-rajy safaa>** dans le cadre d'un projet de développement web.
 
 ---
 
