@@ -7,12 +7,12 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <main class=" combat grid grid-cols-5 gap-4 p-4">
-        <!--  <div class="combatSpace grid gap-4 ">
+    <!--  <div class="combatSpace grid gap-4 ">
 
             <div class="bg-purple-300 col-start-1 col-end-5 row-start-1 row-end-2 h-[10rem]">Space x</div>
 
@@ -31,75 +31,279 @@
         </div>
 
     </main> -->
-        <section class="spaceX col-span-5 row-start-1">
-            <div class="flex flex-wrap items-center justify-between gap-4">
-                <div>
-                    <p class="text-sm text-purple-300">JOUEUR X</p>
-                    <H2 class="text-2xl font-bold">Adversaire</H2>
-                    <p>Camp : <span class="text-purple-300">Ténebres</span></p>
-                </div>
-                <div class="w-full max-w-md">
-                    <div class="mb-2 flex justify-between">
-                        <span>Point de vue</span>
-                        <span>3000/3000px</span>
+
+    <!---->
+    <main class="combatSpacemin-h-screen bg-[#080711] p-3 text-white sm:p-5 lg:p-8">
+
+        <div class="mx-auto grid max-w-7xl grid-cols-12 gap-4 lg:gap-6">
+
+            <section
+                class="col-span-12 rounded-2xl border border-violet-500  bg-gradient-to-r from-[#171126] to-[#0e0c1b] p-4 shadow-lg shadow-violet-950/20 sm:p-6">
+                <div class=" flex flex-col gap-5 md:flex-row md-items-center ">
+                    <div>
+                        <p class=" text-xs tracking-[0.25em] text-purple-300">JOUEUR X</p>
+                        <H2 class="mt-1 text-2xl font-black sm:text-3xl">Adversaire</H2>
+                        <p class="mt-2 text-sm text-gray-400">Camp : <span
+                                class="font-semibold text-violet-300">Ténebres</span></p>
                     </div>
-                    <div class="hp-container">
-                        <div class="hp-adversaire"></div>
+                    <div class="w-full max-w-md md:flex-1">
+                        <div class="mb-2 flex justify-between gap-2 text-sm">
+                            <span class="text-gray-400">Point de vue</span>
+                            <span class="font-bold tabular-nums">3000/3000px</span>
+                            <!-- tabular-nums -->
+                        </div>
+                        <div class="hp-container h-3 overflow-hidden rounded-full border border-red-900">
+                            <div class="hp-adversaire h-full w-full rounded-full from-red-900 to-red-500"></div>
+                        </div>
+                    </div>
+                    <div
+                        class="self-start rounded-lg border border-violet-400/30 bg-violet-500/10 px-4 py-2 md:self-center">
+                        <p class="text-xs text-violet-300">TOUR</p>
+                        <p class="text-lg font-black">P1</p>
+                    </div>
+
+            </section>
+
+
+
+
+
+            <section class="carteX col-span-12 rounded-2xl border border-violet-500/20 bg-[#11101d] p-4 lg:col-span-2">
+
+                <h2 class="section-title mb-4 text-center text-sm font-black tracking-wider text-violet-300">Cartes X
+                </h2>
+
+                <div class="slots grid grid-col-5 gap-2 lg:grid-cols-1 ">
+                    <div
+                        class="card-slot flex aspect-[3/4] items-center justify-center rounded-lg border border-dashed border-violet-500/40 bg-violet-950/20 text-2xl text-violet-400 transition hover:border-violet-300 hover:bg-violet-500/10">
+                        +</div>
+                    <div
+                        class="card-slot flex aspect-[3/4] items-center justify-center rounded-lg border border-dashed border-violet-500/40 bg-violet-950/20 text-2xl text-violet-400 transition hover:border-violet-300 hover:bg-violet-500/10">
+                        +</div>
+                    <div
+                        class="card-slot flex aspect-[3/4] items-center justify-center rounded-lg border border-dashed border-violet-500/40 bg-violet-950/20 text-2xl text-violet-400 transition hover:border-violet-300 hover:bg-violet-500/10">
+                        +</div>
+                    <div
+                        class="card-slot flex aspect-[3/4] items-center justify-center rounded-lg border border-dashed border-violet-500/40 bg-violet-950/20 text-2xl text-violet-400 transition hover:border-violet-300 hover:bg-violet-500/10">
+                        +</div>
+                    <div
+                        class="card-slot flex aspect-[3/4] items-center justify-center rounded-lg border border-dashed border-violet-500/40 bg-violet-950/20 text-2xl text-violet-400 transition hover:border-violet-300 hover:bg-violet-500/10">
+                        +</div>
+                </div>
+            </section>
+
+
+            <section
+                class="spaceTable col-span-2 flex min-h-[390px] flex-col justify-center rounded-2xl border border-violet-400/30 bg-gradient-to-b from-[#171126] via-[#100d1c] to-[#0b0a13] p-3 shadow-xl shadow-violet-950 sm:p-6 lg:col-span-8">
+                <h2
+                    class="section-title mb-5 text-center text-sm font-blacktracking-[0.2em] text-amber-200 sm:text-base">
+                    CAMP DE BATAILLE</h2>
+                <div class="battle-side rouunded-xl border border-red-400/20 bg--red-950/10 p-3 sm:p-4">
+                    <p class="mb-2 text-sm font-bold uppercase tracking-widest text-red-300 text-purple-300">Adversaire
+                    </p>
+
+                    <!-- uppercase tracking-widest -->
+
+                    <div class="battle-slot grid grid-cols-5 gap-2 sm:gap-3">
+                        <div
+                            class="battle-slot aspect-[3/4] rounded-lg border border-red-400/30 bg-[#1d1421] transition hover:border-red-300 hover:bg-red-950/30">
+                        </div>
+                        <div
+                            class="battle-slot aspect-[3/4] rounded-lg border border-red-400/30 bg-[#1d1421] transition hover:border-red-300 hover:bg-red-950/30">
+                        </div>
+                        <div
+                            class="battle-slot aspect-[3/4] rounded-lg border border-red-400/30 bg-[#1d1421] transition hover:border-red-300 hover:bg-red-950/30">
+                        </div>
+                        <div
+                            class="battle-slot aspect-[3/4] rounded-lg border border-red-400/30 bg-[#1d1421] transition hover:border-red-300 hover:bg-red-950/30">
+                        </div>
+                        <div
+                            class="battle-slot aspect-[3/4] rounded-lg border border-red-400/30 bg-[#1d1421] transition hover:border-red-300 hover:bg-red-950/30">
+                        </div>
+
                     </div>
                 </div>
-                <p class="text-lg font-bold">Tour p1</p>
-            </div>
 
-        </section>
+                <div class="flex items-center gap-3 py-4">
 
+                    <div class="h-px flex-1 bg-gradient-to-r from-transparent to-violet-500/50"></div>
 
+                    <div class="text-xl font-black italic tracking-widest text-amber-300">VS</div>
+                    <!-- tracking-widest-->
+                    <div class="h-px flex-1 bg-gradient-to-l from-transparent to-violet-500/50"></div>
 
-
-
-        <section class="carteX col-start-1 col-end-2 row-start-2">
-
-            <h2 class="section-title">Cartes X</h2>
-
-            <div class="slots">
-                <div class="card-slot"></div>
-                <div class="card-slot"></div>
-                <div class="card-slot"></div>
-                <div class="card-slot"></div>
-                <div class="card-slot"></div>
-            </div>
-        </section>
-
-
-        <section class="spaceTable col-start-2 col-end-5 row-start-2">
-            <h2 class="section-title">CAMP DE BATAILLE</h2>
-            <div class="battle-side">
-                <p class="mb-2 text-sm text-purple-300">Adversaire</p>
-
-                <div class="battle-slot">
-                    <div class="battle-slot"></div>
-                    <div class="battle-slot"></div>
-                    <div class="battle-slot"></div>
-                    <div class="battle-slot"></div>
-                    <div class="battle-slot"></div>
 
                 </div>
-            </div>
 
-            <div class="">VS</div>
-            <div battle-side>
-                <p class="mb-2 text-sm text-amber-200">Vous</p>
+                <div class="battle-side rounded-xl border border-amber-300/20 p-3 sm:p-4">
+                    <p class="mb-2 text-sm text-amber-200 font-black uppercase tracking-widest">Vous</p>
 
-                <div class="battle-slot">
-                    <div class="battle-slot"></div>
-                    <div class="battle-slot"></div>
-                    <div class="battle-slot"></div>
-                    <div class="battle-slot"></div>
-                    <div class="battle-slot"></div>
 
+                    <div class="battle-slot grid grid-cols-5 gap-2 sm:gap-3">
+                        <div
+                            class="battle-slot aspect-[3/4] rounded-lg border border-red-400/30 bg-[#1d1421] transition hover:border-red-300 hover:bg-red-950/30">
+                        </div>
+                        <div
+                            class="battle-slot aspect-[3/4] rounded-lg border border-red-400/30 bg-[#1d1421] transition hover:border-red-300 hover:bg-red-950/30">
+                        </div>
+                        <div
+                            class="battle-slot aspect-[3/4] rounded-lg border border-red-400/30 bg-[#1d1421] transition hover:border-red-300 hover:bg-red-950/30">
+                        </div>
+                        <div
+                            class="battle-slot aspect-[3/4] rounded-lg border border-red-400/30 bg-[#1d1421] transition hover:border-red-300 hover:bg-red-950/30">
+                        </div>
+                        <div
+                            class="battle-slot aspect-[3/4] rounded-lg border border-red-400/30 bg-[#1d1421] transition hover:border-red-300 hover:bg-red-950/30">
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
+            <section class="carteY col-span-12 rounded-2xl border border-amber-400 bg-[#11101d] p-4 lg:col-span-2">
+                <h2 class="section-title mb-4 text-center text-sm font-black tracking-wider text-violet-300"> Cartes Y
+                </h2>
+
+                <div class="slots grid grid-cols-5 gap-2 lg:grid-cols-1">
+                    <div
+                        class="card-slot flex aspect-[3/4] items-center justify-center rounded-lg border border-dashed border-violet-500/40 bg-violet-950/20 text-2xl text-violet-400 transition hover:border-violet-300 hover:bg-violet-500/10">
+                        +</div>
+                    <div
+                        class="card-slot flex aspect-[3/4] items-center justify-center rounded-lg border border-dashed border-violet-500/40 bg-violet-950/20 text-2xl text-violet-400 transition hover:border-violet-300 hover:bg-violet-500/10">
+                        +</div>
+                    <div
+                        class="card-slot flex aspect-[3/4] items-center justify-center rounded-lg border border-dashed border-violet-500/40 bg-violet-950/20 text-2xl text-violet-400 transition hover:border-violet-300 hover:bg-violet-500/10">
+                        +</div>
+                    <div
+                        class="card-slot flex aspect-[3/4] items-center justify-center rounded-lg border border-dashed border-violet-500/40 bg-violet-950/20 text-2xl text-violet-400 transition hover:border-violet-300 hover:bg-violet-500/10">
+                        +</div>
+                    <div
+                        class="card-slot flex aspect-[3/4] items-center justify-center rounded-lg border border-dashed border-violet-500/40 bg-violet-950/20 text-2xl text-violet-400 transition hover:border-violet-300 hover:bg-violet-500/10">
+                        +</div>
+                </div>
+
+            </section>
+
+
+            <section
+                class="main col-span-12 rounded-2xl border border-amber-400/30 bg-gradient-to-br from-[#171126] to-[#100e19] p-4 shadow-lg shadow-amber-950 sm:p-6">
+                <div><!--bg-gradient-to-br from-[#171126] to-[#100e19]-->
+
+                    <div>
+                        <p class="text-xs font-bold tracking-[0.25em] text-amber-300">JOUEUR Y</p>
+                        <h2 class="mt-1 text-2xl font-bold sm:text-3xl">Vous</h2>
+                        <p class="mt-2 text-sm text-gray-500">Camp : <span class="text-purple-300">Lumiere</span></p>
+
+                    </div>
+
+                    <div class="w-full md:max-w-md md:flex-1">
+                        <div class="mb-2 flex justify-between gap-2 text-sm">
+                            <span class="text-gray-300">Point de vie</span>
+                            <span class="font-bold tabular-nums">3000/3000 HP</span>
+                            <!-- tabular-nums-->
+                        </div>
+                        <DIv
+                            class="hp-container h-3 overflow-hidden rounded-full border border-emerald-400/30 bg[#29202d]">
+                            <div
+                                class="hp-joueur h-full w-full rounded-full bg-gradient-to-r from-emerald-800 to-emerald-400">
+                            </div>
+                        </DIv>
+                    </div>
+
+                    <button
+                        class="end-turn rounded-xl border border-amber-300/40 bg-gradient-to-r from-amber-500 to-yellow-600 px-6 py-3 font-black text-[#17101b] shadow-lg shadow-amber-900/20 transition hover:-translate-y-0.5 hover:from-amber-400 hover:to-yellow-500 active:translate-y-0 ">Fin
+                        du tour</button>
+                </div>
+
+                <div class="text-lg font-black sm:text-xl">
+
+                    <h3 class="gext-lg font-black sm:text-xl">Votre Carte (5/5)</h3>
+                </div>
+
+
+
+
+                <div class="hand grid grid-cols-2 gap-3 sm:grid-cols-5 xl:grid-cols-5">
+                    <div class="hand-card">
+                        <button
+                            class="group relative flex min-h-44 flex-col justify-between overflow-hidden rounded-xl border border-amber-300/50 bg-gradient-to-br from-amber-950 via-[#292018] to-[#11101d] p-3 text-left transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-xl hover:shadow-amber-500/10 sm:min-h-52">
+                            <br><br>
+
+                            <span
+                                class="absolute right-2 top-2 rounded-full bg-amber-400/15 px-2 py-1 text-[10px] font-black text-amber-200">
+                                LÉGENDAIRE
+                            </span>
+
+
+
+                            <span>
+                                <span class="block text-sm font-black text-amber-100">Gardien mystique</span>
+                                <span class="mt-2 block text-xs text-gray-300">ATK <strong
+                                        class="text-white">120</strong></span>
+                            </span>
+                        </button>
+
+                    </div>
+                    <div class="hand-card">
+                        <button
+                            class="group relative flex min-h-44 flex-col justify-between overflow-hidden rounded-xl border border-amber-300/50 bg-gradient-to-br from-amber-950 via-[#292018] to-[#11101d] p-3 text-left transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-xl hover:shadow-amber-500/10 sm:min-h-52">
+                            <br><br>
+                            <span
+                                class="absolute right-2 top-2 rounded-full bg-amber-400/15 px-2 py-1 text-[10px] font-black text-amber-200">
+                                HéROS
+                            </span>
+
+
+
+                            <span>
+                                <span class="block text-sm font-black text-blue-100 ">Chevalier astral</span>
+
+                                <span class="mt-2 block text-xs text-gray-300">ATK <strong
+                                        class="text-white">120</strong></span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="hand-card">
+                        <button
+                            class="group relative flex min-h-44 flex-col justify-between overflow-hidden rounded-xl border border-amber-300/50 bg-gradient-to-br from-amber-950 via-[#292018] to-[#11101d] p-3 text-left transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-xl hover:shadow-amber-500/10 sm:min-h-52">
+                            <br><br>
+
+                            <span
+                                class="absolute right-2 top-2 rounded-full bg-amber-400/15 px-2 py-1 text-[10px] font-black text-amber-200">
+                                SERVITEUR
+                            </span>
+
+
+
+                            <span>
+                                <span class="block text-sm font-black text-violet-100">Esprit des brumes</span>
+
+                                <span class="mt-2 block text-xs text-gray-300">ATK <strong
+                                        class="text-white">90</strong></span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="hand-card">
+                        <button
+                            class="group relative flex min-h-44 flex-col justify-between overflow-hidden rounded-xl border border-amber-300/50 bg-gradient-to-br from-amber-950 via-[#292018] to-[#11101d] p-3 text-left transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-xl hover:shadow-amber-500/10 sm:min-h-52">
+                            <br><br>
+
+                            <span
+                                class="absolute right-2 top-2 rounded-full bg-amber-400/15 px-2 py-1 text-[10px] font-black text-amber-200">
+                                SORT
+                            </span>
+
+                            <span>
+                                <span class="block text-sm font-black text-cyan-100">Éclair mystique</span>
+                                <span class="mt-2 block text-xs text-gray-300">ATK <strong
+                                        class="text-white">80</strong></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 </body>
 
 </html>
