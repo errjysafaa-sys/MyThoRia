@@ -38,7 +38,7 @@
         <div class="mx-auto grid max-w-7xl grid-cols-12 gap-4 lg:gap-6">
 
             <section
-                class="col-span-12 rounded-2xl border border-violet-500  bg-gradient-to-r from-[#171126] to-[#0e0c1b] p-4 shadow-lg shadow-violet-950/20 sm:p-6">
+                class=" main col-span-12 rounded-2xl border border-violet-500  bg-gradient-to-r from-[#171126] to-[#0e0c1b] p-4 shadow-lg shadow-violet-950/20 sm:p-6">
                 <div class=" flex flex-col gap-5 md:flex-row md-items-center ">
                     <div>
                         <p class=" text-xs tracking-[0.25em] text-purple-300">JOUEUR X</p>
@@ -46,6 +46,7 @@
                         <p class="mt-2 text-sm text-gray-400">Camp : <span
                                 class="font-semibold text-violet-300">Ténebres</span></p>
                     </div>
+
                     <div class="w-full max-w-md md:flex-1">
                         <div class="mb-2 flex justify-between gap-2 text-sm">
                             <span class="text-gray-400">Point de vue</span>
@@ -119,6 +120,7 @@
                         </div>
                         <div
                             class="battle-slot aspect-[3/4] rounded-lg border border-red-400/30 bg-[#1d1421] transition hover:border-red-300 hover:bg-red-950/30">
+                            <!--aspect c'est definit un rapport entre largeur et longueur -->
                         </div>
 
                     </div>
@@ -129,7 +131,7 @@
                     <div class="h-px flex-1 bg-gradient-to-r from-transparent to-violet-500/50"></div>
 
                     <div class="text-xl font-black italic tracking-widest text-amber-300">VS</div>
-                    <!-- tracking-widest-->
+                    <!-- tracking-widest les lettre sont  loin-->
                     <div class="h-px flex-1 bg-gradient-to-l from-transparent to-violet-500/50"></div>
 
 
@@ -188,119 +190,121 @@
             <section
                 class="main col-span-12 rounded-2xl border border-amber-400/30 bg-gradient-to-br from-[#171126] to-[#100e19] p-4 shadow-lg shadow-amber-950 sm:p-6">
                 <div><!--bg-gradient-to-br from-[#171126] to-[#100e19]-->
+                    <div class=" flex flex-col gap-5 md:flex-row md-items-center ">
 
-                    <div>
-                        <p class="text-xs font-bold tracking-[0.25em] text-amber-300">JOUEUR Y</p>
-                        <h2 class="mt-1 text-2xl font-bold sm:text-3xl">Vous</h2>
-                        <p class="mt-2 text-sm text-gray-500">Camp : <span class="text-purple-300">Lumiere</span></p>
+                        <div>
+                            <p class="text-xs font-bold tracking-[0.25em] text-amber-300">JOUEUR Y</p>
+                            <h2 class="mt-1 text-2xl font-bold sm:text-3xl">Vous</h2>
+                            <p class="mt-2 text-sm text-gray-500">Camp : <span class="text-purple-300">Lumiere</span>
+                            </p>
 
-                    </div>
-
-                    <div class="w-full md:max-w-md md:flex-1">
-                        <div class="mb-2 flex justify-between gap-2 text-sm">
-                            <span class="text-gray-300">Point de vie</span>
-                            <span class="font-bold tabular-nums">3000/3000 HP</span>
-                            <!-- tabular-nums-->
                         </div>
-                        <DIv
-                            class="hp-container h-3 overflow-hidden rounded-full border border-emerald-400/30 bg[#29202d]">
-                            <div
-                                class="hp-joueur h-full w-full rounded-full bg-gradient-to-r from-emerald-800 to-emerald-400">
+
+                        <div class="w-full max-w-md md:flex-1">
+                            <div class="mb-2 flex justify-between gap-2 text-sm">
+                                <span class="text-gray-300">Point de vie</span>
+                                <span class="font-bold tabular-nums">3000/3000 HP</span>
+                                <!-- tabular-nums-->
                             </div>
-                        </DIv>
-                    </div>
+                            <div
+                                class="hp-container h-3 overflow-hidden rounded-full border border-emerald-400/30 bg[#29202d]">
+                                <div
+                                    class="hp-joueur h-full w-full rounded-full bg-gradient-to-r from-emerald-800 to-emerald-400">
+                                </div>
+                            </div>
+                        </div>
 
-                    <button
-                        class="end-turn rounded-xl border border-amber-300/40 bg-gradient-to-r from-amber-500 to-yellow-600 px-6 py-3 font-black text-[#17101b] shadow-lg shadow-amber-900/20 transition hover:-translate-y-0.5 hover:from-amber-400 hover:to-yellow-500 active:translate-y-0 ">Fin
-                        du tour</button>
-                </div>
-
-                <div class="text-lg font-black sm:text-xl">
-
-                    <h3 class="gext-lg font-black sm:text-xl">Votre Carte (5/5)</h3>
-                </div>
-
-
-
-
-                <div class="hand grid grid-cols-2 gap-3 sm:grid-cols-5 xl:grid-cols-5">
-                    <div class="hand-card">
                         <button
-                            class="group relative flex min-h-44 flex-col justify-between overflow-hidden rounded-xl border border-amber-300/50 bg-gradient-to-br from-amber-950 via-[#292018] to-[#11101d] p-3 text-left transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-xl hover:shadow-amber-500/10 sm:min-h-52">
-                            <br><br>
-
-                            <span
-                                class="absolute right-2 top-2 rounded-full bg-amber-400/15 px-2 py-1 text-[10px] font-black text-amber-200">
-                                LÉGENDAIRE
-                            </span>
-
-
-
-                            <span>
-                                <span class="block text-sm font-black text-amber-100">Gardien mystique</span>
-                                <span class="mt-2 block text-xs text-gray-300">ATK <strong
-                                        class="text-white">120</strong></span>
-                            </span>
-                        </button>
-
+                            class="end-turn rounded-xl border border-amber-300/40 bg-gradient-to-r from-amber-500 to-yellow-600 px-6 py-3 font-black text-[#ffff] shadow-lg shadow-amber-900/20 transition hover:-translate-y-0.5 hover:from-amber-400 hover:to-yellow-500 active:translate-y-0 ">Fin
+                            du tour</button>
                     </div>
-                    <div class="hand-card">
-                        <button
-                            class="group relative flex min-h-44 flex-col justify-between overflow-hidden rounded-xl border border-amber-300/50 bg-gradient-to-br from-amber-950 via-[#292018] to-[#11101d] p-3 text-left transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-xl hover:shadow-amber-500/10 sm:min-h-52">
-                            <br><br>
-                            <span
-                                class="absolute right-2 top-2 rounded-full bg-amber-400/15 px-2 py-1 text-[10px] font-black text-amber-200">
-                                HéROS
-                            </span>
 
+                    <div class="text-lg font-black sm:text-xl">
 
-
-                            <span>
-                                <span class="block text-sm font-black text-blue-100 ">Chevalier astral</span>
-
-                                <span class="mt-2 block text-xs text-gray-300">ATK <strong
-                                        class="text-white">120</strong></span>
-                            </span>
-                        </button>
+                        <h3 class="gext-lg font-black sm:text-xl">Votre Carte (5/5)</h3>
                     </div>
-                    <div class="hand-card">
-                        <button
-                            class="group relative flex min-h-44 flex-col justify-between overflow-hidden rounded-xl border border-amber-300/50 bg-gradient-to-br from-amber-950 via-[#292018] to-[#11101d] p-3 text-left transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-xl hover:shadow-amber-500/10 sm:min-h-52">
-                            <br><br>
-
-                            <span
-                                class="absolute right-2 top-2 rounded-full bg-amber-400/15 px-2 py-1 text-[10px] font-black text-amber-200">
-                                SERVITEUR
-                            </span>
 
 
 
-                            <span>
-                                <span class="block text-sm font-black text-violet-100">Esprit des brumes</span>
 
-                                <span class="mt-2 block text-xs text-gray-300">ATK <strong
-                                        class="text-white">90</strong></span>
-                            </span>
-                        </button>
+                    <div class="hand grid grid-cols-2 gap-3 sm:grid-cols-5 xl:grid-cols-5">
+                        <div class="hand-card">
+                            <button
+                                class="group relative flex min-h-44 flex-col justify-between overflow-hidden rounded-xl border border-amber-300/50 bg-gradient-to-br from-amber-950 via-[#292018] to-[#11101d] p-3 text-left transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-xl hover:shadow-amber-500/10 sm:min-h-52">
+                                <br><br>
+
+                                <span
+                                    class="absolute right-2 top-2 rounded-full bg-amber-400/15 px-2 py-1 text-[10px] font-black text-amber-200">
+                                    LÉGENDAIRE
+                                </span>
+
+
+
+                                <span>
+                                    <span class="block text-sm font-black text-amber-100">Gardien mystique</span>
+                                    <span class="mt-2 block text-xs text-gray-300">ATK <strong
+                                            class="text-white">120</strong></span>
+                                </span>
+                            </button>
+
+                        </div>
+                        <div class="hand-card">
+                            <button
+                                class="group relative flex min-h-44 flex-col justify-between overflow-hidden rounded-xl border border-amber-300/50 bg-gradient-to-br from-amber-950 via-[#292018] to-[#11101d] p-3 text-left transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-xl hover:shadow-amber-500/10 sm:min-h-52">
+                                <br><br>
+                                <span
+                                    class="absolute right-2 top-2 rounded-full bg-amber-400/15 px-2 py-1 text-[10px] font-black text-amber-200">
+                                    HéROS
+                                </span>
+
+
+
+                                <span>
+                                    <span class="block text-sm font-black text-blue-100 ">Chevalier astral</span>
+
+                                    <span class="mt-2 block text-xs text-gray-300">ATK <strong
+                                            class="text-white">120</strong></span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="hand-card">
+                            <button
+                                class="group relative flex min-h-44 flex-col justify-between overflow-hidden rounded-xl border border-amber-300/50 bg-gradient-to-br from-amber-950 via-[#292018] to-[#11101d] p-3 text-left transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-xl hover:shadow-amber-500/10 sm:min-h-52">
+                                <br><br>
+
+                                <span
+                                    class="absolute right-2 top-2 rounded-full bg-amber-400/15 px-2 py-1 text-[10px] font-black text-amber-200">
+                                    SERVITEUR
+                                </span>
+
+
+
+                                <span>
+                                    <span class="block text-sm font-black text-violet-100">Esprit des brumes</span>
+
+                                    <span class="mt-2 block text-xs text-gray-300">ATK <strong
+                                            class="text-white">90</strong></span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="hand-card">
+                            <button
+                                class="group relative flex min-h-44 flex-col justify-between overflow-hidden rounded-xl border border-amber-300/50 bg-gradient-to-br from-amber-950 via-[#292018] to-[#11101d] p-3 text-left transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-xl hover:shadow-amber-500/10 sm:min-h-52">
+                                <br><br>
+
+                                <span
+                                    class="absolute right-2 top-2 rounded-full bg-amber-400/15 px-2 py-1 text-[10px] font-black text-amber-200">
+                                    SORT
+                                </span>
+
+                                <span>
+                                    <span class="block text-sm font-black text-cyan-100">Éclair mystique</span>
+                                    <span class="mt-2 block text-xs text-gray-300">ATK <strong
+                                            class="text-white">80</strong></span>
+                                </span>
+                            </button>
+                        </div>
                     </div>
-                    <div class="hand-card">
-                        <button
-                            class="group relative flex min-h-44 flex-col justify-between overflow-hidden rounded-xl border border-amber-300/50 bg-gradient-to-br from-amber-950 via-[#292018] to-[#11101d] p-3 text-left transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-xl hover:shadow-amber-500/10 sm:min-h-52">
-                            <br><br>
-
-                            <span
-                                class="absolute right-2 top-2 rounded-full bg-amber-400/15 px-2 py-1 text-[10px] font-black text-amber-200">
-                                SORT
-                            </span>
-
-                            <span>
-                                <span class="block text-sm font-black text-cyan-100">Éclair mystique</span>
-                                <span class="mt-2 block text-xs text-gray-300">ATK <strong
-                                        class="text-white">80</strong></span>
-                            </span>
-                        </button>
-                    </div>
-                </div>
             </section>
         </div>
     </main>
