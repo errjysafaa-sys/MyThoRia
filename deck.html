@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mythoria | My Deck</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@400;600&display=swap"
@@ -27,7 +27,10 @@
                 <a href="opening.html" class="text-gray-300 transition-colors hover:text-purple-300">Opening</a>
                 <a href="grimoire.html" class="text-gray-300 transition-colors hover:text-purple-300">Grimoire</a>
                 <a href="deck.html" class="text-gray-300 transition-colors hover:text-purple-300">My Deck</a>
-            </div>
+
+            </div> <a href="MyThoria2/arena.html"
+                class="text-gray-300 transition-colors hover:text-purple-300">Arena</a>
+
 
         </nav>
     </header>
@@ -65,7 +68,7 @@
 
                 </div>
             </div>
-            <div id="statistiques" class="grid gap-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"></div>
+            <div id="statistiques" class="grid gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"></div>
 
             <div id="cartesDeck" class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             </div>
@@ -83,6 +86,7 @@
                 <button id="viderDeck" type="button"
                     class="rounded-lg border border-fuchsia-400 px-5 py-3 text-sm font-bold text-[#ffffff] transition hover:bg-purple-300">vider
                     le deck</button>
+
 
                 <button id="sauvegarderDeck" type="button"
                     class="rounded-lg bg-purple-400 px-5 py-3 text-sm font-bold text-[#ffffff] transition hover:bg-purple-800">Sauvegarder
@@ -112,9 +116,9 @@
             <div id="filtres" class="flex flex-wrap gap-2">
 
                 <button type="button" data-filtre="Toutes"
-                    class="filtre rounded-full bg-amber-400 px-4 py-2 text-sm font-bold text-[#211329]">Tous</button>
+                    class="filtre rounded-full bg-amber-400 px-4 py-2 text-sm font-bold text-[#211329]">Toutes</button>
                 <button type="button" data-filtre="Créature"
-                    class="filtre rounded-full bg-amber-400 px-4 py-2 text-sm font-bold text-[#211329]">Créatures</button>
+                    class="filtre rounded-full bg-amber-400 px-4 py-2 text-sm font-bold text-[#211329]">Monstre</button>
 
                 <button type="button" data-filtre="Héros"
                     class="filtre rounded-full bg-amber-400 px-4 py-2 text-sm transition hover:bg-white/5">Héros</button>
@@ -136,15 +140,14 @@
     const cartesDeck = document.querySelector("#cartesDeck");
     const compteur = document.querySelector("#compteur");
     const progression = document.querySelector("#progression");
-    const statiques = document.querySelector("#statiques");
-    const nombre = document.querySelector("#nombre");
-    const bloc = document.querySelector("#bloc");
-
-
+    const statistiques = document.querySelector("#statistiques");
+    // const nombre = document.querySelector("#nombre");
+    // const bloc = document.querySelector("#bloc");
+    const cartesGrimoire = document.querySelector("#cartesGrimoire");
 
     const deckVide = document.querySelector("#deckVide")
-    let collection = lireDonnees(CLE_COLLECTION);
-    let deck = lireDonnees(CLE_DECK);
+    let collection = [];
+    let deck = [];
     let filtreActuel = "Toutes";
 
     function lireDonnees(cle) {
@@ -158,10 +161,20 @@
 
     }
 
-    function afficherMessage(texte, succes = true) {
-        message.textContent = texte;
-        message.classList.remove("hidden", "bg-green-900/50", "text-green-200");
-        message.classList.add(succes ? "bg-green-900/50" : "bg-red-900/50", succes ? "text-green-200" : "text-red-200")
+    function chargerDonnees() {
+        collection = lireDonnees(CLE_COLLECTION);
+        const deckSauvegarde = lireDonnees(CLE_DECK);
+        deck = [];
+        deckSauvegarde.forEach(carte => {
+            const id = obtenirId(carte)
+            const existeDansCollection = collection.some(c => obtenirId(c) === id);
+            const dejaAjoutee = deck.some(c => obtenirId(c) === id)
+            if (existeDansCollection && !dejaAjoutee && deck.length < MAX_CARTES) {
+                deck.push(carte);
+            }
+        })
+        afficherDeck();
+        afficherGrimoire();
     }
 
     function obtenirId(carte) {
@@ -173,48 +186,210 @@
 
     }
 
+
+    function afficherMessage(texte, succes = true) {
+        message.textContent = texte;
+        message.classList.remove("hidden", "bg-green-900/50", "text-green-200");
+        message.classList.add(succes ? "bg-green-900/50" : "bg-red-900/50", succes ? "text-green-200" : "text-red-200")
+    }
+
+    //6
+
+    function couleurRarete(rarete) {
+        switch (rarete) {
+
+            case "Commune":
+                return "bg-gray-700 text-white";
+
+
+            case "Rare":
+                return "bg-blue-700 text-white";
+
+
+            case "Epique":
+                return "bg-purple-700 text-white";
+
+
+            case "Légendaire":
+                return "bg-amber-700 text-white";
+
+            default:
+                return "bg-gray-700 text-white"
+
+        }
+    }
+    //7
+    function creerCarte(carte, mode) {
+
+        const element = document.createElement("div");
+
+        element.className =
+            "group relative flex min-h-[250px] flex-col justify-end overflow-hidden rounded-xl border-2 border-amber-800 bg-[#21140e] shadow-lg transition hover:-translate-y-1 hover:border-amber-400";
+
+
+        if (carte.illustration) {
+
+            element.style.backgroundImage =
+                `linear-gradient(to top, rgba(10,5,3,.98), rgba(10,5,3,.05) 100%), url("${carte.illustration}")`;
+
+            element.style.backgroundSize = "cover";
+            element.style.backgroundPosition = "center";
+
+        }
+
+        const contenu = document.createElement("div");
+
+        contenu.className = "relative mt-auto w-full p-3";
+
+
+
+        const rarete = document.createElement("span");
+
+        rarete.className =
+            `mb-2 inline-block rounded-full px-2 py-1 text-[10px] font-bold ${couleurRarete(carte.rarete)}`;
+
+        rarete.textContent = carte.rarete || "Inconnue";
+
+
+        const nom = document.createElement("h3");
+
+        nom.className =
+            "mb-1 break-words text-sm font-black text-amber-200";
+
+        nom.textContent = carte.nom || "Carte sans nom";
+
+
+
+        const type = document.createElement("p");
+
+        type.className = "mb-3 text-xs text-white/80";
+
+        type.textContent = carte.type || "Type inconnu";
+
+
+
+        const stats = document.createElement("div");
+
+        stats.className =
+            "mb-3 flex justify-between text-xs font-bold";
+
+        const attaque = document.createElement("span");
+
+        attaque.className = "text-red-300";
+
+        attaque.textContent = `ATK : ${carte.attaque ?? "—"}`;
+
+
+        const defense = document.createElement("span");
+
+        defense.className = "text-sky-300";
+
+        defense.textContent = `DEF : ${carte.defense ?? "—"}`;
+
+        stats.append(attaque, defense);
+
+
+
+        const bouton = document.createElement("button");
+
+        bouton.type = "button";
+
+        bouton.className =
+            "w-full rounded-lg bg-purple-700 px-3 py-2 text-xs font-bold text-white transition hover:bg-purple-500 disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-300";
+
+        if (mode === "deck") {
+
+            bouton.textContent = "Retirer du deck";
+
+            bouton.addEventListener("click", () => retirerCarte(carte));
+
+        } else {
+
+            const dejaSelectionnee = deck.some(
+                c => obtenirId(c) === obtenirId(carte)
+            );
+
+            if (dejaSelectionnee) {
+
+                bouton.textContent = "Déjà sélectionnée";
+                bouton.disabled = true;
+
+            } else if (deck.length >= MAX_CARTES) {
+
+                bouton.textContent = "Deck complet";
+                bouton.disabled = true;
+
+            } else {
+
+                bouton.textContent = "Ajouter au deck";
+
+                bouton.addEventListener("click", () => ajouterCarte(carte));
+
+            }
+
+        }
+
+        contenu.append(rarete, nom, type, stats, bouton);
+
+        element.appendChild(contenu);
+
+        return element;
+
+    }
+
+    //8
+
     function ajouterCarte(carte) {
         const id = obtenirId(carte);
 
-        if (deck.some(c => obtenirId(c)) === id) {
-            afficherMessage("Cette carte estdéjà dans tondeck.", false);
+        const existe = deck.some(c => obtenirId(c) === id);
+        if (existe) {
+            afficherMessage("Cette carte estdéjà dans tondeck.", false)
+
             return;
         }
+
         if (deck.length >= MAX_CARTES) {
             afficherMessage("Ton deck est complet : max 20 cartes ");
             return;
         }
         deck.push(carte);
-        localStorage.setItem(CLE_COLLECTION, JSON.stringify(deck));
+        localStorage.setItem(CLE_DECK, JSON.stringify(deck));
         afficherDeck();
         afficherGrimoire();
     }
 
+    //9
+
     function retirerCarte(carte) {
         const id = obtenirId(carte);
         deck = deck.filter(c => obtenirId(c) !== id);
+        localStorage.setItem(CLE_DECK, JSON.stringify(deck));
+
         afficherMessage(`${carte.nom} a été retirée du deck.`);
         afficherDeck();
         afficherGrimoire();
     }
+    //10
 
     function afficherDeck() {
         cartesDeck.replaceChildren();
 
         deck.forEach(carte => {
             cartesDeck.appendChild(
-                creerCarte(carte, "Retirer du deck", retirerCarte, true)
+                creerCarte(carte, "deck")
             );
         });
-        compteur.textContent = `${deck.length}/20 cartes`;
+        compteur.textContent = `${deck.length}/${MAX_CARTES} cartes`;
+
         progression.style.width = `${(deck.length / MAX_CARTES) * 100}%`;
 
         deckVide.classList.toggle("hidden", deck.length > 0);
-        statiques.replaceChildren();
+        // statiques.replaceChildren();
 
         const types = ["Monstre", "heros", "serviteur", "sort"];
 
-        types.forEach(types => {
+        types.forEach(type => {
 
 
             const quantite = deck.filter(carte => carte.type === type).length;
@@ -226,19 +401,20 @@
             nomType.className = "text-sm text-amber-100";
             nomType.textContent = types;
 
-            const nomber = document.createElement("p");
+            const nombre = document.createElement("p");
             nombre.className = "text-sm text-amber-100"
             nombre.textContent = quantite;
             bloc.append(nomType, nombre);
-            statiques.appendChild(bloc);
+            statistiques.appendChild(bloc);
         })
     }
+    //11
     function afficherGrimoire() {
         cartesGrimoire.replaceChildren();
 
-        const cartesFiltrees = collection.filter(carte =>
-            filtreActuel === "Toutes" || carte.type === filtreActuel
-        );
+        const cartesFiltrees = collection.filter(carte => {
+            return filtreActuel === "Toutes" || carte.type === filtreActuel
+        });
 
         if (cartesFiltrees.length === 0) {
             const texte = document.createElement("p");
@@ -255,54 +431,60 @@
         }
 
         cartesFiltrees.forEach(carte => {
-            const dejaSelectionnee = deck.some(
-                c => obtenirId(c) === obtenirId(carte)
-            );
-
-            const element = creerCarte(
-                carte,
-                "Ajouter au deck",
-                ajouterCarte,
-                dejaSelectionnee || deck.length >= MAX_CARTES
-            );
-
-            cartesGrimoire.appendChild(element);
+            cartesGrimoire.appendChild(
+                creerCarte(carte, "grimoire")
+            )
         });
     }
 
-
-
-    function retirerCarte(carte) {
-        const id = obtenirId(carte);
-        deck = deck.filter(c => obtenirId(c) !== id);
-        localStorage.setItem(CLE_DECK, JSON.stringify(deck));
-        afficherDeck();
-        afficherGrimoire();
-        afficherMessage(`${carte.nom} a été retirée du deck. `);
-    }
-    document.querySelectorAll(".filter").forEach(bouton => {
+    document.querySelectorAll(".filtre").forEach(bouton => {
 
         bouton.addEventListener("click", () => {
-            filtreActuel = bouton.dataset.filtre || "Toutes";
-            afficherGrimoire();
-        });
-    });
 
+            filtreActuel = bouton.dataset.filtre || "Toutes";
+
+            // Modifier le style du filtre actif
+
+            document.querySelectorAll(".filtre").forEach(btn => {
+
+                btn.classList.remove(
+                    "bg-amber-400",
+                    "text-[#211329]",
+                    "font-bold"
+                );
+
+                btn.classList.add("text-white");
+
+            });
+
+            bouton.classList.add(
+                "bg-amber-400",
+                "text-[#211329]",
+                "font-bold"
+            );
+
+            bouton.classList.remove("text-white");
+
+            afficherGrimoire();
+
+        });
+
+    });
     document.querySelector("#viderDeck").addEventListener("click", () => {
         deck = [];
+
         localStorage.setItem(CLE_DECK, JSON.stringify(deck));
-        afficherMessage("Deck sauvegardé !");
         afficherDeck();
         afficherGrimoire();
-    });
-
+        afficherMessage("Ton deck a été vidé")
+    })
     document.querySelector("#sauvegarderDeck").addEventListener("click", () => {
         localStorage.setItem(CLE_DECK, JSON.stringify(deck));
-        afficherMessage("Deck sauvegarder !");
-    });
+        afficherMessage("Ton deck a été sauvegardé avec succès.");
 
-    afficherDeck();
-    afficherGrimoire();
+
+    })
+    chargerDonnees();
 
 
 </script>
