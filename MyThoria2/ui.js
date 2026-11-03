@@ -11,9 +11,9 @@ import { obtenirIllustration } from "./utils.js";
 function element(id){
     return document.getElementById(id);
 }
-function clearForm(formulaire) {
-    if (formulaire) formulaire.reset()
-}
+// function clearForm(formulaire) {
+//     if (formulaire) formulaire.reset()
+// }
 function creerElemenet(balise, classes, texte ) {
     const nouveau = document.createElement(balise)
     element.className = classes;
@@ -163,3 +163,32 @@ function afficherHP(joueur,idTexte,classeBarre){
     const pourcentage =(joueur.hp / joueur.hpMax)*100;
     document.querySelector(classeBarre).style.width =pourcentage+"%";
 }
+
+export function afficherTout(){
+    if(!etat.joueur) return;
+
+    element("joueur-camp").textContent=etat.joueur.camp || "?";
+    element("adversaire-camp").textContent=etat.adversaire.camp||"?";
+
+    if(etat.tourDe){
+        element("tour-info").textContent="Tour" +etat.numeroTour+" - "+(etat.tourDe === "joueur"?"Vous":"adversaire");
+    } else {
+        element("tour-info").textContent="_";
+    }
+    afficherHP(etat.joueur ,"joueur-hp",".hp-adversaire")
+   afficherHP(etat.adversaire, "adversaire-hp", ".hp-adversaire");
+       afficherDeck("deck-x", "titre-deck-x", "X", etat.adversaire);
+       afficherDeck("deck-y", "titre-deck-y", "Y", etat.joueur);
+       afficherTerrain("terrain-adversaire", etat.adversaire, false);
+       afficherTerrain("terrain-joueur", etat.joueur, true);
+       afficherMain();
+
+       const bouton = document.querySelector(".end-turn")
+       const peutJouer=etat.enCours && !etat.fini && etat.tourDe ==="joueur";
+       bouton.disabled=!peutJouer;
+       bouton.classList.toggle("opacity-50",!peutJouer)
+       bouton.classList.toggle("cursor-not-allowed",!peutJouer)
+   
+}
+
+export function afficherMessage(){}
