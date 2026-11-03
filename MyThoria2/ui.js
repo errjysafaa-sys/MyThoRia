@@ -58,3 +58,39 @@ function creerCarteMain(carte,index){
         return bouton;
 }
 
+
+function creerCreature(creature,index,estJoueur){
+    let classes="relative flex aspect-[3/4] cursor-ponter flex-col overflow -hidden rounded-lg border p-1 text-[10px] bg-[#1d1421] sm:text-xs"
+    classes+= estJoueur? "border-amber-300":"border-red-400";
+    if(estJoueur && etat.selection === index) classes+="ring-2 ring-amber-300"
+    if(creature.epuisee) classes+="opacity-50 grayscale"
+
+    const element =creerElemenet("div",classes)
+    element.dataset.index=index;
+    ajouterImage(element,creature.illustration);
+
+    const contenu =createElement("div", "relative")
+    contenu.append(
+          creerElement("p", "font-black text-amber-100", creature.nom),
+        creerElement("p", "text-red-300", `ATK ${creature.attaque}`),
+        creerElement("p", "text-emerald-300", `PV ${creature.pv}/${creature.pvMax}`)
+    )
+    if(creature.malus)contenu.appenChild(creerElemenet("p","text-[9px] text-red-300","malus camp"))
+            if(creature.epuisee)contenu.appenChild(creerElemenet("p","text-[9px] text-yellow-300","épuisée"))
+
+                element.appenChild(contenu);
+                return element;
+}
+function creerEmplacementVide(){
+    return creerElemenet("div","aspect-[3/4] rounded-lg border border-dashed border-violet-500/30 bg-[#1d1421]")
+
+}
+function creetDosCarte(){
+
+}
+function afficherTerrain(idConteneur, joueur, estJoueur) {
+    renderList($(idConteneur), joueur.terrain, (creature, index) =>
+        creature ? creerCreature(creature, index, estJoueur) : creerEmplacementVide()
+    );
+}
+
