@@ -1,6 +1,7 @@
 import { CONFIG,etat,loadItems } from "./state";
 import { GenMapping,obtenirIllustration } from "./utils";
 import { calculerStats } from "./combat";
+import { RetryAgent } from "undici-types";
 
 export async function  chargerDeck() {
     let deck =loadItems(CONFIG.CLE_DECK)
@@ -29,5 +30,14 @@ export async function  chargerDeck() {
             }
         }
         return deck;
+    }
+    export function piocher(joueur){
+        if(joueur.main.length>= CONFIG.MAIN_MAX) return null;
+        if(joueur.deck.length===0 ) return null;
+
+        const carte=joueur.deck.shift();
+        joueur.main.push(carte);
+
+        return carte ;
     }
     
