@@ -1,4 +1,4 @@
-export const LUMIERE ="Lumiére";
+export const LUMIERE ="Lumière";
 export const TENEBRES="Ténèbres";
 
 export function generateId(){
@@ -17,7 +17,7 @@ export function melanger(liste){
     const copie =[...liste];
 
     for(let i=copie.length-1; i>0; i--){
-        const j=aleatoire(0,1);
+        const j=aleatoire(0,i);
         const temporaire=copie[i];
         copie[i]=copie[j];
         copie[j]=temporaire
@@ -30,3 +30,5 @@ export function attendre(ms){
         setTimeout(resolve,ms)
     })
 }
+//obtenirC
+//obtILL

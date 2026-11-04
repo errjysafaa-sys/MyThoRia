@@ -36,5 +36,6 @@
 
 import { etat, nouvellePartie } from "./state.js";
 import { afficherModal, fermerModal, afficherMessage, afficherTout } from "./ui.js";
+import { aDesCreatures } from "./combat.js";
 
 

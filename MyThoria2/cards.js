@@ -1,7 +1,6 @@
 import { CONFIG, etat, loadItems } from "./state";
-import { generateId, GenMapping, obtenirIllustration } from "./utils";
+import { generateId, obtenirIllustration } from "./utils";
 import { calculerStats } from "./combat";
-import { ajouterHistorique } from "d:/mythoria_arena_js/js/state";
 
 
 export async function chargerDeck() {
@@ -72,10 +71,11 @@ export function invoquerCarte(joueur, indexMain) {
         rarete: carte.rarete,
         illustration: obtenirIllustration(carte),
         camp: stats.camp,
-        malus: stats.attaque,
+        malus: stats.maluse,
         pv: stats.pv,
         pvMax: stats.pv,
-        epuisee: false
+        epuisee: false,
+        attaque: stats.attaque
 
     };
     joueur.main.splice(indexMain, 1);

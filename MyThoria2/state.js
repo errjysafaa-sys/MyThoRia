@@ -1,4 +1,4 @@
-import { generateId, formatDate, melanger } from "utils.js";
+import { generateId, formatDate, melanger } from "./utils.js";
 
 
 export const CONFIG = {
@@ -8,7 +8,8 @@ export const CONFIG = {
     PENELITE: 0.2,
     INOVACATION_PAR_TOUR: 1,
     CLE_DECK: "mythoria_deck",
-    CLE_HISTORIQUE: "mythoria_dernier_combat";
+    CLE_HISTORIQUE: "mythoria_dernier_combat",
+    PREFIXE_IMG: "../MyThoria/img"
 
 }
 export const etat = {
@@ -18,7 +19,7 @@ export const etat = {
     tourDe: 1,
     numeroTour: 1,
     nbInvocation: 0,
-    Selection: null,
+    selection: null,
     enCourse: false,
     fini: false,
     gegnant: null,
@@ -42,7 +43,7 @@ export function saveItems(cle, items) {
     }
 }
 export function addItem(liste, texte) {
-    const item = { id: generateID(), texte, date: formatDate() }
+    const item = { id: generateId(), texte, date: formatDate() }
     liste.push(item);
     return item
 }
