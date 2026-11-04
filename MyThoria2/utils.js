@@ -30,5 +30,17 @@ export function attendre(ms){
         setTimeout(resolve,ms)
     })
 }
-//obtenirC
-//obtILL
+
+// Camp de la carte : champ "camp"/"faction" s'il existe, sinon camp stable déduit du nom
+export function obtenirCamp(carte) {
+    const brut = String(carte.camp || carte.faction || "").toLowerCase();
+    if (brut.startsWith("t")) return TENEBRES;
+    if (brut.startsWith("l")) return LUMIERE;
+    let somme = 0;
+    for (const lettre of String(carte.nom || carte.id || "")) somme += lettre.charCodeAt(0);
+    return somme % 2 === 0 ? LUMIERE : TENEBRES;
+}
+
+export function obtenirIllustration(carte) {
+    return carte.illustration || carte.image || carte.img || "";
+}

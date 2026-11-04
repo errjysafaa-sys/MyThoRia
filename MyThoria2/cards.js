@@ -1,6 +1,6 @@
-import { CONFIG, etat, loadItems } from "./state";
-import { generateId, obtenirIllustration } from "./utils";
-import { calculerStats } from "./combat";
+import { CONFIG, etat, loadItems, ajouterHistorique } from "./state.js";
+import { generateId, obtenirIllustration } from "./utils.js";
+import { calculerStats } from "./combat.js";
 
 
 export async function chargerDeck() {
@@ -18,15 +18,13 @@ export async function chargerDeck() {
                 deck = donnees.slice(0, 20);
             } else if (donnees.cartes) {
                 deck = donnees.cartes.slice(0, 20)
-            } else if (donnees.cartes) {
-                deck = donnees.cartds.slice(0, 20)
             }
             break;
 
         }
 
         catch (erreur) {
-            console.log("fichier de cartes inrouvable. ")
+            console.log("fichier de cartes introuvable.")
         }
     }
     return deck;
@@ -58,10 +56,10 @@ export function invoquerCarte(joueur, indexMain) {
     if (!carte) return { ok: false, raison: "Cette carte  n'est pas dans la main" }
 
     if (etat.nbInvocation >= CONFIG.INOVACATION_PAR_TOUR) {
-        return { ok: false, raison: "Une seul inovacation ppar tour " }
+        return { ok: false, raison: "Une seule invocation par tour." }
     }
     const place = joueur.terrain.indexOf(null)
-    if (place === -1) return { ok: false, raison: "une seul inovacation par tour " };
+    if (place === -1) return { ok: false, raison: "Le terrain est plein." };
 
     const stats = calculerStats(carte, joueur.camp);
     const creature = {
@@ -82,7 +80,7 @@ export function invoquerCarte(joueur, indexMain) {
     joueur.terrain[place] = creature;
     etat.nbInvocation++;
 
-    let texte = joueur.nom + "invoque " + creature.nom + "(ATK " + creature.attaque + "/PV" + creature.pv + ")";
+    let texte = joueur.nom + " invoque " + creature.nom + " (ATK " + creature.attaque + " / PV " + creature.pv + ")";
 
     if (creature.malus) {
         texte += "-pénalité de 20% (camp opposé)";

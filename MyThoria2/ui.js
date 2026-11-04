@@ -29,16 +29,8 @@ function couleurRarete(rarete) {
 }
 function cheminImage(illustration) {
     if (!illustration) return "";
-    if (illustration.startsWith("http") || illustration.startsWith("data:") || illustration.startsWith("/")) {
-        return illustration;
-    }
-    if (!illustration.includes("/")) {
-        illustration = "img/" + illustration;
-
-    }
-    illustration = illustration.replace(/^\.\//, "");
-    illustration = illustration.replace(/^\.\.\//, "");
-    return encodeURI(CONFIG.PREFIXE_IMG + illustration);
+    if (/^(https?:|data:|\/)/.test(illustration)) return illustration;
+    return encodeURI(CONFIG.PREFIXE_IMG + illustration.replace(/^(\.\/|\.\.\/)+/, ""));
 }
 
 function ajouterImage(carteElement, illustration) {
@@ -56,7 +48,7 @@ function ajouterImage(carteElement, illustration) {
 function creerCarteMain(carte, index) {
     const stats = calculerStats(carte, etat.joueur.camp)
     // const pourcent =Math.random(CONFIG.PENELITE *100)
-    const bouton = creerElemenet("button", "relative flex-col justify-end overflow-hidden rounded-xl border border-amber-300/50 bg-gradient-to-br from-amber-950 via-[#292018] to-[#11101d] p-3 text-left transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-xl sm:min-h-52 ")
+    const bouton = creerElemenet("button", "relative flex min-h-44 flex-col justify-end overflow-hidden rounded-xl border border-amber-300/50 bg-gradient-to-br from-amber-950 via-[#292018] to-[#11101d] p-3 text-left transition duration-300 hover:-translate-y-2 hover:border-amber-200 hover:shadow-xl sm:min-h-52 ")
     bouton.type = "button"
     bouton.dataset.index = index;
 
@@ -67,11 +59,11 @@ function creerCarteMain(carte, index) {
     const contenu = creerElemenet("span", "relative block")
     contenu.append(
         creerElemenet("span", "block text-sm font-black text-amber-100", carte.nom || "Carte sans nom"),
-        creerElemenet("span", "mt-1 block text-[11px] text-violet -200", stats.camp),
+        creerElemenet("span", "mt-1 block text-[11px] text-violet-200", stats.camp),
         creerElemenet("span", "mt-1 block text-xs text-gray-200", `ATK ${stats.attaque} · PV ${stats.pv}`));
 
     if (stats.maluse) {
-        contenu.appendChild(creerElemenet("span", "mt-1 block text-[10px] font-bold text-red-300", `Camp opposé:-${pourcent}%`));
+        contenu.appendChild(creerElemenet("span", "mt-1 block text-[10px] font-bold text-red-300", `Camp opposé:-${Math.round(CONFIG.PENELITE * 100)}%`));
 
     }
     bouton.append(rarete, contenu);
@@ -80,9 +72,9 @@ function creerCarteMain(carte, index) {
 
 
 function creerCreature(creature, index, estJoueur) {
-    let classes = "relative flex aspect-[3/4] cursor-ponter flex-col overflow -hidden rounded-lg border p-1 text-[10px] bg-[#1d1421] sm:text-xs"
-    if (estJoueur) classes += "border-amber-300/60 ";
-    else classes += "border-red-400/60 ";
+    let classes = "relative flex aspect-[3/4] cursor-pointer flex-col overflow-hidden rounded-lg border p-1 text-[10px] bg-[#1d1421] sm:text-xs"
+    if (estJoueur) classes += " border-amber-300/60 ";
+    else classes += " border-red-400/60 ";
     if (estJoueur && etat.selection === index) classes += "ring-2 ring-amber-300 ";
     if (creature.epuisee) classes += "opacity-50 grayscale ";
 
@@ -91,7 +83,7 @@ function creerCreature(creature, index, estJoueur) {
     ajouterImage(element, creature.illustration);
 
     const contenu = creerElemenet("div", "relative")
-    contenu.appendChild(
+    contenu.append(
         creerElemenet("p", "font-black text-amber-100", creature.nom),
         creerElemenet("p", "text-red-300", `ATK ${creature.attaque}`),
         creerElemenet("p", "text-emerald-300", `PV ${creature.pv}/${creature.pvMax}`)
@@ -159,7 +151,7 @@ function afficherMain() {
 
 function afficherHP(joueur, idTexte, classeBarre) {
 
-    element(idTexte).textContent = joueur.hp + "/" + joueur.hpMax + "HP";
+    element(idTexte).textContent = joueur.hp + "/" + joueur.hpMax + " HP";
     const pourcentage = (joueur.hp / joueur.hpMax) * 100;
     document.querySelector(classeBarre).style.width = pourcentage + "%";
 }
@@ -171,7 +163,7 @@ export function afficherTout() {
     element("adversaire-camp").textContent = etat.adversaire.camp || "?";
 
     if (etat.tourDe) {
-        element("tour-info").textContent = "Tour" + etat.numeroTour + " - " + (etat.tourDe === "joueur" ? "Vous" : "adversaire");
+        element("tour-info").textContent = "Tour " + etat.numeroTour + " - " + (etat.tourDe === "joueur" ? "Vous" : "Adversaire");
     } else {
         element("tour-info").textContent = "_";
     }
@@ -217,7 +209,7 @@ export function afficherModal(titre, texte, boutons) {
         const bouton = creerElemenet("button", "rounded-xl bg-amber-600 px-5 py-2 font-black text-white", boutons[i].label);
 
         bouton.type = "button";
-        bouton.addEventListner("click", boutons[i].action);
+        bouton.addEventListener("click", boutons[i].action);
         zoneBoutons.appendChild(bouton)
 
 
@@ -240,9 +232,9 @@ export function afficherFin() {
     let titre = "Défaite";
     let texte = "Vos points de vie sont tombés à 0."
 
-    if (etat.gegnant === "joueur") {
+    if (etat.gagnant === "joueur") {
         titre = "Victoire!"
-        texte = "L'adversaire est tombé à0 HP. "
+        texte = "L'adversaire est tombé à 0 HP. "
 
 
     }
