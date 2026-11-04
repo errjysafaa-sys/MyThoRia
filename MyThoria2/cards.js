@@ -2,6 +2,9 @@ import { CONFIG,etat,loadItems } from "./state";
 import { GenMapping,obtenirIllustration } from "./utils";
 import { calculerStats } from "./combat";
 import { RetryAgent } from "undici-types";
+import { LOADIPHLPAPI } from "node:dns";
+import PackageMapPlugin from "enhanced-resolve/types/PackageMapPlugin";
+import { generateKeyPair } from "node:crypto";
 
 export async function  chargerDeck() {
     let deck =loadItems(CONFIG.CLE_DECK)
@@ -40,4 +43,14 @@ export async function  chargerDeck() {
 
         return carte ;
     }
-    
+
+export function distribuerMainDepart(joueur){
+    while(joueur.main.length<CONFIG.MAIN_MAX && joueur.deck.length>0){
+        piocher(joueur)
+
+
+    }
+}
+
+
+
