@@ -1,0 +1,152 @@
+.compatSpace {
+    min-height: calc(100vh-90px);
+    grid-template-rows: auto minmax(300px, 1fr)auto;
+    grid-template-columns: minmax(110px, 0.8fr)repeat(3, minmax(0, 1fr)) minmax(110px, 0.8fr);
+}
+
+.spaceX,
+.spaceY,
+.carteX,
+.carteY {
+    border: 1px solid #6652a8;
+    background: rgba(14, 17, 43, 0, 92);
+    box-shadow: 0 0 15px rgba((139), 92, 246, 0.15);
+}
+
+.spaceX {
+    border-top: 2px solid #a78bfa;
+
+}
+
+.spaceY {
+    border-bottom: 2px solid #e7c77c;
+}
+
+.carteX,
+.carteY {
+    background: rgba(20, 18, 49, 0.9);
+}
+
+.hp-container {
+    height: 14px;
+    background: #29263e;
+    border: 1px solid #8175a8;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.hp-container {
+    height: 100px;
+    width: 100%;
+    background: linear-gradient(90deg, #7f1d1d, #ef4444);
+}
+
+.hp-adversaire {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #7f1d1d, #ef4444);
+}
+
+.hp-joueur {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #a16207, #facc15);
+}
+
+.slot {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cart-slot {
+    min-height: 85px;
+    display: flex;
+    align-items: center;
+    border: 1px dashed #7965b9;
+    border-radius: 8px;
+    color: #a78bfa;
+    font-size: 25px;
+    background: rgba(139, 92, 246, 0.06);
+}
+
+.card-slot:hover,
+.battle-slot:hover {
+    border-color: #e7c77c;
+    background: rgba(139, 92, 246, 0.16);
+}
+
+.spaceTable {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    background:
+        radial-gradient(ellipse at center, #282052 0%, #11142d 70%);
+}
+
+.battle-side {
+    padding: 12px 0;
+}
+
+.battle-slots {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.battle-slot {
+    min-height: 100px;
+    border: 1px dashed #7665a6;
+    border-radius: 8px;
+    background: rgba(5, 8, 24, 0.65);
+    transition: 0.2s ease;
+}
+
+.battle-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #e7c77c;
+    font-weight: bold;
+}
+
+.battle-divider::before,
+.battle-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #b59a5a, transparent);
+}
+
+
+.hand-card {
+    width: 115px;
+    min-height: 130px;
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    text-align: center;
+    border: 1px solid #b59a5a;
+    border-radius: 10px;
+    background: linear-gradient(160deg, #292047, #101327);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.hand-card p {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.hand-card span:last-child {
+    color: #e7c77c;
+    font-size: 12px;
+}
+
+.hand-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 18px rgba(167, 139, 250, 0.4);
+}
