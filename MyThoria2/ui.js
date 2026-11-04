@@ -1,8 +1,6 @@
 import { CONFIG, etat } from "./state.js";
-import { calculerStats } from "./combat.js";
 import { obtenirIllustration } from "./utils.js";
-import { exportBuffer } from "node:ffi";
-import { afficherFin } from "d:/mythoria_arena_js/js/ui.js";
+import { calculerStats } from "./combat.js";
 
 // export function renderList(conteneur, items, creerElemenetItem) {
 //     conteneur.replaceChildren();
@@ -18,8 +16,8 @@ function element(id) {
 // }
 function creerElemenet(balise, classes, texte) {
     const nouveau = document.createElement(balise)
-    element.className = classes;
-    if (texte) nouveau.textContent = texte
+    nouveau.className = classes;
+    if (texte !== undefined && texte !== null) nouveau.textContent = texte;
     return nouveau
 }
 
@@ -50,7 +48,7 @@ function ajouterImage(carteElement, illustration) {
     if (url === "") return;
 
     carteElement.style.backgroundImage =
-        `linear-gradient(to top, rgba(10,5,3,.95), rgba(10,5,3,.1) 100%), url("${illustration}")`;
+        `linear-gradient(to top, rgba(10,5,3,.95), rgba(10,5,3,.1) 100%), url("${url}")`;
     carteElement.style.backgroundSize = "cover";
     carteElement.style.backgroundPosition = "center";
 }
@@ -69,11 +67,11 @@ function creerCarteMain(carte, index) {
     const contenu = creerElemenet("span", "relative block")
     contenu.append(
         creerElemenet("span", "block text-sm font-black text-amber-100", carte.nom || "Carte sans nom"),
-        creerElemenet("span", "mt-1 block text-[11px] text-violet -200,stats.camp"),
+        creerElemenet("span", "mt-1 block text-[11px] text-violet -200", stats.camp),
         creerElemenet("span", "mt-1 block text-xs text-gray-200", `ATK ${stats.attaque} · PV ${stats.pv}`));
 
-    if (stats.malus) {
-        contenu.appenChild(createElement("span", "mt-1 block text-[10px] font-bold text-red-300", `Camp opposé:-${pourcent}%`));
+    if (stats.maluse) {
+        contenu.appendChild(creerElemenet("span", "mt-1 block text-[10px] font-bold text-red-300", `Camp opposé:-${pourcent}%`));
 
     }
     bouton.append(rarete, contenu);
@@ -92,16 +90,16 @@ function creerCreature(creature, index, estJoueur) {
     element.dataset.index = index;
     ajouterImage(element, creature.illustration);
 
-    const contenu = createElement("div", "relative")
-    contenu.append(
-        creerElement("p", "font-black text-amber-100", creature.nom),
-        creerElement("p", "text-red-300", `ATK ${creature.attaque}`),
-        creerElement("p", "text-emerald-300", `PV ${creature.pv}/${creature.pvMax}`)
+    const contenu = creerElemenet("div", "relative")
+    contenu.appendChild(
+        creerElemenet("p", "font-black text-amber-100", creature.nom),
+        creerElemenet("p", "text-red-300", `ATK ${creature.attaque}`),
+        creerElemenet("p", "text-emerald-300", `PV ${creature.pv}/${creature.pvMax}`)
     )
-    if (creature.malus) contenu.appenChild(creerElemenet("p", "text-[9px] text-red-300", "malus camp"))
-    if (creature.epuisee) contenu.appenChild(creerElemenet("p", "text-[9px] text-yellow-300", "épuisée"))
+    if (creature.malus) contenu.appendChild(creerElemenet("p", "text-[9px] text-red-300", "malus camp"))
+    if (creature.epuisee) contenu.appendChild(creerElemenet("p", "text-[9px] text-yellow-300", "épuisée"))
 
-    element.appenChild(contenu);
+    element.appendChild(contenu);
     return element;
 }
 function creerEmplacementVide() {
@@ -112,7 +110,7 @@ function creetDosCarte() {
 
 }
 function afficherTerrain(idConteneur, joueur, estJoueur) {
-    const zone = element(id);
+    const zone = element(idConteneur);
     zone.innerHTML = ""
 
     for (let i = 0; i < joueur.terrain.length; i++) {
@@ -129,13 +127,13 @@ function afficherTerrain(idConteneur, joueur, estJoueur) {
 
 
 function afficherDeck(idConteneur, idTitre, lettre, joueur) {
-    const zone = element(id);
+    const zone = element(idConteneur);
     zone.innerHTML = "";
 
     for (let i = 0; i < CONFIG.DECK_APERCU; i++) {
 
         if (i < joueur.deck.length) {
-            zone.appendChild(creerElement("div", "flex aspect-[3/4] items-center justify-center rounded-lg border border-violet-400/60 bg-violet-900 text-xl", "✦"));
+            zone.appendChild(creerElemenet("div", "flex aspect-[3/4] items-center justify-center rounded-lg border border-violet-400/60 bg-violet-900 text-xl", "✦"));
         } else {
             zone.appendChild(creerEmplacementVide());
         }
@@ -177,7 +175,7 @@ export function afficherTout() {
     } else {
         element("tour-info").textContent = "_";
     }
-    afficherHP(etat.joueur, "joueur-hp", ".hp-adversaire")
+    afficherHP(etat.joueur, "joueur-hp", ".hp-joueur")
     afficherHP(etat.adversaire, "adversaire-hp", ".hp-adversaire");
     afficherDeck("deck-x", "titre-deck-x", "X", etat.adversaire);
     afficherDeck("deck-y", "titre-deck-y", "Y", etat.joueur);
@@ -193,7 +191,7 @@ export function afficherTout() {
 
 }
 
-export function afficherMessage() {
+export function afficherMessage(texte) {
     const ancien = element("toast");
     if (ancien) ancien.remove();
     const message = creerElemenet("div", "fixed bottom-4 left-1/2 z-50 -translate-x-1/2 rounded-lg bg-red-900 px-4 py-2 text-sm text-white", texte);
@@ -205,20 +203,21 @@ export function afficherMessage() {
 }
 
 export function afficherModal(titre, texte, boutons) {
-    const ancien = element = element("modal");
+    const ancien = element("modal");
     if (ancien) ancien.remove();
 
     const fond = creerElemenet("div", "fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4", "");
     fond.id = "modal";
     const boite = creerElemenet("div", "w-full max-w-md rounded-2xl border border-violet-400/60 bg-[#171126] p-6 text-center text-white", "");
-    boite.appendChild(creerElement("h2", "mb-2 text-2xl font-black text-amber-200", titre));
-    boite.appendChild(creerElement("p", "mb-5 text-gray-300", texte));
+    boite.appendChild(creerElemenet("h2", "mb-2 text-2xl font-black text-amber-200", titre));
+    boite.appendChild(creerElemenet("p", "mb-5 text-gray-300", texte));
 
     const zoneBoutons = creerElemenet("div", "flex flex-wrap justify-center gap-3", "");
     for (let i = 0; i < boutons.length; i++) {
         const bouton = creerElemenet("button", "rounded-xl bg-amber-600 px-5 py-2 font-black text-white", boutons[i].label);
 
         bouton.type = "button";
+        bouton.addEventListner("click", boutons[i].action);
         zoneBoutons.appendChild(bouton)
 
 
