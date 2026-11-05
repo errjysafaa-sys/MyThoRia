@@ -8,7 +8,7 @@ export const CONFIG = {
     INOVACATION_PAR_TOUR: 1,
     CLE_DECK: "mythoria_deck",
     CLE_HISTORIQUE: "mythoria_dernier_combat",
-    PREFIXE_IMG: "../"   // arena.html est dans m2/, les images sont à la racine (../img/...)
+    PREFIXE_IMG: "../"
 };
 
 export const etat = {

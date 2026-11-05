@@ -125,7 +125,7 @@ function afficherDeck(idConteneur, idTitre, lettre, joueur) {
     for (let i = 0; i < CONFIG.DECK_APERCU; i++) {
 
         if (i < joueur.deck.length) {
-            zone.appendChild(creerElemenet("div", "flex aspect-[3/4] items-center justify-center rounded-lg border border-violet-400/60 bg-violet-900 text-xl", "✦"));
+            zone.appendChild(creerElemenet("div", "flex aspect-[3/4] items-center justify-center rounded-lg border border-violet-400/60 bg-violet-900 text-xl", "+"));
         } else {
             zone.appendChild(creerEmplacementVide());
         }

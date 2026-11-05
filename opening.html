@@ -417,6 +417,7 @@
 
     <script>
         const catalogue = [
+
             { id: 1, nom: "Gardien des Ombres", type: "Monstre", rarete: "Commune", attaque: 120, defense: 100, illustration: "img/n1.jpg" },
             { id: 2, nom: "Apprenti Mage", type: "Héros", rarete: "Commune", attaque: 90, defense: 130, illustration: "img/b1.jpg" },
             { id: 3, nom: "Serviteur des Brumes", type: "Serviteur", rarete: "Commune", attaque: 100, defense: 110, illustration: "img/c3.jpg" },
@@ -427,7 +428,36 @@
             { id: 8, nom: "Dragon du Néant", type: "Monstre", rarete: "Épique", attaque: 350, defense: 280, illustration: "img/d6.jpg" },
             { id: 9, nom: "Sorcière Éternelle", type: "Héros", rarete: "Épique", attaque: 290, defense: 320, illustration: "img/d2.jpg" },
             { id: 10, nom: "Roi des Abysses", type: "Monstre", rarete: "Légendaire", attaque: 500, defense: 450, illustration: "img/d3.jpg" },
-            { id: 11, nom: "Phénix Céleste", type: "Serviteur", rarete: "Légendaire", attaque: 480, defense: 400, illustration: "img/d4.jpg" }
+            { id: 11, nom: "Phénix Céleste", type: "Serviteur", rarete: "Légendaire", attaque: 480, defense: 400, illustration: "img/d4.jpg" },
+            { id: 12, nom: "Loup de Givre", type: "Monstre", rarete: "Commune", attaque: 130, defense: 90, illustration: "img/n2.jpg" },
+            { id: 13, nom: "Archer Sylvestre", type: "Héros", rarete: "Commune", attaque: 140, defense: 100, illustration: "img/d2.jpg" },
+            { id: 14, nom: "Petit Golem", type: "Serviteur", rarete: "Commune", attaque: 80, defense: 160, illustration: "img/c1.jpg" },
+            { id: 15, nom: "Boule de Feu", type: "Sort", rarete: "Commune", attaque: 150, defense: 70, illustration: "img/a2.jpg" },
+            { id: 16, nom: "Serpent des Sables", type: "Monstre", rarete: "Commune", attaque: 125, defense: 105, illustration: "img/n2.jpg" },
+            { id: 17, nom: "Druide Ancien", type: "Héros", rarete: "Rare", attaque: 170, defense: 220, illustration: "img/d1.jpg" },
+            { id: 18, nom: "Assassin Fantôme", type: "Héros", rarete: "Rare", attaque: 240, defense: 130, illustration: "img/d3.jpg" },
+            { id: 19, nom: "Golem de Lave", type: "Monstre", rarete: "Rare", attaque: 230, defense: 260, illustration: "img/n1.jpg" },
+            { id: 20, nom: "Dragon des Tempêtes", type: "Monstre", rarete: "Épique", attaque: 380, defense: 300, illustration: "img/d6.jpg" },
+            { id: 21, nom: "Ange de Lumière", type: "Serviteur", rarete: "Épique", attaque: 310, defense: 360, illustration: "img/d4.jpg" },
+            { id: 22, nom: "Titan de Fer", type: "Monstre", rarete: "Épique", attaque: 400, defense: 420, illustration: "img/5.jpg" },
+            { id: 23, nom: "Impératrice des Flammes", type: "Héros", rarete: "Légendaire", attaque: 520, defense: 430, illustration: "img/4.jpg" },
+            { id: 24, nom: "Démon Primordial", type: "Monstre", rarete: "Légendaire", attaque: 550, defense: 480, illustration: "img/7.jpg" },
+            { id: 25, nom: "Gardienne des Étoiles", type: "Serviteur", rarete: "Rare", attaque: 200, defense: 250, illustration: "img/8.jpg" },
+            { id: 26, nom: "Explosion Arcanique", type: "Sort", rarete: "Rare", attaque: 260, defense: 100, illustration: "img/10.jpg" },
+            { id: 27, nom: "Chevalier de Glace", type: "Héros", rarete: "Commune", attaque: 150, defense: 150, illustration: "img/11.jpg" },
+            { id: 28, nom: "Araignée Maudite", type: "Monstre", rarete: "Commune", attaque: 110, defense: 140, illustration: "img/12.jpg" },
+            { id: 29, nom: "Esprit de la Forêt", type: "Serviteur", rarete: "Rare", attaque: 180, defense: 240, illustration: "img/14.jpg" },
+            { id: 30, nom: "Épée du Destin", type: "Sort", rarete: "Épique", attaque: 330, defense: 180, illustration: "img/99.jpg" },
+            { id: 31, nom: "Hydre des Marais", type: "Monstre", rarete: "Épique", attaque: 370, defense: 340, illustration: "img/a1.jpg" },
+            { id: 32, nom: "Paladin Sacré", type: "Héros", rarete: "Rare", attaque: 210, defense: 280, illustration: "img/c2.jpg" },
+            { id: 33, nom: "Corbeau de l'Enfer", type: "Serviteur", rarete: "Commune", attaque: 135, defense: 95, illustration: "img/c3.jpg" },
+            { id: 34, nom: "Tempête de Foudre", type: "Sort", rarete: "Rare", attaque: 280, defense: 120, illustration: "img/d6.jpg" },
+            { id: 35, nom: "Roi des Dragons", type: "Monstre", rarete: "Légendaire", attaque: 600, defense: 500, illustration: "img/d7.jpg" },
+            { id: 36, nom: "Valkyrie Éternelle", type: "Héros", rarete: "Légendaire", attaque: 490, defense: 520, illustration: "img/13.jpg" },
+            { id: 37, nom: "Zombie des Catacombes", type: "Monstre", rarete: "Commune", attaque: 100, defense: 120, illustration: "img/1.jpg" },
+            { id: 38, nom: "Mage du Chaos", type: "Héros", rarete: "Épique", attaque: 360, defense: 290, illustration: "img/d5.jpg" },
+            { id: 39, nom: "L'Ultime Invocation", type: "Sort", rarete: "Légendaire", attaque: 580, defense: 350, illustration: "img/a1.jpg" },
+            { id: 40, nom: "Gardien de l'Apocalypse", type: "Monstre", rarete: "Légendaire", attaque: 650, defense: 600, illustration: "img/d4.jpg" }
         ];
 
         const boosters = {
@@ -847,7 +877,7 @@
 
 
         afficherBoosters();
-        // localStorage.clear();
+        //localStorage.clear();
 
     </script>
 
